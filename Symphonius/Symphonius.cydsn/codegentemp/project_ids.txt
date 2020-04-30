@@ -1,0 +1,8 @@
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|818a074f-c277-4d57-bdad-13306b961cfe
+C:\Users\dshen\Documents\PSoC Creator\4.3\Downloads ( 4.3).cylib\Downloads ( 4.3).cyprj|966a33d4-1d15-4e1a-bba1-626fc443c5fb
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|921b921d-17ae-484d-95b4-c00ba43ec57f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|af211157-5c52-49bd-83cd-998a17df7d4d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|ec68d2df-bdf6-42ec-851d-a5cbbc524222
+C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\Symphonius.cyprj|6d1f7637-20e7-4ee4-90d0-e9a5af6be3b7
+C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Interrupt_Priority.cydsn\Interrupt_Priority.cyprj|ff0293fb-1ded-45f0-bef9-ab40379c7334
+C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\TimerInterrupt.cydsn\TimerInterrupt.cyprj|7ac91ac4-7e24-4af9-9280-665e35748881

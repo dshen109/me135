@@ -1,0 +1,3133 @@
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.ByteReceived,"ax",%progbits
+  20              		.align	2
+  21              		.global	ByteReceived
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	ByteReceived, %function
+  25              	ByteReceived:
+  26              	.LFB72:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <queue.c>
+  14:main.c        **** 
+  15:main.c        **** 
+  16:main.c        **** uint8 ByteCount = 0;
+  17:main.c        **** uint8 firstbyte = 0;
+  18:main.c        **** uint8 CommandReady = 0;
+  19:main.c        **** uint8 Count = 0;
+  20:main.c        **** uint8 Status;
+  21:main.c        **** 
+  22:main.c        **** uint8 ReceivedBuffer[66];
+  23:main.c        **** uint8 TransmitBuffer[1];
+  24:main.c        **** int16 LedCommand = 10000;
+  25:main.c        **** 
+  26:main.c        **** // Tempo in beats per minute.
+  27:main.c        **** uint8 tempo = 120;
+  28:main.c        **** 
+  29:main.c        **** // Track if we have notes in the queue.
+  30:main.c        **** uint noteReady = 0;
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 2
+
+
+  31:main.c        **** 
+  32:main.c        **** // Clock rate of tempo timer.
+  33:main.c        **** // TODO: Figure out if this can be read from TopDesign.
+  34:main.c        **** uint8 clockRate = 100;
+  35:main.c        **** 
+  36:main.c        **** struct command_protocol
+  37:main.c        **** {
+  38:main.c        ****     uint8 packet_size;
+  39:main.c        ****     uint8 command;
+  40:main.c        ****     uint8 buffer[64];
+  41:main.c        **** } Command_Packet;
+  42:main.c        **** 
+  43:main.c        **** struct command_protocol Transmit_Packet;
+  44:main.c        **** 
+  45:main.c        **** struct Queue* noteQueue;
+  46:main.c        **** 
+  47:main.c        **** /** Calculate the number of clock cycles between beats given a CLOCKRATE and 
+  48:main.c        ****  *  BPM */
+  49:main.c        **** int tempotoseconds(int clockrate, int bpm) {
+  50:main.c        ****     return clockrate * 60 / bpm;    
+  51:main.c        **** }
+  52:main.c        **** 
+  53:main.c        **** /** Interrupt when we get a byte over serial. */
+  54:main.c        **** CY_ISR(ByteReceived) { 
+  28              		.loc 1 54 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 38B5     		push	{r3, r4, r5, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 3, -16
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  55:main.c        ****     LEDDrive_Write(1);
+  38              		.loc 1 55 0
+  39 0002 0120     		movs	r0, #1
+  40 0004 FFF7FEFF 		bl	LEDDrive_Write
+  41              	.LVL0:
+  56:main.c        ****     // Get the next Byte in the buffer and store in ReceivedBuffer,
+  57:main.c        ****     // then increment ByteCount by 1
+  58:main.c        ****     ReceivedBuffer[ByteCount++] = (uint8) (LabVIEW_UART_GetByte()&0x00ff);
+  42              		.loc 1 58 0
+  43 0008 0B4C     		ldr	r4, .L4
+  44 000a 2578     		ldrb	r5, [r4]	@ zero_extendqisi2
+  45 000c 6B1C     		adds	r3, r5, #1
+  46 000e 2370     		strb	r3, [r4]
+  47 0010 FFF7FEFF 		bl	LabVIEW_UART_GetByte
+  48              	.LVL1:
+  49 0014 094B     		ldr	r3, .L4+4
+  50 0016 5855     		strb	r0, [r3, r5]
+  59:main.c        ****     // We're reading the first byte in the buffer since the firstbyte flag was
+  60:main.c        ****     // set
+  61:main.c        ****     if(firstbyte == 0)
+  51              		.loc 1 61 0
+  52 0018 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+  53 001a 2BB9     		cbnz	r3, .L2
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 3
+
+
+  62:main.c        ****     {
+  63:main.c        ****         // Set the counter to interrupt after all bytes have been read 
+  64:main.c        ****         // from the buffer.
+  65:main.c        ****         ByteCounter_WriteCompare(ReceivedBuffer[0]);
+  54              		.loc 1 65 0
+  55 001c 074B     		ldr	r3, .L4+4
+  56 001e 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  57 0020 FFF7FEFF 		bl	ByteCounter_WriteCompare
+  58              	.LVL2:
+  66:main.c        ****         // Unset firstbyte flag since we're reading subsequent bytes
+  67:main.c        ****         firstbyte = 1;
+  59              		.loc 1 67 0
+  60 0024 0122     		movs	r2, #1
+  61 0026 6270     		strb	r2, [r4, #1]
+  62              	.L2:
+  68:main.c        ****    
+  69:main.c        ****     }
+  70:main.c        ****     // Get the index of this byte. This line doesn't seem to do anything.
+  71:main.c        ****     // ByteCounter_ReadCounter();
+  72:main.c        ****     // Clear the interrupt by reading the status register.
+  73:main.c        ****     Status = ByteCounter_ReadStatusRegister();
+  63              		.loc 1 73 0
+  64 0028 FFF7FEFF 		bl	ByteCounter_ReadStatusRegister
+  65              	.LVL3:
+  66 002c 044B     		ldr	r3, .L4+8
+  67 002e 1870     		strb	r0, [r3]
+  74:main.c        ****     LEDDrive_Write(0);
+  68              		.loc 1 74 0
+  69 0030 0020     		movs	r0, #0
+  70 0032 FFF7FEFF 		bl	LEDDrive_Write
+  71              	.LVL4:
+  72 0036 38BD     		pop	{r3, r4, r5, pc}
+  73              	.L5:
+  74              		.align	2
+  75              	.L4:
+  76 0038 00000000 		.word	.LANCHOR0
+  77 003c 00000000 		.word	ReceivedBuffer
+  78 0040 00000000 		.word	Status
+  79              		.cfi_endproc
+  80              	.LFE72:
+  81              		.size	ByteReceived, .-ByteReceived
+  82              		.section	.text.CommandReceived,"ax",%progbits
+  83              		.align	2
+  84              		.global	CommandReceived
+  85              		.thumb
+  86              		.thumb_func
+  87              		.type	CommandReceived, %function
+  88              	CommandReceived:
+  89              	.LFB73:
+  75:main.c        ****     
+  76:main.c        **** }
+  77:main.c        **** 
+  78:main.c        **** /** Runs once all bytes have been read from the counter and is triggered by
+  79:main.c        ****  *  the timer. */
+  80:main.c        **** CY_ISR(CommandReceived) {
+  90              		.loc 1 80 0
+  91              		.cfi_startproc
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 4
+
+
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94 0000 08B5     		push	{r3, lr}
+  95              		.cfi_def_cfa_offset 8
+  96              		.cfi_offset 3, -8
+  97              		.cfi_offset 14, -4
+  81:main.c        ****     uint8 i;
+  82:main.c        ****     
+  83:main.c        ****     if(CommandReady == 0)
+  98              		.loc 1 83 0
+  99 0002 114B     		ldr	r3, .L11
+ 100 0004 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 101 0006 C3B9     		cbnz	r3, .L7
+  84:main.c        ****     {
+  85:main.c        ****         Command_Packet.packet_size = ReceivedBuffer[0];
+ 102              		.loc 1 85 0
+ 103 0008 104A     		ldr	r2, .L11+4
+ 104 000a 1078     		ldrb	r0, [r2]	@ zero_extendqisi2
+ 105 000c 104B     		ldr	r3, .L11+8
+ 106 000e 1870     		strb	r0, [r3]
+  86:main.c        ****         // 0 if tempo payload and 1 if note payload
+  87:main.c        ****         Command_Packet.command = ReceivedBuffer[1];
+ 107              		.loc 1 87 0
+ 108 0010 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+ 109 0012 5A70     		strb	r2, [r3, #1]
+ 110              	.LVL5:
+  88:main.c        ****     
+  89:main.c        ****         for(i=0;i<(Command_Packet.packet_size - 2);i++)
+ 111              		.loc 1 89 0
+ 112 0014 0023     		movs	r3, #0
+ 113 0016 07E0     		b	.L8
+ 114              	.LVL6:
+ 115              	.L9:
+  90:main.c        ****         {
+  91:main.c        ****             Command_Packet.buffer[i] =  ReceivedBuffer[i+2];
+ 116              		.loc 1 91 0 discriminator 3
+ 117 0018 9A1C     		adds	r2, r3, #2
+ 118 001a 0C49     		ldr	r1, .L11+4
+ 119 001c 895C     		ldrb	r1, [r1, r2]	@ zero_extendqisi2
+ 120 001e 0C4A     		ldr	r2, .L11+8
+ 121 0020 1A44     		add	r2, r2, r3
+ 122 0022 9170     		strb	r1, [r2, #2]
+  89:main.c        ****         {
+ 123              		.loc 1 89 0 discriminator 3
+ 124 0024 0133     		adds	r3, r3, #1
+ 125              	.LVL7:
+ 126 0026 DBB2     		uxtb	r3, r3
+ 127              	.LVL8:
+ 128              	.L8:
+  89:main.c        ****         {
+ 129              		.loc 1 89 0 is_stmt 0 discriminator 1
+ 130 0028 821E     		subs	r2, r0, #2
+ 131 002a 9342     		cmp	r3, r2
+ 132 002c F4DB     		blt	.L9
+  92:main.c        ****         }
+  93:main.c        ****         
+  94:main.c        ****         firstbyte = 0;
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 5
+
+
+ 133              		.loc 1 94 0 is_stmt 1
+ 134 002e 064B     		ldr	r3, .L11
+ 135              	.LVL9:
+ 136 0030 0022     		movs	r2, #0
+ 137 0032 5A70     		strb	r2, [r3, #1]
+  95:main.c        ****         CommandReady = 1;
+ 138              		.loc 1 95 0
+ 139 0034 0121     		movs	r1, #1
+ 140 0036 9970     		strb	r1, [r3, #2]
+  96:main.c        ****         ByteCount = 0;
+ 141              		.loc 1 96 0
+ 142 0038 1A70     		strb	r2, [r3]
+ 143              	.L7:
+  97:main.c        ****     }
+  98:main.c        ****     ByteCounter_ReadStatusRegister();
+ 144              		.loc 1 98 0
+ 145 003a FFF7FEFF 		bl	ByteCounter_ReadStatusRegister
+ 146              	.LVL10:
+  99:main.c        ****     LEDDrive_Write(0);
+ 147              		.loc 1 99 0
+ 148 003e 0020     		movs	r0, #0
+ 149 0040 FFF7FEFF 		bl	LEDDrive_Write
+ 150              	.LVL11:
+ 151 0044 08BD     		pop	{r3, pc}
+ 152              	.L12:
+ 153 0046 00BF     		.align	2
+ 154              	.L11:
+ 155 0048 00000000 		.word	.LANCHOR0
+ 156 004c 00000000 		.word	ReceivedBuffer
+ 157 0050 00000000 		.word	Command_Packet
+ 158              		.cfi_endproc
+ 159              	.LFE73:
+ 160              		.size	CommandReceived, .-CommandReceived
+ 161              		.section	.text.createQueue,"ax",%progbits
+ 162              		.align	2
+ 163              		.global	createQueue
+ 164              		.thumb
+ 165              		.thumb_func
+ 166              		.type	createQueue, %function
+ 167              	createQueue:
+ 168              	.LFB64:
+ 169              		.file 2 "./queue.c"
+   1:./queue.c     **** /** Queue Library. Implementation taken from
+   2:./queue.c     ****  *  https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/
+   3:./queue.c     ****  */
+   4:./queue.c     **** #include "project.h"
+   5:./queue.c     **** #include <stdio.h> 
+   6:./queue.c     **** #include <stdlib.h> 
+   7:./queue.c     **** #include <limits.h> 
+   8:./queue.c     ****   
+   9:./queue.c     **** // A structure to represent a queue 
+  10:./queue.c     **** struct Queue 
+  11:./queue.c     **** { 
+  12:./queue.c     ****     uint front, rear, size; 
+  13:./queue.c     ****     unsigned capacity; 
+  14:./queue.c     ****     uint8* array; 
+  15:./queue.c     **** }; 
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 6
+
+
+  16:./queue.c     ****   
+  17:./queue.c     **** // function to create a queue of given capacity.  
+  18:./queue.c     **** // It initializes size of queue as 0 
+  19:./queue.c     **** struct Queue* createQueue(unsigned capacity) 
+  20:./queue.c     **** { 
+ 170              		.loc 2 20 0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              	.LVL12:
+ 175 0000 38B5     		push	{r3, r4, r5, lr}
+ 176              		.cfi_def_cfa_offset 16
+ 177              		.cfi_offset 3, -16
+ 178              		.cfi_offset 4, -12
+ 179              		.cfi_offset 5, -8
+ 180              		.cfi_offset 14, -4
+ 181 0002 0546     		mov	r5, r0
+  21:./queue.c     ****     struct Queue* queue = (struct Queue*) malloc(sizeof(struct Queue)); 
+ 182              		.loc 2 21 0
+ 183 0004 1420     		movs	r0, #20
+ 184              	.LVL13:
+ 185 0006 FFF7FEFF 		bl	malloc
+ 186              	.LVL14:
+ 187 000a 0446     		mov	r4, r0
+ 188              	.LVL15:
+  22:./queue.c     ****     queue->capacity = capacity; 
+ 189              		.loc 2 22 0
+ 190 000c C560     		str	r5, [r0, #12]
+  23:./queue.c     ****     queue->front = queue->size = 0;  
+ 191              		.loc 2 23 0
+ 192 000e 0023     		movs	r3, #0
+ 193 0010 8360     		str	r3, [r0, #8]
+ 194 0012 0360     		str	r3, [r0]
+  24:./queue.c     ****     queue->rear = capacity - 1;  // This is important, see the enqueue 
+ 195              		.loc 2 24 0
+ 196 0014 6B1E     		subs	r3, r5, #1
+ 197 0016 4360     		str	r3, [r0, #4]
+  25:./queue.c     ****     queue->array = (uint8*) malloc(queue->capacity * sizeof(int)); 
+ 198              		.loc 2 25 0
+ 199 0018 A800     		lsls	r0, r5, #2
+ 200              	.LVL16:
+ 201 001a FFF7FEFF 		bl	malloc
+ 202              	.LVL17:
+ 203 001e 2061     		str	r0, [r4, #16]
+  26:./queue.c     ****     return queue; 
+  27:./queue.c     **** } 
+ 204              		.loc 2 27 0
+ 205 0020 2046     		mov	r0, r4
+ 206 0022 38BD     		pop	{r3, r4, r5, pc}
+ 207              		.cfi_endproc
+ 208              	.LFE64:
+ 209              		.size	createQueue, .-createQueue
+ 210              		.section	.text.isFull,"ax",%progbits
+ 211              		.align	2
+ 212              		.global	isFull
+ 213              		.thumb
+ 214              		.thumb_func
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 7
+
+
+ 215              		.type	isFull, %function
+ 216              	isFull:
+ 217              	.LFB65:
+  28:./queue.c     ****   
+  29:./queue.c     **** // Queue is full when size becomes equal to the capacity  
+  30:./queue.c     **** int isFull(struct Queue* queue) 
+  31:./queue.c     **** {  return (queue->size == queue->capacity);  } 
+ 218              		.loc 2 31 0
+ 219              		.cfi_startproc
+ 220              		@ args = 0, pretend = 0, frame = 0
+ 221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 222              		@ link register save eliminated.
+ 223              	.LVL18:
+ 224              		.loc 2 31 0
+ 225 0000 8268     		ldr	r2, [r0, #8]
+ 226 0002 C068     		ldr	r0, [r0, #12]
+ 227              	.LVL19:
+ 228 0004 8242     		cmp	r2, r0
+ 229 0006 14BF     		ite	ne
+ 230 0008 0020     		movne	r0, #0
+ 231 000a 0120     		moveq	r0, #1
+ 232 000c 7047     		bx	lr
+ 233              		.cfi_endproc
+ 234              	.LFE65:
+ 235              		.size	isFull, .-isFull
+ 236 000e 00BF     		.section	.text.isEmpty,"ax",%progbits
+ 237              		.align	2
+ 238              		.global	isEmpty
+ 239              		.thumb
+ 240              		.thumb_func
+ 241              		.type	isEmpty, %function
+ 242              	isEmpty:
+ 243              	.LFB66:
+  32:./queue.c     ****   
+  33:./queue.c     **** // Queue is empty when size is 0 
+  34:./queue.c     **** int isEmpty(struct Queue* queue) 
+  35:./queue.c     **** {  return (queue->size == 0); } 
+ 244              		.loc 2 35 0
+ 245              		.cfi_startproc
+ 246              		@ args = 0, pretend = 0, frame = 0
+ 247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 248              		@ link register save eliminated.
+ 249              	.LVL20:
+ 250              		.loc 2 35 0
+ 251 0000 8068     		ldr	r0, [r0, #8]
+ 252              	.LVL21:
+ 253 0002 B0FA80F0 		clz	r0, r0
+ 254 0006 4009     		lsrs	r0, r0, #5
+ 255 0008 7047     		bx	lr
+ 256              		.cfi_endproc
+ 257              	.LFE66:
+ 258              		.size	isEmpty, .-isEmpty
+ 259 000a 00BF     		.section	.text.enqueue,"ax",%progbits
+ 260              		.align	2
+ 261              		.global	enqueue
+ 262              		.thumb
+ 263              		.thumb_func
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 8
+
+
+ 264              		.type	enqueue, %function
+ 265              	enqueue:
+ 266              	.LFB67:
+  36:./queue.c     ****   
+  37:./queue.c     **** // Function to add an item to the queue.   
+  38:./queue.c     **** // It changes rear and size 
+  39:./queue.c     **** void enqueue(struct Queue* queue, int item) 
+  40:./queue.c     **** { 
+ 267              		.loc 2 40 0
+ 268              		.cfi_startproc
+ 269              		@ args = 0, pretend = 0, frame = 0
+ 270              		@ frame_needed = 0, uses_anonymous_args = 0
+ 271              	.LVL22:
+ 272 0000 38B5     		push	{r3, r4, r5, lr}
+ 273              		.cfi_def_cfa_offset 16
+ 274              		.cfi_offset 3, -16
+ 275              		.cfi_offset 4, -12
+ 276              		.cfi_offset 5, -8
+ 277              		.cfi_offset 14, -4
+ 278 0002 0446     		mov	r4, r0
+ 279 0004 0D46     		mov	r5, r1
+  41:./queue.c     ****     if (isFull(queue)) 
+ 280              		.loc 2 41 0
+ 281 0006 FFF7FEFF 		bl	isFull
+ 282              	.LVL23:
+ 283 000a 80B9     		cbnz	r0, .L17
+  42:./queue.c     ****         return; 
+  43:./queue.c     ****     queue->rear = (queue->rear + 1)%queue->capacity; 
+ 284              		.loc 2 43 0
+ 285 000c 6368     		ldr	r3, [r4, #4]
+ 286 000e 0133     		adds	r3, r3, #1
+ 287 0010 E168     		ldr	r1, [r4, #12]
+ 288 0012 B3FBF1F2 		udiv	r2, r3, r1
+ 289 0016 01FB1233 		mls	r3, r1, r2, r3
+ 290 001a 6360     		str	r3, [r4, #4]
+  44:./queue.c     ****     queue->array[queue->rear] = item; 
+ 291              		.loc 2 44 0
+ 292 001c 2269     		ldr	r2, [r4, #16]
+ 293 001e D554     		strb	r5, [r2, r3]
+  45:./queue.c     ****     queue->size = queue->size + 1; 
+ 294              		.loc 2 45 0
+ 295 0020 A368     		ldr	r3, [r4, #8]
+ 296 0022 0133     		adds	r3, r3, #1
+ 297 0024 A360     		str	r3, [r4, #8]
+  46:./queue.c     ****     printf("%d enqueued to queue\n", item); 
+ 298              		.loc 2 46 0
+ 299 0026 2946     		mov	r1, r5
+ 300 0028 0148     		ldr	r0, .L20
+ 301 002a FFF7FEFF 		bl	printf
+ 302              	.LVL24:
+ 303              	.L17:
+ 304 002e 38BD     		pop	{r3, r4, r5, pc}
+ 305              	.LVL25:
+ 306              	.L21:
+ 307              		.align	2
+ 308              	.L20:
+ 309 0030 00000000 		.word	.LC0
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 9
+
+
+ 310              		.cfi_endproc
+ 311              	.LFE67:
+ 312              		.size	enqueue, .-enqueue
+ 313              		.section	.text.dequeue,"ax",%progbits
+ 314              		.align	2
+ 315              		.global	dequeue
+ 316              		.thumb
+ 317              		.thumb_func
+ 318              		.type	dequeue, %function
+ 319              	dequeue:
+ 320              	.LFB68:
+  47:./queue.c     **** } 
+  48:./queue.c     ****   
+  49:./queue.c     **** // Function to remove an item from queue.  
+  50:./queue.c     **** // It changes front and size 
+  51:./queue.c     **** int dequeue(struct Queue* queue) 
+  52:./queue.c     **** { 
+ 321              		.loc 2 52 0
+ 322              		.cfi_startproc
+ 323              		@ args = 0, pretend = 0, frame = 0
+ 324              		@ frame_needed = 0, uses_anonymous_args = 0
+ 325              	.LVL26:
+ 326 0000 10B5     		push	{r4, lr}
+ 327              		.cfi_def_cfa_offset 8
+ 328              		.cfi_offset 4, -8
+ 329              		.cfi_offset 14, -4
+ 330 0002 0446     		mov	r4, r0
+  53:./queue.c     ****     if (isEmpty(queue)) 
+ 331              		.loc 2 53 0
+ 332 0004 FFF7FEFF 		bl	isEmpty
+ 333              	.LVL27:
+ 334 0008 68B9     		cbnz	r0, .L24
+  54:./queue.c     ****         return INT_MIN; 
+  55:./queue.c     ****     int item = queue->array[queue->front]; 
+ 335              		.loc 2 55 0
+ 336 000a 2269     		ldr	r2, [r4, #16]
+ 337 000c 2368     		ldr	r3, [r4]
+ 338 000e D05C     		ldrb	r0, [r2, r3]	@ zero_extendqisi2
+ 339              	.LVL28:
+  56:./queue.c     ****     queue->front = (queue->front + 1)%queue->capacity; 
+ 340              		.loc 2 56 0
+ 341 0010 0133     		adds	r3, r3, #1
+ 342 0012 E168     		ldr	r1, [r4, #12]
+ 343 0014 B3FBF1F2 		udiv	r2, r3, r1
+ 344 0018 01FB1233 		mls	r3, r1, r2, r3
+ 345 001c 2360     		str	r3, [r4]
+  57:./queue.c     ****     queue->size = queue->size - 1; 
+ 346              		.loc 2 57 0
+ 347 001e A368     		ldr	r3, [r4, #8]
+ 348 0020 013B     		subs	r3, r3, #1
+ 349 0022 A360     		str	r3, [r4, #8]
+  58:./queue.c     ****     return item; 
+ 350              		.loc 2 58 0
+ 351 0024 10BD     		pop	{r4, pc}
+ 352              	.LVL29:
+ 353              	.L24:
+  54:./queue.c     ****     int item = queue->array[queue->front]; 
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 10
+
+
+ 354              		.loc 2 54 0
+ 355 0026 4FF00040 		mov	r0, #-2147483648
+  59:./queue.c     **** }
+ 356              		.loc 2 59 0
+ 357 002a 10BD     		pop	{r4, pc}
+ 358              		.cfi_endproc
+ 359              	.LFE68:
+ 360              		.size	dequeue, .-dequeue
+ 361              		.section	.text.NoteInterrupt,"ax",%progbits
+ 362              		.align	2
+ 363              		.global	NoteInterrupt
+ 364              		.thumb
+ 365              		.thumb_func
+ 366              		.type	NoteInterrupt, %function
+ 367              	NoteInterrupt:
+ 368              	.LFB74:
+ 100:main.c        **** }
+ 101:main.c        **** 
+ 102:main.c        **** /** Interrupt once the timer loops and we need to write a note. */
+ 103:main.c        **** CY_ISR(NoteInterrupt) {
+ 369              		.loc 1 103 0
+ 370              		.cfi_startproc
+ 371              		@ args = 0, pretend = 0, frame = 0
+ 372              		@ frame_needed = 0, uses_anonymous_args = 0
+ 373 0000 10B5     		push	{r4, lr}
+ 374              		.cfi_def_cfa_offset 8
+ 375              		.cfi_offset 4, -8
+ 376              		.cfi_offset 14, -4
+ 104:main.c        ****     // If no notes to read, exit.
+ 105:main.c        ****     if (~noteReady) {
+ 377              		.loc 1 105 0
+ 378 0002 114B     		ldr	r3, .L31
+ 379 0004 5B68     		ldr	r3, [r3, #4]
+ 380 0006 B3F1FF3F 		cmp	r3, #-1
+ 381 000a 02D0     		beq	.L27
+ 106:main.c        ****         NoteTimer_ReadStatusRegister();
+ 382              		.loc 1 106 0
+ 383 000c FFF7FEFF 		bl	NoteTimer_ReadStatusRegister
+ 384              	.LVL30:
+ 107:main.c        ****         return;
+ 385              		.loc 1 107 0
+ 386 0010 10BD     		pop	{r4, pc}
+ 387              	.L27:
+ 108:main.c        ****     }
+ 109:main.c        ****     // Write opposite of whatever LED is at
+ 110:main.c        ****     LEDDrive_Write(!LEDDrive_Read());
+ 388              		.loc 1 110 0
+ 389 0012 FFF7FEFF 		bl	LEDDrive_Read
+ 390              	.LVL31:
+ 391 0016 B0FA80F0 		clz	r0, r0
+ 392 001a 4009     		lsrs	r0, r0, #5
+ 393 001c FFF7FEFF 		bl	LEDDrive_Write
+ 394              	.LVL32:
+ 111:main.c        ****     // Do some note writing here.
+ 112:main.c        ****     TransmitBuffer[0] = dequeue(noteQueue);
+ 395              		.loc 1 112 0
+ 396 0020 0A4C     		ldr	r4, .L31+4
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 11
+
+
+ 397 0022 2068     		ldr	r0, [r4]
+ 398 0024 FFF7FEFF 		bl	dequeue
+ 399              	.LVL33:
+ 400 0028 094B     		ldr	r3, .L31+8
+ 401 002a 1870     		strb	r0, [r3]
+ 113:main.c        ****     LabVIEW_UART_PutArray(TransmitBuffer, 1);
+ 402              		.loc 1 113 0
+ 403 002c 0121     		movs	r1, #1
+ 404 002e 1846     		mov	r0, r3
+ 405 0030 FFF7FEFF 		bl	LabVIEW_UART_PutArray
+ 406              	.LVL34:
+ 114:main.c        ****     if (isEmpty(noteQueue)) {
+ 407              		.loc 1 114 0
+ 408 0034 2068     		ldr	r0, [r4]
+ 409 0036 FFF7FEFF 		bl	isEmpty
+ 410              	.LVL35:
+ 411 003a 10B1     		cbz	r0, .L29
+ 115:main.c        ****         noteReady = 0;
+ 412              		.loc 1 115 0
+ 413 003c 0022     		movs	r2, #0
+ 414 003e 024B     		ldr	r3, .L31
+ 415 0040 5A60     		str	r2, [r3, #4]
+ 416              	.L29:
+ 116:main.c        ****     }
+ 117:main.c        ****     
+ 118:main.c        ****     // Clear the interrupt by reading the status register
+ 119:main.c        ****     NoteTimer_ReadStatusRegister();
+ 417              		.loc 1 119 0
+ 418 0042 FFF7FEFF 		bl	NoteTimer_ReadStatusRegister
+ 419              	.LVL36:
+ 420 0046 10BD     		pop	{r4, pc}
+ 421              	.L32:
+ 422              		.align	2
+ 423              	.L31:
+ 424 0048 00000000 		.word	.LANCHOR0
+ 425 004c 00000000 		.word	noteQueue
+ 426 0050 00000000 		.word	TransmitBuffer
+ 427              		.cfi_endproc
+ 428              	.LFE74:
+ 429              		.size	NoteInterrupt, .-NoteInterrupt
+ 430              		.section	.text.front,"ax",%progbits
+ 431              		.align	2
+ 432              		.global	front
+ 433              		.thumb
+ 434              		.thumb_func
+ 435              		.type	front, %function
+ 436              	front:
+ 437              	.LFB69:
+  60:./queue.c     ****   
+  61:./queue.c     **** // Function to get front of queue 
+  62:./queue.c     **** int front(struct Queue* queue) 
+  63:./queue.c     **** { 
+ 438              		.loc 2 63 0
+ 439              		.cfi_startproc
+ 440              		@ args = 0, pretend = 0, frame = 0
+ 441              		@ frame_needed = 0, uses_anonymous_args = 0
+ 442              	.LVL37:
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 12
+
+
+ 443 0000 10B5     		push	{r4, lr}
+ 444              		.cfi_def_cfa_offset 8
+ 445              		.cfi_offset 4, -8
+ 446              		.cfi_offset 14, -4
+ 447 0002 0446     		mov	r4, r0
+  64:./queue.c     ****     if (isEmpty(queue)) 
+ 448              		.loc 2 64 0
+ 449 0004 FFF7FEFF 		bl	isEmpty
+ 450              	.LVL38:
+ 451 0008 18B9     		cbnz	r0, .L35
+  65:./queue.c     ****         return INT_MIN; 
+  66:./queue.c     ****     return queue->array[queue->front]; 
+ 452              		.loc 2 66 0
+ 453 000a 2269     		ldr	r2, [r4, #16]
+ 454 000c 2368     		ldr	r3, [r4]
+ 455 000e D05C     		ldrb	r0, [r2, r3]	@ zero_extendqisi2
+ 456 0010 10BD     		pop	{r4, pc}
+ 457              	.LVL39:
+ 458              	.L35:
+  65:./queue.c     ****         return INT_MIN; 
+ 459              		.loc 2 65 0
+ 460 0012 4FF00040 		mov	r0, #-2147483648
+  67:./queue.c     **** } 
+ 461              		.loc 2 67 0
+ 462 0016 10BD     		pop	{r4, pc}
+ 463              		.cfi_endproc
+ 464              	.LFE69:
+ 465              		.size	front, .-front
+ 466              		.section	.text.rear,"ax",%progbits
+ 467              		.align	2
+ 468              		.global	rear
+ 469              		.thumb
+ 470              		.thumb_func
+ 471              		.type	rear, %function
+ 472              	rear:
+ 473              	.LFB70:
+  68:./queue.c     ****   
+  69:./queue.c     **** // Function to get rear of queue 
+  70:./queue.c     **** int rear(struct Queue* queue) 
+  71:./queue.c     **** { 
+ 474              		.loc 2 71 0
+ 475              		.cfi_startproc
+ 476              		@ args = 0, pretend = 0, frame = 0
+ 477              		@ frame_needed = 0, uses_anonymous_args = 0
+ 478              	.LVL40:
+ 479 0000 10B5     		push	{r4, lr}
+ 480              		.cfi_def_cfa_offset 8
+ 481              		.cfi_offset 4, -8
+ 482              		.cfi_offset 14, -4
+ 483 0002 0446     		mov	r4, r0
+  72:./queue.c     ****     if (isEmpty(queue)) 
+ 484              		.loc 2 72 0
+ 485 0004 FFF7FEFF 		bl	isEmpty
+ 486              	.LVL41:
+ 487 0008 18B9     		cbnz	r0, .L39
+  73:./queue.c     ****         return INT_MIN; 
+  74:./queue.c     ****     return queue->array[queue->rear]; 
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 13
+
+
+ 488              		.loc 2 74 0
+ 489 000a 2269     		ldr	r2, [r4, #16]
+ 490 000c 6368     		ldr	r3, [r4, #4]
+ 491 000e D05C     		ldrb	r0, [r2, r3]	@ zero_extendqisi2
+ 492 0010 10BD     		pop	{r4, pc}
+ 493              	.LVL42:
+ 494              	.L39:
+  73:./queue.c     ****         return INT_MIN; 
+ 495              		.loc 2 73 0
+ 496 0012 4FF00040 		mov	r0, #-2147483648
+  75:./queue.c     **** } ...
+ 497              		.loc 2 75 0
+ 498 0016 10BD     		pop	{r4, pc}
+ 499              		.cfi_endproc
+ 500              	.LFE70:
+ 501              		.size	rear, .-rear
+ 502              		.section	.text.tempotoseconds,"ax",%progbits
+ 503              		.align	2
+ 504              		.global	tempotoseconds
+ 505              		.thumb
+ 506              		.thumb_func
+ 507              		.type	tempotoseconds, %function
+ 508              	tempotoseconds:
+ 509              	.LFB71:
+  49:main.c        ****     return clockrate * 60 / bpm;    
+ 510              		.loc 1 49 0
+ 511              		.cfi_startproc
+ 512              		@ args = 0, pretend = 0, frame = 0
+ 513              		@ frame_needed = 0, uses_anonymous_args = 0
+ 514              		@ link register save eliminated.
+ 515              	.LVL43:
+  50:main.c        **** }
+ 516              		.loc 1 50 0
+ 517 0000 C0EB0010 		rsb	r0, r0, r0, lsl #4
+ 518              	.LVL44:
+ 519 0004 8300     		lsls	r3, r0, #2
+  51:main.c        **** 
+ 520              		.loc 1 51 0
+ 521 0006 93FBF1F0 		sdiv	r0, r3, r1
+ 522 000a 7047     		bx	lr
+ 523              		.cfi_endproc
+ 524              	.LFE71:
+ 525              		.size	tempotoseconds, .-tempotoseconds
+ 526              		.section	.text.main,"ax",%progbits
+ 527              		.align	2
+ 528              		.global	main
+ 529              		.thumb
+ 530              		.thumb_func
+ 531              		.type	main, %function
+ 532              	main:
+ 533              	.LFB75:
+ 120:main.c        **** }
+ 121:main.c        **** 
+ 122:main.c        **** int main(void) {
+ 534              		.loc 1 122 0
+ 535              		.cfi_startproc
+ 536              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 14
+
+
+ 537              		@ frame_needed = 0, uses_anonymous_args = 0
+ 538 0000 38B5     		push	{r3, r4, r5, lr}
+ 539              		.cfi_def_cfa_offset 16
+ 540              		.cfi_offset 3, -16
+ 541              		.cfi_offset 4, -12
+ 542              		.cfi_offset 5, -8
+ 543              		.cfi_offset 14, -4
+ 123:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 544              		.loc 1 123 0
+ 545              		.syntax unified
+ 546              	@ 123 "main.c" 1
+ 547 0002 62B6     		CPSIE   i
+ 548              	@ 0 "" 2
+ 124:main.c        **** 
+ 125:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+ 126:main.c        ****     /* Write 0 to the reset attr. */
+ 127:main.c        ****     UARTReset_Write(0);
+ 549              		.loc 1 127 0
+ 550              		.thumb
+ 551              		.syntax unified
+ 552 0004 0020     		movs	r0, #0
+ 553 0006 FFF7FEFF 		bl	UARTReset_Write
+ 554              	.LVL45:
+ 128:main.c        ****     ByteCountReset_Write(0);
+ 555              		.loc 1 128 0
+ 556 000a 0020     		movs	r0, #0
+ 557 000c FFF7FEFF 		bl	ByteCountReset_Write
+ 558              	.LVL46:
+ 129:main.c        ****     
+ 130:main.c        ****     LabVIEW_UART_Start();
+ 559              		.loc 1 130 0
+ 560 0010 FFF7FEFF 		bl	LabVIEW_UART_Start
+ 561              	.LVL47:
+ 131:main.c        ****     
+ 132:main.c        ****     ByteCounter_Start();
+ 562              		.loc 1 132 0
+ 563 0014 FFF7FEFF 		bl	ByteCounter_Start
+ 564              	.LVL48:
+ 133:main.c        ****     ByteCounter_Enable();
+ 565              		.loc 1 133 0
+ 566 0018 FFF7FEFF 		bl	ByteCounter_Enable
+ 567              	.LVL49:
+ 134:main.c        ****     ByteCounter_SetInterruptMode(ByteCounter_STATUS_CMP_INT_EN_MASK);
+ 568              		.loc 1 134 0
+ 569 001c 0120     		movs	r0, #1
+ 570 001e FFF7FEFF 		bl	ByteCounter_SetInterruptMode
+ 571              	.LVL50:
+ 135:main.c        ****     
+ 136:main.c        ****     NoteTimer_Start();
+ 572              		.loc 1 136 0
+ 573 0022 FFF7FEFF 		bl	NoteTimer_Start
+ 574              	.LVL51:
+ 137:main.c        ****     
+ 138:main.c        ****     NoteInterrupt_Start();
+ 575              		.loc 1 138 0
+ 576 0026 FFF7FEFF 		bl	NoteInterrupt_Start
+ 577              	.LVL52:
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 15
+
+
+ 139:main.c        ****     NoteInterrupt_StartEx(NoteInterrupt);
+ 578              		.loc 1 139 0
+ 579 002a 1E48     		ldr	r0, .L51
+ 580 002c FFF7FEFF 		bl	NoteInterrupt_StartEx
+ 581              	.LVL53:
+ 140:main.c        ****     
+ 141:main.c        ****     ByteReceived_Start();
+ 582              		.loc 1 141 0
+ 583 0030 FFF7FEFF 		bl	ByteReceived_Start
+ 584              	.LVL54:
+ 142:main.c        ****     ByteReceived_StartEx(ByteReceived);
+ 585              		.loc 1 142 0
+ 586 0034 1C48     		ldr	r0, .L51+4
+ 587 0036 FFF7FEFF 		bl	ByteReceived_StartEx
+ 588              	.LVL55:
+ 143:main.c        ****     ByteReceived_Enable();
+ 589              		.loc 1 143 0
+ 590 003a FFF7FEFF 		bl	ByteReceived_Enable
+ 591              	.LVL56:
+ 144:main.c        ****     
+ 145:main.c        ****     CommandReceived_Start();
+ 592              		.loc 1 145 0
+ 593 003e FFF7FEFF 		bl	CommandReceived_Start
+ 594              	.LVL57:
+ 146:main.c        ****     CommandReceived_StartEx(CommandReceived);
+ 595              		.loc 1 146 0
+ 596 0042 1A48     		ldr	r0, .L51+8
+ 597 0044 FFF7FEFF 		bl	CommandReceived_StartEx
+ 598              	.LVL58:
+ 147:main.c        ****     CommandReceived_Enable();
+ 599              		.loc 1 147 0
+ 600 0048 FFF7FEFF 		bl	CommandReceived_Enable
+ 601              	.LVL59:
+ 148:main.c        **** 
+ 149:main.c        ****     struct Queue* noteQueue = createQueue(100);
+ 602              		.loc 1 149 0
+ 603 004c 6420     		movs	r0, #100
+ 604 004e FFF7FEFF 		bl	createQueue
+ 605              	.LVL60:
+ 606 0052 0546     		mov	r5, r0
+ 607              	.LVL61:
+ 608              	.L44:
+ 150:main.c        ****     
+ 151:main.c        ****     // Queue that store the notes to be played.
+ 152:main.c        ****     for(;;)
+ 153:main.c        ****     {
+ 154:main.c        ****         switch (CommandReady) {
+ 609              		.loc 1 154 0
+ 610 0054 164B     		ldr	r3, .L51+12
+ 611 0056 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 612 0058 012B     		cmp	r3, #1
+ 613 005a 02D0     		beq	.L45
+ 614 005c 022B     		cmp	r3, #2
+ 615 005e 16D0     		beq	.L49
+ 616 0060 F8E7     		b	.L44
+ 617              	.L45:
+ 155:main.c        ****             // Tempo payload:
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 16
+
+
+ 156:main.c        ****             case 1:
+ 157:main.c        ****                 // Reset the tempo by changing the period of the NoteTimer
+ 158:main.c        ****                 tempo = Command_Packet.buffer[0];
+ 618              		.loc 1 158 0
+ 619 0062 144B     		ldr	r3, .L51+16
+ 620 0064 9978     		ldrb	r1, [r3, #2]	@ zero_extendqisi2
+ 621 0066 144B     		ldr	r3, .L51+20
+ 622 0068 1970     		strb	r1, [r3]
+ 159:main.c        ****                 NoteTimer_WritePeriod(tempotoseconds(clockRate, tempo));
+ 623              		.loc 1 159 0
+ 624 006a 5878     		ldrb	r0, [r3, #1]	@ zero_extendqisi2
+ 625 006c FFF7FEFF 		bl	tempotoseconds
+ 626              	.LVL62:
+ 627 0070 80B2     		uxth	r0, r0
+ 628 0072 FFF7FEFF 		bl	NoteTimer_WritePeriod
+ 629              	.LVL63:
+ 160:main.c        ****                 CommandReady = 0;
+ 630              		.loc 1 160 0
+ 631 0076 0022     		movs	r2, #0
+ 632 0078 0D4B     		ldr	r3, .L51+12
+ 633 007a 9A70     		strb	r2, [r3, #2]
+ 161:main.c        ****                 break;
+ 634              		.loc 1 161 0
+ 635 007c EAE7     		b	.L44
+ 636              	.LVL64:
+ 637              	.L48:
+ 638              	.LBB2:
+ 162:main.c        ****             // Note Payload
+ 163:main.c        ****             case 2:
+ 164:main.c        ****                 // Enqueue all the notes into the buffer.
+ 165:main.c        ****                 for (int i = 0; i < Command_Packet.packet_size; i++) {
+ 166:main.c        ****                     enqueue(noteQueue, Command_Packet.buffer[i]);
+ 639              		.loc 1 166 0 discriminator 3
+ 640 007e 0D4B     		ldr	r3, .L51+16
+ 641 0080 2344     		add	r3, r3, r4
+ 642 0082 9978     		ldrb	r1, [r3, #2]	@ zero_extendqisi2
+ 643 0084 2846     		mov	r0, r5
+ 644 0086 FFF7FEFF 		bl	enqueue
+ 645              	.LVL65:
+ 165:main.c        ****                     enqueue(noteQueue, Command_Packet.buffer[i]);
+ 646              		.loc 1 165 0 discriminator 3
+ 647 008a 0134     		adds	r4, r4, #1
+ 648              	.LVL66:
+ 649 008c 00E0     		b	.L46
+ 650              	.LVL67:
+ 651              	.L49:
+ 652              	.LBE2:
+ 154:main.c        ****             // Tempo payload:
+ 653              		.loc 1 154 0
+ 654 008e 0024     		movs	r4, #0
+ 655              	.L46:
+ 656              	.LVL68:
+ 657              	.LBB3:
+ 165:main.c        ****                     enqueue(noteQueue, Command_Packet.buffer[i]);
+ 658              		.loc 1 165 0 discriminator 1
+ 659 0090 084B     		ldr	r3, .L51+16
+ 660 0092 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 17
+
+
+ 661 0094 9C42     		cmp	r4, r3
+ 662 0096 F2DB     		blt	.L48
+ 663              	.LBE3:
+ 167:main.c        ****                 }
+ 168:main.c        ****                 noteReady = 1;
+ 664              		.loc 1 168 0
+ 665 0098 054B     		ldr	r3, .L51+12
+ 666 009a 0122     		movs	r2, #1
+ 667 009c 5A60     		str	r2, [r3, #4]
+ 169:main.c        ****                 CommandReady = 0;
+ 668              		.loc 1 169 0
+ 669 009e 0022     		movs	r2, #0
+ 670 00a0 9A70     		strb	r2, [r3, #2]
+ 170:main.c        ****                 break;
+ 671              		.loc 1 170 0
+ 672 00a2 D7E7     		b	.L44
+ 673              	.L52:
+ 674              		.align	2
+ 675              	.L51:
+ 676 00a4 00000000 		.word	NoteInterrupt
+ 677 00a8 00000000 		.word	ByteReceived
+ 678 00ac 00000000 		.word	CommandReceived
+ 679 00b0 00000000 		.word	.LANCHOR0
+ 680 00b4 00000000 		.word	Command_Packet
+ 681 00b8 00000000 		.word	.LANCHOR1
+ 682              		.cfi_endproc
+ 683              	.LFE75:
+ 684              		.size	main, .-main
+ 685              		.comm	noteQueue,4,4
+ 686              		.comm	Transmit_Packet,66,4
+ 687              		.comm	Command_Packet,66,4
+ 688              		.global	clockRate
+ 689              		.global	noteReady
+ 690              		.global	tempo
+ 691              		.global	LedCommand
+ 692              		.comm	TransmitBuffer,1,4
+ 693              		.comm	ReceivedBuffer,66,4
+ 694              		.comm	Status,1,1
+ 695              		.global	Count
+ 696              		.global	CommandReady
+ 697              		.global	firstbyte
+ 698              		.global	ByteCount
+ 699              		.data
+ 700              		.align	1
+ 701              		.set	.LANCHOR1,. + 0
+ 702              		.type	tempo, %object
+ 703              		.size	tempo, 1
+ 704              	tempo:
+ 705 0000 78       		.byte	120
+ 706              		.type	clockRate, %object
+ 707              		.size	clockRate, 1
+ 708              	clockRate:
+ 709 0001 64       		.byte	100
+ 710              		.type	LedCommand, %object
+ 711              		.size	LedCommand, 2
+ 712              	LedCommand:
+ 713 0002 1027     		.short	10000
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 18
+
+
+ 714              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 715              		.align	2
+ 716              	.LC0:
+ 717 0000 25642065 		.ascii	"%d enqueued to queue\012\000"
+ 717      6E717565 
+ 717      75656420 
+ 717      746F2071 
+ 717      75657565 
+ 718              		.bss
+ 719              		.align	2
+ 720              		.set	.LANCHOR0,. + 0
+ 721              		.type	ByteCount, %object
+ 722              		.size	ByteCount, 1
+ 723              	ByteCount:
+ 724 0000 00       		.space	1
+ 725              		.type	firstbyte, %object
+ 726              		.size	firstbyte, 1
+ 727              	firstbyte:
+ 728 0001 00       		.space	1
+ 729              		.type	CommandReady, %object
+ 730              		.size	CommandReady, 1
+ 731              	CommandReady:
+ 732 0002 00       		.space	1
+ 733 0003 00       		.space	1
+ 734              		.type	noteReady, %object
+ 735              		.size	noteReady, 4
+ 736              	noteReady:
+ 737 0004 00000000 		.space	4
+ 738              		.type	Count, %object
+ 739              		.size	Count, 1
+ 740              	Count:
+ 741 0008 00       		.space	1
+ 742              		.text
+ 743              	.Letext0:
+ 744              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 745              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 746              		.file 5 "Generated_Source\\PSoC5/cytypes.h"
+ 747              		.file 6 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 748              		.file 7 "Generated_Source\\PSoC5/core_cm3.h"
+ 749              		.file 8 "Generated_Source\\PSoC5/LEDDrive.h"
+ 750              		.file 9 "Generated_Source\\PSoC5/LabVIEW_UART.h"
+ 751              		.file 10 "Generated_Source\\PSoC5/ByteCounter.h"
+ 752              		.file 11 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4
+ 753              		.file 12 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4
+ 754              		.file 13 "Generated_Source\\PSoC5/NoteTimer.h"
+ 755              		.file 14 "Generated_Source\\PSoC5/UARTReset.h"
+ 756              		.file 15 "Generated_Source\\PSoC5/ByteCountReset.h"
+ 757              		.file 16 "Generated_Source\\PSoC5/NoteInterrupt.h"
+ 758              		.file 17 "Generated_Source\\PSoC5/ByteReceived.h"
+ 759              		.file 18 "Generated_Source\\PSoC5/CommandReceived.h"
+ 760              		.section	.debug_info,"",%progbits
+ 761              	.Ldebug_info0:
+ 762 0000 C5070000 		.4byte	0x7c5
+ 763 0004 0400     		.2byte	0x4
+ 764 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 765 000a 04       		.byte	0x4
+ 766 000b 01       		.uleb128 0x1
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 19
+
+
+ 767 000c 4D040000 		.4byte	.LASF81
+ 768 0010 0C       		.byte	0xc
+ 769 0011 87030000 		.4byte	.LASF82
+ 770 0015 C2020000 		.4byte	.LASF83
+ 771 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 772 001d 00000000 		.4byte	0
+ 773 0021 00000000 		.4byte	.Ldebug_line0
+ 774 0025 02       		.uleb128 0x2
+ 775 0026 01       		.byte	0x1
+ 776 0027 06       		.byte	0x6
+ 777 0028 5C010000 		.4byte	.LASF0
+ 778 002c 02       		.uleb128 0x2
+ 779 002d 01       		.byte	0x1
+ 780 002e 08       		.byte	0x8
+ 781 002f 19020000 		.4byte	.LASF1
+ 782 0033 02       		.uleb128 0x2
+ 783 0034 02       		.byte	0x2
+ 784 0035 05       		.byte	0x5
+ 785 0036 31000000 		.4byte	.LASF2
+ 786 003a 02       		.uleb128 0x2
+ 787 003b 02       		.byte	0x2
+ 788 003c 07       		.byte	0x7
+ 789 003d AF020000 		.4byte	.LASF3
+ 790 0041 03       		.uleb128 0x3
+ 791 0042 E8030000 		.4byte	.LASF9
+ 792 0046 03       		.byte	0x3
+ 793 0047 3F       		.byte	0x3f
+ 794 0048 4C000000 		.4byte	0x4c
+ 795 004c 02       		.uleb128 0x2
+ 796 004d 04       		.byte	0x4
+ 797 004e 05       		.byte	0x5
+ 798 004f AE010000 		.4byte	.LASF4
+ 799 0053 02       		.uleb128 0x2
+ 800 0054 04       		.byte	0x4
+ 801 0055 07       		.byte	0x7
+ 802 0056 97020000 		.4byte	.LASF5
+ 803 005a 02       		.uleb128 0x2
+ 804 005b 08       		.byte	0x8
+ 805 005c 05       		.byte	0x5
+ 806 005d 8B010000 		.4byte	.LASF6
+ 807 0061 02       		.uleb128 0x2
+ 808 0062 08       		.byte	0x8
+ 809 0063 07       		.byte	0x7
+ 810 0064 4D020000 		.4byte	.LASF7
+ 811 0068 04       		.uleb128 0x4
+ 812 0069 04       		.byte	0x4
+ 813 006a 05       		.byte	0x5
+ 814 006b 696E7400 		.ascii	"int\000"
+ 815 006f 02       		.uleb128 0x2
+ 816 0070 04       		.byte	0x4
+ 817 0071 07       		.byte	0x7
+ 818 0072 7E020000 		.4byte	.LASF8
+ 819 0076 03       		.uleb128 0x3
+ 820 0077 40030000 		.4byte	.LASF10
+ 821 007b 04       		.byte	0x4
+ 822 007c 2C       		.byte	0x2c
+ 823 007d 41000000 		.4byte	0x41
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 20
+
+
+ 824 0081 05       		.uleb128 0x5
+ 825 0082 60030000 		.4byte	.LASF11
+ 826 0086 05       		.byte	0x5
+ 827 0087 E401     		.2byte	0x1e4
+ 828 0089 2C000000 		.4byte	0x2c
+ 829 008d 05       		.uleb128 0x5
+ 830 008e E9000000 		.4byte	.LASF12
+ 831 0092 05       		.byte	0x5
+ 832 0093 E801     		.2byte	0x1e8
+ 833 0095 33000000 		.4byte	0x33
+ 834 0099 02       		.uleb128 0x2
+ 835 009a 04       		.byte	0x4
+ 836 009b 04       		.byte	0x4
+ 837 009c 85010000 		.4byte	.LASF13
+ 838 00a0 02       		.uleb128 0x2
+ 839 00a1 08       		.byte	0x8
+ 840 00a2 04       		.byte	0x4
+ 841 00a3 A4030000 		.4byte	.LASF14
+ 842 00a7 02       		.uleb128 0x2
+ 843 00a8 01       		.byte	0x1
+ 844 00a9 08       		.byte	0x8
+ 845 00aa A9010000 		.4byte	.LASF15
+ 846 00ae 02       		.uleb128 0x2
+ 847 00af 08       		.byte	0x8
+ 848 00b0 04       		.byte	0x4
+ 849 00b1 0D020000 		.4byte	.LASF16
+ 850 00b5 02       		.uleb128 0x2
+ 851 00b6 04       		.byte	0x4
+ 852 00b7 07       		.byte	0x7
+ 853 00b8 42000000 		.4byte	.LASF17
+ 854 00bc 03       		.uleb128 0x3
+ 855 00bd 89000000 		.4byte	.LASF18
+ 856 00c1 06       		.byte	0x6
+ 857 00c2 6C       		.byte	0x6c
+ 858 00c3 6F000000 		.4byte	0x6f
+ 859 00c7 06       		.uleb128 0x6
+ 860 00c8 7A030000 		.4byte	.LASF24
+ 861 00cc 14       		.byte	0x14
+ 862 00cd 02       		.byte	0x2
+ 863 00ce 0A       		.byte	0xa
+ 864 00cf 10010000 		.4byte	0x110
+ 865 00d3 07       		.uleb128 0x7
+ 866 00d4 99010000 		.4byte	.LASF19
+ 867 00d8 02       		.byte	0x2
+ 868 00d9 0C       		.byte	0xc
+ 869 00da BC000000 		.4byte	0xbc
+ 870 00de 00       		.byte	0
+ 871 00df 07       		.uleb128 0x7
+ 872 00e0 C1010000 		.4byte	.LASF20
+ 873 00e4 02       		.byte	0x2
+ 874 00e5 0C       		.byte	0xc
+ 875 00e6 BC000000 		.4byte	0xbc
+ 876 00ea 04       		.byte	0x4
+ 877 00eb 07       		.uleb128 0x7
+ 878 00ec E3030000 		.4byte	.LASF21
+ 879 00f0 02       		.byte	0x2
+ 880 00f1 0C       		.byte	0xc
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 21
+
+
+ 881 00f2 BC000000 		.4byte	0xbc
+ 882 00f6 08       		.byte	0x8
+ 883 00f7 07       		.uleb128 0x7
+ 884 00f8 44020000 		.4byte	.LASF22
+ 885 00fc 02       		.byte	0x2
+ 886 00fd 0D       		.byte	0xd
+ 887 00fe 6F000000 		.4byte	0x6f
+ 888 0102 0C       		.byte	0xc
+ 889 0103 07       		.uleb128 0x7
+ 890 0104 C8030000 		.4byte	.LASF23
+ 891 0108 02       		.byte	0x2
+ 892 0109 0E       		.byte	0xe
+ 893 010a 10010000 		.4byte	0x110
+ 894 010e 10       		.byte	0x10
+ 895 010f 00       		.byte	0
+ 896 0110 08       		.uleb128 0x8
+ 897 0111 04       		.byte	0x4
+ 898 0112 81000000 		.4byte	0x81
+ 899 0116 06       		.uleb128 0x6
+ 900 0117 DF010000 		.4byte	.LASF25
+ 901 011b 42       		.byte	0x42
+ 902 011c 01       		.byte	0x1
+ 903 011d 24       		.byte	0x24
+ 904 011e 47010000 		.4byte	0x147
+ 905 0122 07       		.uleb128 0x7
+ 906 0123 8B020000 		.4byte	.LASF26
+ 907 0127 01       		.byte	0x1
+ 908 0128 26       		.byte	0x26
+ 909 0129 81000000 		.4byte	0x81
+ 910 012d 00       		.byte	0
+ 911 012e 07       		.uleb128 0x7
+ 912 012f E3040000 		.4byte	.LASF27
+ 913 0133 01       		.byte	0x1
+ 914 0134 27       		.byte	0x27
+ 915 0135 81000000 		.4byte	0x81
+ 916 0139 01       		.byte	0x1
+ 917 013a 07       		.uleb128 0x7
+ 918 013b 80030000 		.4byte	.LASF28
+ 919 013f 01       		.byte	0x1
+ 920 0140 28       		.byte	0x28
+ 921 0141 47010000 		.4byte	0x147
+ 922 0145 02       		.byte	0x2
+ 923 0146 00       		.byte	0
+ 924 0147 09       		.uleb128 0x9
+ 925 0148 81000000 		.4byte	0x81
+ 926 014c 57010000 		.4byte	0x157
+ 927 0150 0A       		.uleb128 0xa
+ 928 0151 B5000000 		.4byte	0xb5
+ 929 0155 3F       		.byte	0x3f
+ 930 0156 00       		.byte	0
+ 931 0157 0B       		.uleb128 0xb
+ 932 0158 AC000000 		.4byte	.LASF29
+ 933 015c 01       		.byte	0x1
+ 934 015d 36       		.byte	0x36
+ 935 015e 00000000 		.4byte	.LFB72
+ 936 0162 44000000 		.4byte	.LFE72-.LFB72
+ 937 0166 01       		.uleb128 0x1
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 22
+
+
+ 938 0167 9C       		.byte	0x9c
+ 939 0168 AA010000 		.4byte	0x1aa
+ 940 016c 0C       		.uleb128 0xc
+ 941 016d 08000000 		.4byte	.LVL0
+ 942 0171 B5060000 		.4byte	0x6b5
+ 943 0175 7F010000 		.4byte	0x17f
+ 944 0179 0D       		.uleb128 0xd
+ 945 017a 01       		.uleb128 0x1
+ 946 017b 50       		.byte	0x50
+ 947 017c 01       		.uleb128 0x1
+ 948 017d 31       		.byte	0x31
+ 949 017e 00       		.byte	0
+ 950 017f 0E       		.uleb128 0xe
+ 951 0180 14000000 		.4byte	.LVL1
+ 952 0184 C0060000 		.4byte	0x6c0
+ 953 0188 0E       		.uleb128 0xe
+ 954 0189 24000000 		.4byte	.LVL2
+ 955 018d CB060000 		.4byte	0x6cb
+ 956 0191 0E       		.uleb128 0xe
+ 957 0192 2C000000 		.4byte	.LVL3
+ 958 0196 D6060000 		.4byte	0x6d6
+ 959 019a 0F       		.uleb128 0xf
+ 960 019b 36000000 		.4byte	.LVL4
+ 961 019f B5060000 		.4byte	0x6b5
+ 962 01a3 0D       		.uleb128 0xd
+ 963 01a4 01       		.uleb128 0x1
+ 964 01a5 50       		.byte	0x50
+ 965 01a6 01       		.uleb128 0x1
+ 966 01a7 30       		.byte	0x30
+ 967 01a8 00       		.byte	0
+ 968 01a9 00       		.byte	0
+ 969 01aa 0B       		.uleb128 0xb
+ 970 01ab 6E020000 		.4byte	.LASF30
+ 971 01af 01       		.byte	0x1
+ 972 01b0 50       		.byte	0x50
+ 973 01b1 00000000 		.4byte	.LFB73
+ 974 01b5 54000000 		.4byte	.LFE73-.LFB73
+ 975 01b9 01       		.uleb128 0x1
+ 976 01ba 9C       		.byte	0x9c
+ 977 01bb E5010000 		.4byte	0x1e5
+ 978 01bf 10       		.uleb128 0x10
+ 979 01c0 6900     		.ascii	"i\000"
+ 980 01c2 01       		.byte	0x1
+ 981 01c3 51       		.byte	0x51
+ 982 01c4 81000000 		.4byte	0x81
+ 983 01c8 00000000 		.4byte	.LLST0
+ 984 01cc 0E       		.uleb128 0xe
+ 985 01cd 3E000000 		.4byte	.LVL10
+ 986 01d1 D6060000 		.4byte	0x6d6
+ 987 01d5 0F       		.uleb128 0xf
+ 988 01d6 44000000 		.4byte	.LVL11
+ 989 01da B5060000 		.4byte	0x6b5
+ 990 01de 0D       		.uleb128 0xd
+ 991 01df 01       		.uleb128 0x1
+ 992 01e0 50       		.byte	0x50
+ 993 01e1 01       		.uleb128 0x1
+ 994 01e2 30       		.byte	0x30
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 23
+
+
+ 995 01e3 00       		.byte	0
+ 996 01e4 00       		.byte	0
+ 997 01e5 11       		.uleb128 0x11
+ 998 01e6 3D010000 		.4byte	.LASF32
+ 999 01ea 02       		.byte	0x2
+ 1000 01eb 13       		.byte	0x13
+ 1001 01ec 42020000 		.4byte	0x242
+ 1002 01f0 00000000 		.4byte	.LFB64
+ 1003 01f4 24000000 		.4byte	.LFE64-.LFB64
+ 1004 01f8 01       		.uleb128 0x1
+ 1005 01f9 9C       		.byte	0x9c
+ 1006 01fa 42020000 		.4byte	0x242
+ 1007 01fe 12       		.uleb128 0x12
+ 1008 01ff 44020000 		.4byte	.LASF22
+ 1009 0203 02       		.byte	0x2
+ 1010 0204 13       		.byte	0x13
+ 1011 0205 6F000000 		.4byte	0x6f
+ 1012 0209 2A000000 		.4byte	.LLST1
+ 1013 020d 13       		.uleb128 0x13
+ 1014 020e FF010000 		.4byte	.LASF31
+ 1015 0212 02       		.byte	0x2
+ 1016 0213 15       		.byte	0x15
+ 1017 0214 42020000 		.4byte	0x242
+ 1018 0218 48000000 		.4byte	.LLST2
+ 1019 021c 0C       		.uleb128 0xc
+ 1020 021d 0A000000 		.4byte	.LVL14
+ 1021 0221 E1060000 		.4byte	0x6e1
+ 1022 0225 2F020000 		.4byte	0x22f
+ 1023 0229 0D       		.uleb128 0xd
+ 1024 022a 01       		.uleb128 0x1
+ 1025 022b 50       		.byte	0x50
+ 1026 022c 01       		.uleb128 0x1
+ 1027 022d 44       		.byte	0x44
+ 1028 022e 00       		.byte	0
+ 1029 022f 0F       		.uleb128 0xf
+ 1030 0230 1E000000 		.4byte	.LVL17
+ 1031 0234 E1060000 		.4byte	0x6e1
+ 1032 0238 0D       		.uleb128 0xd
+ 1033 0239 01       		.uleb128 0x1
+ 1034 023a 50       		.byte	0x50
+ 1035 023b 04       		.uleb128 0x4
+ 1036 023c 75       		.byte	0x75
+ 1037 023d 00       		.sleb128 0
+ 1038 023e 32       		.byte	0x32
+ 1039 023f 24       		.byte	0x24
+ 1040 0240 00       		.byte	0
+ 1041 0241 00       		.byte	0
+ 1042 0242 08       		.uleb128 0x8
+ 1043 0243 04       		.byte	0x4
+ 1044 0244 C7000000 		.4byte	0xc7
+ 1045 0248 11       		.uleb128 0x11
+ 1046 0249 68010000 		.4byte	.LASF33
+ 1047 024d 02       		.byte	0x2
+ 1048 024e 1E       		.byte	0x1e
+ 1049 024f 68000000 		.4byte	0x68
+ 1050 0253 00000000 		.4byte	.LFB65
+ 1051 0257 0E000000 		.4byte	.LFE65-.LFB65
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 24
+
+
+ 1052 025b 01       		.uleb128 0x1
+ 1053 025c 9C       		.byte	0x9c
+ 1054 025d 71020000 		.4byte	0x271
+ 1055 0261 12       		.uleb128 0x12
+ 1056 0262 FF010000 		.4byte	.LASF31
+ 1057 0266 02       		.byte	0x2
+ 1058 0267 1E       		.byte	0x1e
+ 1059 0268 42020000 		.4byte	0x242
+ 1060 026c 66000000 		.4byte	.LLST3
+ 1061 0270 00       		.byte	0
+ 1062 0271 11       		.uleb128 0x11
+ 1063 0272 8E000000 		.4byte	.LASF34
+ 1064 0276 02       		.byte	0x2
+ 1065 0277 22       		.byte	0x22
+ 1066 0278 68000000 		.4byte	0x68
+ 1067 027c 00000000 		.4byte	.LFB66
+ 1068 0280 0A000000 		.4byte	.LFE66-.LFB66
+ 1069 0284 01       		.uleb128 0x1
+ 1070 0285 9C       		.byte	0x9c
+ 1071 0286 9A020000 		.4byte	0x29a
+ 1072 028a 12       		.uleb128 0x12
+ 1073 028b FF010000 		.4byte	.LASF31
+ 1074 028f 02       		.byte	0x2
+ 1075 0290 22       		.byte	0x22
+ 1076 0291 42020000 		.4byte	0x242
+ 1077 0295 87000000 		.4byte	.LLST4
+ 1078 0299 00       		.byte	0
+ 1079 029a 0B       		.uleb128 0xb
+ 1080 029b 05020000 		.4byte	.LASF35
+ 1081 029f 02       		.byte	0x2
+ 1082 02a0 27       		.byte	0x27
+ 1083 02a1 00000000 		.4byte	.LFB67
+ 1084 02a5 34000000 		.4byte	.LFE67-.LFB67
+ 1085 02a9 01       		.uleb128 0x1
+ 1086 02aa 9C       		.byte	0x9c
+ 1087 02ab FB020000 		.4byte	0x2fb
+ 1088 02af 12       		.uleb128 0x12
+ 1089 02b0 FF010000 		.4byte	.LASF31
+ 1090 02b4 02       		.byte	0x2
+ 1091 02b5 27       		.byte	0x27
+ 1092 02b6 42020000 		.4byte	0x242
+ 1093 02ba A8000000 		.4byte	.LLST5
+ 1094 02be 12       		.uleb128 0x12
+ 1095 02bf 10040000 		.4byte	.LASF36
+ 1096 02c3 02       		.byte	0x2
+ 1097 02c4 27       		.byte	0x27
+ 1098 02c5 68000000 		.4byte	0x68
+ 1099 02c9 D4000000 		.4byte	.LLST6
+ 1100 02cd 0C       		.uleb128 0xc
+ 1101 02ce 0A000000 		.4byte	.LVL23
+ 1102 02d2 48020000 		.4byte	0x248
+ 1103 02d6 E1020000 		.4byte	0x2e1
+ 1104 02da 0D       		.uleb128 0xd
+ 1105 02db 01       		.uleb128 0x1
+ 1106 02dc 50       		.byte	0x50
+ 1107 02dd 02       		.uleb128 0x2
+ 1108 02de 74       		.byte	0x74
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 25
+
+
+ 1109 02df 00       		.sleb128 0
+ 1110 02e0 00       		.byte	0
+ 1111 02e1 0F       		.uleb128 0xf
+ 1112 02e2 2E000000 		.4byte	.LVL24
+ 1113 02e6 EC060000 		.4byte	0x6ec
+ 1114 02ea 0D       		.uleb128 0xd
+ 1115 02eb 01       		.uleb128 0x1
+ 1116 02ec 50       		.byte	0x50
+ 1117 02ed 05       		.uleb128 0x5
+ 1118 02ee 03       		.byte	0x3
+ 1119 02ef 00000000 		.4byte	.LC0
+ 1120 02f3 0D       		.uleb128 0xd
+ 1121 02f4 01       		.uleb128 0x1
+ 1122 02f5 51       		.byte	0x51
+ 1123 02f6 02       		.uleb128 0x2
+ 1124 02f7 75       		.byte	0x75
+ 1125 02f8 00       		.sleb128 0
+ 1126 02f9 00       		.byte	0
+ 1127 02fa 00       		.byte	0
+ 1128 02fb 11       		.uleb128 0x11
+ 1129 02fc DB040000 		.4byte	.LASF37
+ 1130 0300 02       		.byte	0x2
+ 1131 0301 33       		.byte	0x33
+ 1132 0302 68000000 		.4byte	0x68
+ 1133 0306 00000000 		.4byte	.LFB68
+ 1134 030a 2C000000 		.4byte	.LFE68-.LFB68
+ 1135 030e 01       		.uleb128 0x1
+ 1136 030f 9C       		.byte	0x9c
+ 1137 0310 43030000 		.4byte	0x343
+ 1138 0314 12       		.uleb128 0x12
+ 1139 0315 FF010000 		.4byte	.LASF31
+ 1140 0319 02       		.byte	0x2
+ 1141 031a 33       		.byte	0x33
+ 1142 031b 42020000 		.4byte	0x242
+ 1143 031f 00010000 		.4byte	.LLST7
+ 1144 0323 13       		.uleb128 0x13
+ 1145 0324 10040000 		.4byte	.LASF36
+ 1146 0328 02       		.byte	0x2
+ 1147 0329 37       		.byte	0x37
+ 1148 032a 68000000 		.4byte	0x68
+ 1149 032e 1E010000 		.4byte	.LLST8
+ 1150 0332 0F       		.uleb128 0xf
+ 1151 0333 08000000 		.4byte	.LVL27
+ 1152 0337 71020000 		.4byte	0x271
+ 1153 033b 0D       		.uleb128 0xd
+ 1154 033c 01       		.uleb128 0x1
+ 1155 033d 50       		.byte	0x50
+ 1156 033e 02       		.uleb128 0x2
+ 1157 033f 74       		.byte	0x74
+ 1158 0340 00       		.sleb128 0
+ 1159 0341 00       		.byte	0
+ 1160 0342 00       		.byte	0
+ 1161 0343 0B       		.uleb128 0xb
+ 1162 0344 1E030000 		.4byte	.LASF38
+ 1163 0348 01       		.byte	0x1
+ 1164 0349 67       		.byte	0x67
+ 1165 034a 00000000 		.4byte	.LFB74
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 26
+
+
+ 1166 034e 54000000 		.4byte	.LFE74-.LFB74
+ 1167 0352 01       		.uleb128 0x1
+ 1168 0353 9C       		.byte	0x9c
+ 1169 0354 AB030000 		.4byte	0x3ab
+ 1170 0358 0E       		.uleb128 0xe
+ 1171 0359 10000000 		.4byte	.LVL30
+ 1172 035d F7060000 		.4byte	0x6f7
+ 1173 0361 0E       		.uleb128 0xe
+ 1174 0362 16000000 		.4byte	.LVL31
+ 1175 0366 02070000 		.4byte	0x702
+ 1176 036a 0E       		.uleb128 0xe
+ 1177 036b 20000000 		.4byte	.LVL32
+ 1178 036f B5060000 		.4byte	0x6b5
+ 1179 0373 0E       		.uleb128 0xe
+ 1180 0374 28000000 		.4byte	.LVL33
+ 1181 0378 FB020000 		.4byte	0x2fb
+ 1182 037c 0C       		.uleb128 0xc
+ 1183 037d 34000000 		.4byte	.LVL34
+ 1184 0381 0D070000 		.4byte	0x70d
+ 1185 0385 98030000 		.4byte	0x398
+ 1186 0389 0D       		.uleb128 0xd
+ 1187 038a 01       		.uleb128 0x1
+ 1188 038b 50       		.byte	0x50
+ 1189 038c 05       		.uleb128 0x5
+ 1190 038d 03       		.byte	0x3
+ 1191 038e 00000000 		.4byte	TransmitBuffer
+ 1192 0392 0D       		.uleb128 0xd
+ 1193 0393 01       		.uleb128 0x1
+ 1194 0394 51       		.byte	0x51
+ 1195 0395 01       		.uleb128 0x1
+ 1196 0396 31       		.byte	0x31
+ 1197 0397 00       		.byte	0
+ 1198 0398 0E       		.uleb128 0xe
+ 1199 0399 3A000000 		.4byte	.LVL35
+ 1200 039d 71020000 		.4byte	0x271
+ 1201 03a1 0E       		.uleb128 0xe
+ 1202 03a2 46000000 		.4byte	.LVL36
+ 1203 03a6 F7060000 		.4byte	0x6f7
+ 1204 03aa 00       		.byte	0
+ 1205 03ab 11       		.uleb128 0x11
+ 1206 03ac 99010000 		.4byte	.LASF19
+ 1207 03b0 02       		.byte	0x2
+ 1208 03b1 3E       		.byte	0x3e
+ 1209 03b2 68000000 		.4byte	0x68
+ 1210 03b6 00000000 		.4byte	.LFB69
+ 1211 03ba 18000000 		.4byte	.LFE69-.LFB69
+ 1212 03be 01       		.uleb128 0x1
+ 1213 03bf 9C       		.byte	0x9c
+ 1214 03c0 E4030000 		.4byte	0x3e4
+ 1215 03c4 12       		.uleb128 0x12
+ 1216 03c5 FF010000 		.4byte	.LASF31
+ 1217 03c9 02       		.byte	0x2
+ 1218 03ca 3E       		.byte	0x3e
+ 1219 03cb 42020000 		.4byte	0x242
+ 1220 03cf 31010000 		.4byte	.LLST9
+ 1221 03d3 0F       		.uleb128 0xf
+ 1222 03d4 08000000 		.4byte	.LVL38
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 27
+
+
+ 1223 03d8 71020000 		.4byte	0x271
+ 1224 03dc 0D       		.uleb128 0xd
+ 1225 03dd 01       		.uleb128 0x1
+ 1226 03de 50       		.byte	0x50
+ 1227 03df 02       		.uleb128 0x2
+ 1228 03e0 74       		.byte	0x74
+ 1229 03e1 00       		.sleb128 0
+ 1230 03e2 00       		.byte	0
+ 1231 03e3 00       		.byte	0
+ 1232 03e4 11       		.uleb128 0x11
+ 1233 03e5 C1010000 		.4byte	.LASF20
+ 1234 03e9 02       		.byte	0x2
+ 1235 03ea 46       		.byte	0x46
+ 1236 03eb 68000000 		.4byte	0x68
+ 1237 03ef 00000000 		.4byte	.LFB70
+ 1238 03f3 18000000 		.4byte	.LFE70-.LFB70
+ 1239 03f7 01       		.uleb128 0x1
+ 1240 03f8 9C       		.byte	0x9c
+ 1241 03f9 1D040000 		.4byte	0x41d
+ 1242 03fd 12       		.uleb128 0x12
+ 1243 03fe FF010000 		.4byte	.LASF31
+ 1244 0402 02       		.byte	0x2
+ 1245 0403 46       		.byte	0x46
+ 1246 0404 42020000 		.4byte	0x242
+ 1247 0408 4F010000 		.4byte	.LLST10
+ 1248 040c 0F       		.uleb128 0xf
+ 1249 040d 08000000 		.4byte	.LVL41
+ 1250 0411 71020000 		.4byte	0x271
+ 1251 0415 0D       		.uleb128 0xd
+ 1252 0416 01       		.uleb128 0x1
+ 1253 0417 50       		.byte	0x50
+ 1254 0418 02       		.uleb128 0x2
+ 1255 0419 74       		.byte	0x74
+ 1256 041a 00       		.sleb128 0
+ 1257 041b 00       		.byte	0
+ 1258 041c 00       		.byte	0
+ 1259 041d 11       		.uleb128 0x11
+ 1260 041e 0F000000 		.4byte	.LASF39
+ 1261 0422 01       		.byte	0x1
+ 1262 0423 31       		.byte	0x31
+ 1263 0424 68000000 		.4byte	0x68
+ 1264 0428 00000000 		.4byte	.LFB71
+ 1265 042c 0C000000 		.4byte	.LFE71-.LFB71
+ 1266 0430 01       		.uleb128 0x1
+ 1267 0431 9C       		.byte	0x9c
+ 1268 0432 53040000 		.4byte	0x453
+ 1269 0436 12       		.uleb128 0x12
+ 1270 0437 64020000 		.4byte	.LASF40
+ 1271 043b 01       		.byte	0x1
+ 1272 043c 31       		.byte	0x31
+ 1273 043d 68000000 		.4byte	0x68
+ 1274 0441 6D010000 		.4byte	.LLST11
+ 1275 0445 14       		.uleb128 0x14
+ 1276 0446 62706D00 		.ascii	"bpm\000"
+ 1277 044a 01       		.byte	0x1
+ 1278 044b 31       		.byte	0x31
+ 1279 044c 68000000 		.4byte	0x68
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 28
+
+
+ 1280 0450 01       		.uleb128 0x1
+ 1281 0451 51       		.byte	0x51
+ 1282 0452 00       		.byte	0
+ 1283 0453 15       		.uleb128 0x15
+ 1284 0454 84000000 		.4byte	.LASF84
+ 1285 0458 01       		.byte	0x1
+ 1286 0459 7A       		.byte	0x7a
+ 1287 045a 68000000 		.4byte	0x68
+ 1288 045e 00000000 		.4byte	.LFB75
+ 1289 0462 BC000000 		.4byte	.LFE75-.LFB75
+ 1290 0466 01       		.uleb128 0x1
+ 1291 0467 9C       		.byte	0x9c
+ 1292 0468 96050000 		.4byte	0x596
+ 1293 046c 16       		.uleb128 0x16
+ 1294 046d 61000000 		.4byte	.LASF41
+ 1295 0471 01       		.byte	0x1
+ 1296 0472 95       		.byte	0x95
+ 1297 0473 42020000 		.4byte	0x242
+ 1298 0477 01       		.uleb128 0x1
+ 1299 0478 55       		.byte	0x55
+ 1300 0479 17       		.uleb128 0x17
+ 1301 047a 00000000 		.4byte	.Ldebug_ranges0+0
+ 1302 047e A0040000 		.4byte	0x4a0
+ 1303 0482 10       		.uleb128 0x10
+ 1304 0483 6900     		.ascii	"i\000"
+ 1305 0485 01       		.byte	0x1
+ 1306 0486 A5       		.byte	0xa5
+ 1307 0487 68000000 		.4byte	0x68
+ 1308 048b 8E010000 		.4byte	.LLST12
+ 1309 048f 0F       		.uleb128 0xf
+ 1310 0490 8A000000 		.4byte	.LVL65
+ 1311 0494 9A020000 		.4byte	0x29a
+ 1312 0498 0D       		.uleb128 0xd
+ 1313 0499 01       		.uleb128 0x1
+ 1314 049a 50       		.byte	0x50
+ 1315 049b 02       		.uleb128 0x2
+ 1316 049c 75       		.byte	0x75
+ 1317 049d 00       		.sleb128 0
+ 1318 049e 00       		.byte	0
+ 1319 049f 00       		.byte	0
+ 1320 04a0 0C       		.uleb128 0xc
+ 1321 04a1 0A000000 		.4byte	.LVL45
+ 1322 04a5 18070000 		.4byte	0x718
+ 1323 04a9 B3040000 		.4byte	0x4b3
+ 1324 04ad 0D       		.uleb128 0xd
+ 1325 04ae 01       		.uleb128 0x1
+ 1326 04af 50       		.byte	0x50
+ 1327 04b0 01       		.uleb128 0x1
+ 1328 04b1 30       		.byte	0x30
+ 1329 04b2 00       		.byte	0
+ 1330 04b3 0C       		.uleb128 0xc
+ 1331 04b4 10000000 		.4byte	.LVL46
+ 1332 04b8 23070000 		.4byte	0x723
+ 1333 04bc C6040000 		.4byte	0x4c6
+ 1334 04c0 0D       		.uleb128 0xd
+ 1335 04c1 01       		.uleb128 0x1
+ 1336 04c2 50       		.byte	0x50
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 29
+
+
+ 1337 04c3 01       		.uleb128 0x1
+ 1338 04c4 30       		.byte	0x30
+ 1339 04c5 00       		.byte	0
+ 1340 04c6 0E       		.uleb128 0xe
+ 1341 04c7 14000000 		.4byte	.LVL47
+ 1342 04cb 2E070000 		.4byte	0x72e
+ 1343 04cf 0E       		.uleb128 0xe
+ 1344 04d0 18000000 		.4byte	.LVL48
+ 1345 04d4 39070000 		.4byte	0x739
+ 1346 04d8 0E       		.uleb128 0xe
+ 1347 04d9 1C000000 		.4byte	.LVL49
+ 1348 04dd 44070000 		.4byte	0x744
+ 1349 04e1 0C       		.uleb128 0xc
+ 1350 04e2 22000000 		.4byte	.LVL50
+ 1351 04e6 4F070000 		.4byte	0x74f
+ 1352 04ea F4040000 		.4byte	0x4f4
+ 1353 04ee 0D       		.uleb128 0xd
+ 1354 04ef 01       		.uleb128 0x1
+ 1355 04f0 50       		.byte	0x50
+ 1356 04f1 01       		.uleb128 0x1
+ 1357 04f2 31       		.byte	0x31
+ 1358 04f3 00       		.byte	0
+ 1359 04f4 0E       		.uleb128 0xe
+ 1360 04f5 26000000 		.4byte	.LVL51
+ 1361 04f9 5A070000 		.4byte	0x75a
+ 1362 04fd 0E       		.uleb128 0xe
+ 1363 04fe 2A000000 		.4byte	.LVL52
+ 1364 0502 65070000 		.4byte	0x765
+ 1365 0506 0C       		.uleb128 0xc
+ 1366 0507 30000000 		.4byte	.LVL53
+ 1367 050b 70070000 		.4byte	0x770
+ 1368 050f 1D050000 		.4byte	0x51d
+ 1369 0513 0D       		.uleb128 0xd
+ 1370 0514 01       		.uleb128 0x1
+ 1371 0515 50       		.byte	0x50
+ 1372 0516 05       		.uleb128 0x5
+ 1373 0517 03       		.byte	0x3
+ 1374 0518 00000000 		.4byte	NoteInterrupt
+ 1375 051c 00       		.byte	0
+ 1376 051d 0E       		.uleb128 0xe
+ 1377 051e 34000000 		.4byte	.LVL54
+ 1378 0522 7B070000 		.4byte	0x77b
+ 1379 0526 0C       		.uleb128 0xc
+ 1380 0527 3A000000 		.4byte	.LVL55
+ 1381 052b 86070000 		.4byte	0x786
+ 1382 052f 3D050000 		.4byte	0x53d
+ 1383 0533 0D       		.uleb128 0xd
+ 1384 0534 01       		.uleb128 0x1
+ 1385 0535 50       		.byte	0x50
+ 1386 0536 05       		.uleb128 0x5
+ 1387 0537 03       		.byte	0x3
+ 1388 0538 00000000 		.4byte	ByteReceived
+ 1389 053c 00       		.byte	0
+ 1390 053d 0E       		.uleb128 0xe
+ 1391 053e 3E000000 		.4byte	.LVL56
+ 1392 0542 91070000 		.4byte	0x791
+ 1393 0546 0E       		.uleb128 0xe
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 30
+
+
+ 1394 0547 42000000 		.4byte	.LVL57
+ 1395 054b 9C070000 		.4byte	0x79c
+ 1396 054f 0C       		.uleb128 0xc
+ 1397 0550 48000000 		.4byte	.LVL58
+ 1398 0554 A7070000 		.4byte	0x7a7
+ 1399 0558 66050000 		.4byte	0x566
+ 1400 055c 0D       		.uleb128 0xd
+ 1401 055d 01       		.uleb128 0x1
+ 1402 055e 50       		.byte	0x50
+ 1403 055f 05       		.uleb128 0x5
+ 1404 0560 03       		.byte	0x3
+ 1405 0561 00000000 		.4byte	CommandReceived
+ 1406 0565 00       		.byte	0
+ 1407 0566 0E       		.uleb128 0xe
+ 1408 0567 4C000000 		.4byte	.LVL59
+ 1409 056b B2070000 		.4byte	0x7b2
+ 1410 056f 0C       		.uleb128 0xc
+ 1411 0570 52000000 		.4byte	.LVL60
+ 1412 0574 E5010000 		.4byte	0x1e5
+ 1413 0578 83050000 		.4byte	0x583
+ 1414 057c 0D       		.uleb128 0xd
+ 1415 057d 01       		.uleb128 0x1
+ 1416 057e 50       		.byte	0x50
+ 1417 057f 02       		.uleb128 0x2
+ 1418 0580 08       		.byte	0x8
+ 1419 0581 64       		.byte	0x64
+ 1420 0582 00       		.byte	0
+ 1421 0583 0E       		.uleb128 0xe
+ 1422 0584 70000000 		.4byte	.LVL62
+ 1423 0588 1D040000 		.4byte	0x41d
+ 1424 058c 0E       		.uleb128 0xe
+ 1425 058d 76000000 		.4byte	.LVL63
+ 1426 0591 BD070000 		.4byte	0x7bd
+ 1427 0595 00       		.byte	0
+ 1428 0596 18       		.uleb128 0x18
+ 1429 0597 40040000 		.4byte	.LASF42
+ 1430 059b 07       		.byte	0x7
+ 1431 059c 1207     		.2byte	0x712
+ 1432 059e A2050000 		.4byte	0x5a2
+ 1433 05a2 19       		.uleb128 0x19
+ 1434 05a3 76000000 		.4byte	0x76
+ 1435 05a7 1A       		.uleb128 0x1a
+ 1436 05a8 B7010000 		.4byte	.LASF43
+ 1437 05ac 01       		.byte	0x1
+ 1438 05ad 10       		.byte	0x10
+ 1439 05ae 81000000 		.4byte	0x81
+ 1440 05b2 05       		.uleb128 0x5
+ 1441 05b3 03       		.byte	0x3
+ 1442 05b4 00000000 		.4byte	ByteCount
+ 1443 05b8 1A       		.uleb128 0x1a
+ 1444 05b9 20040000 		.4byte	.LASF44
+ 1445 05bd 01       		.byte	0x1
+ 1446 05be 11       		.byte	0x11
+ 1447 05bf 81000000 		.4byte	0x81
+ 1448 05c3 05       		.uleb128 0x5
+ 1449 05c4 03       		.byte	0x3
+ 1450 05c5 00000000 		.4byte	firstbyte
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 31
+
+
+ 1451 05c9 1A       		.uleb128 0x1a
+ 1452 05ca AB030000 		.4byte	.LASF45
+ 1453 05ce 01       		.byte	0x1
+ 1454 05cf 12       		.byte	0x12
+ 1455 05d0 81000000 		.4byte	0x81
+ 1456 05d4 05       		.uleb128 0x5
+ 1457 05d5 03       		.byte	0x3
+ 1458 05d6 00000000 		.4byte	CommandReady
+ 1459 05da 1A       		.uleb128 0x1a
+ 1460 05db A9020000 		.4byte	.LASF46
+ 1461 05df 01       		.byte	0x1
+ 1462 05e0 13       		.byte	0x13
+ 1463 05e1 81000000 		.4byte	0x81
+ 1464 05e5 05       		.uleb128 0x5
+ 1465 05e6 03       		.byte	0x3
+ 1466 05e7 00000000 		.4byte	Count
+ 1467 05eb 1A       		.uleb128 0x1a
+ 1468 05ec 09040000 		.4byte	.LASF47
+ 1469 05f0 01       		.byte	0x1
+ 1470 05f1 14       		.byte	0x14
+ 1471 05f2 81000000 		.4byte	0x81
+ 1472 05f6 05       		.uleb128 0x5
+ 1473 05f7 03       		.byte	0x3
+ 1474 05f8 00000000 		.4byte	Status
+ 1475 05fc 09       		.uleb128 0x9
+ 1476 05fd 81000000 		.4byte	0x81
+ 1477 0601 0C060000 		.4byte	0x60c
+ 1478 0605 0A       		.uleb128 0xa
+ 1479 0606 B5000000 		.4byte	0xb5
+ 1480 060a 41       		.byte	0x41
+ 1481 060b 00       		.byte	0
+ 1482 060c 1A       		.uleb128 0x1a
+ 1483 060d B9000000 		.4byte	.LASF48
+ 1484 0611 01       		.byte	0x1
+ 1485 0612 16       		.byte	0x16
+ 1486 0613 FC050000 		.4byte	0x5fc
+ 1487 0617 05       		.uleb128 0x5
+ 1488 0618 03       		.byte	0x3
+ 1489 0619 00000000 		.4byte	ReceivedBuffer
+ 1490 061d 09       		.uleb128 0x9
+ 1491 061e 81000000 		.4byte	0x81
+ 1492 0622 2D060000 		.4byte	0x62d
+ 1493 0626 0A       		.uleb128 0xa
+ 1494 0627 B5000000 		.4byte	0xb5
+ 1495 062b 00       		.byte	0
+ 1496 062c 00       		.byte	0
+ 1497 062d 1A       		.uleb128 0x1a
+ 1498 062e 00000000 		.4byte	.LASF49
+ 1499 0632 01       		.byte	0x1
+ 1500 0633 17       		.byte	0x17
+ 1501 0634 1D060000 		.4byte	0x61d
+ 1502 0638 05       		.uleb128 0x5
+ 1503 0639 03       		.byte	0x3
+ 1504 063a 00000000 		.4byte	TransmitBuffer
+ 1505 063e 1A       		.uleb128 0x1a
+ 1506 063f 15040000 		.4byte	.LASF50
+ 1507 0643 01       		.byte	0x1
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 32
+
+
+ 1508 0644 18       		.byte	0x18
+ 1509 0645 8D000000 		.4byte	0x8d
+ 1510 0649 05       		.uleb128 0x5
+ 1511 064a 03       		.byte	0x3
+ 1512 064b 00000000 		.4byte	LedCommand
+ 1513 064f 1A       		.uleb128 0x1a
+ 1514 0650 5B000000 		.4byte	.LASF51
+ 1515 0654 01       		.byte	0x1
+ 1516 0655 1B       		.byte	0x1b
+ 1517 0656 81000000 		.4byte	0x81
+ 1518 065a 05       		.uleb128 0x5
+ 1519 065b 03       		.byte	0x3
+ 1520 065c 00000000 		.4byte	tempo
+ 1521 0660 1A       		.uleb128 0x1a
+ 1522 0661 9F010000 		.4byte	.LASF52
+ 1523 0665 01       		.byte	0x1
+ 1524 0666 1E       		.byte	0x1e
+ 1525 0667 BC000000 		.4byte	0xbc
+ 1526 066b 05       		.uleb128 0x5
+ 1527 066c 03       		.byte	0x3
+ 1528 066d 00000000 		.4byte	noteReady
+ 1529 0671 1A       		.uleb128 0x1a
+ 1530 0672 04010000 		.4byte	.LASF53
+ 1531 0676 01       		.byte	0x1
+ 1532 0677 22       		.byte	0x22
+ 1533 0678 81000000 		.4byte	0x81
+ 1534 067c 05       		.uleb128 0x5
+ 1535 067d 03       		.byte	0x3
+ 1536 067e 00000000 		.4byte	clockRate
+ 1537 0682 1A       		.uleb128 0x1a
+ 1538 0683 0F030000 		.4byte	.LASF54
+ 1539 0687 01       		.byte	0x1
+ 1540 0688 29       		.byte	0x29
+ 1541 0689 16010000 		.4byte	0x116
+ 1542 068d 05       		.uleb128 0x5
+ 1543 068e 03       		.byte	0x3
+ 1544 068f 00000000 		.4byte	Command_Packet
+ 1545 0693 1A       		.uleb128 0x1a
+ 1546 0694 2D010000 		.4byte	.LASF55
+ 1547 0698 01       		.byte	0x1
+ 1548 0699 2B       		.byte	0x2b
+ 1549 069a 16010000 		.4byte	0x116
+ 1550 069e 05       		.uleb128 0x5
+ 1551 069f 03       		.byte	0x3
+ 1552 06a0 00000000 		.4byte	Transmit_Packet
+ 1553 06a4 1A       		.uleb128 0x1a
+ 1554 06a5 61000000 		.4byte	.LASF41
+ 1555 06a9 01       		.byte	0x1
+ 1556 06aa 2D       		.byte	0x2d
+ 1557 06ab 42020000 		.4byte	0x242
+ 1558 06af 05       		.uleb128 0x5
+ 1559 06b0 03       		.byte	0x3
+ 1560 06b1 00000000 		.4byte	noteQueue
+ 1561 06b5 1B       		.uleb128 0x1b
+ 1562 06b6 F0010000 		.4byte	.LASF56
+ 1563 06ba F0010000 		.4byte	.LASF56
+ 1564 06be 08       		.byte	0x8
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 33
+
+
+ 1565 06bf 2F       		.byte	0x2f
+ 1566 06c0 1B       		.uleb128 0x1b
+ 1567 06c1 EF000000 		.4byte	.LASF57
+ 1568 06c5 EF000000 		.4byte	.LASF57
+ 1569 06c9 09       		.byte	0x9
+ 1570 06ca 72       		.byte	0x72
+ 1571 06cb 1B       		.uleb128 0x1b
+ 1572 06cc 6B000000 		.4byte	.LASF58
+ 1573 06d0 6B000000 		.4byte	.LASF58
+ 1574 06d4 0A       		.byte	0xa
+ 1575 06d5 63       		.byte	0x63
+ 1576 06d6 1B       		.uleb128 0x1b
+ 1577 06d7 0E010000 		.4byte	.LASF59
+ 1578 06db 0E010000 		.4byte	.LASF59
+ 1579 06df 0A       		.byte	0xa
+ 1580 06e0 52       		.byte	0x52
+ 1581 06e1 1B       		.uleb128 0x1b
+ 1582 06e2 3B000000 		.4byte	.LASF60
+ 1583 06e6 3B000000 		.4byte	.LASF60
+ 1584 06ea 0B       		.byte	0xb
+ 1585 06eb 64       		.byte	0x64
+ 1586 06ec 1B       		.uleb128 0x1b
+ 1587 06ed C6010000 		.4byte	.LASF61
+ 1588 06f1 C6010000 		.4byte	.LASF61
+ 1589 06f5 0C       		.byte	0xc
+ 1590 06f6 BB       		.byte	0xbb
+ 1591 06f7 1B       		.uleb128 0x1b
+ 1592 06f8 EB040000 		.4byte	.LASF62
+ 1593 06fc EB040000 		.4byte	.LASF62
+ 1594 0700 0D       		.byte	0xd
+ 1595 0701 5E       		.byte	0x5e
+ 1596 0702 1B       		.uleb128 0x1b
+ 1597 0703 C8000000 		.4byte	.LASF63
+ 1598 0707 C8000000 		.4byte	.LASF63
+ 1599 070b 08       		.byte	0x8
+ 1600 070c 30       		.byte	0x30
+ 1601 070d 1B       		.uleb128 0x1b
+ 1602 070e 8E030000 		.4byte	.LASF64
+ 1603 0712 8E030000 		.4byte	.LASF64
+ 1604 0716 09       		.byte	0x9
+ 1605 0717 8C       		.byte	0x8c
+ 1606 0718 1B       		.uleb128 0x1b
+ 1607 0719 B8030000 		.4byte	.LASF65
+ 1608 071d B8030000 		.4byte	.LASF65
+ 1609 0721 0E       		.byte	0xe
+ 1610 0722 2F       		.byte	0x2f
+ 1611 0723 1B       		.uleb128 0x1b
+ 1612 0724 08050000 		.4byte	.LASF66
+ 1613 0728 08050000 		.4byte	.LASF66
+ 1614 072c 0F       		.byte	0xf
+ 1615 072d 2F       		.byte	0x2f
+ 1616 072e 1B       		.uleb128 0x1b
+ 1617 072f D6000000 		.4byte	.LASF67
+ 1618 0733 D6000000 		.4byte	.LASF67
+ 1619 0737 09       		.byte	0x9
+ 1620 0738 54       		.byte	0x54
+ 1621 0739 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 34
+
+
+ 1622 073a CD010000 		.4byte	.LASF68
+ 1623 073e CD010000 		.4byte	.LASF68
+ 1624 0742 0A       		.byte	0xa
+ 1625 0743 4F       		.byte	0x4f
+ 1626 0744 1B       		.uleb128 0x1b
+ 1627 0745 1E000000 		.4byte	.LASF69
+ 1628 0749 1E000000 		.4byte	.LASF69
+ 1629 074d 0A       		.byte	0xa
+ 1630 074e 71       		.byte	0x71
+ 1631 074f 1B       		.uleb128 0x1b
+ 1632 0750 27020000 		.4byte	.LASF70
+ 1633 0754 27020000 		.4byte	.LASF70
+ 1634 0758 0A       		.byte	0xa
+ 1635 0759 51       		.byte	0x51
+ 1636 075a 1B       		.uleb128 0x1b
+ 1637 075b 4B000000 		.4byte	.LASF71
+ 1638 075f 4B000000 		.4byte	.LASF71
+ 1639 0763 0D       		.byte	0xd
+ 1640 0764 5A       		.byte	0x5a
+ 1641 0765 1B       		.uleb128 0x1b
+ 1642 0766 2C030000 		.4byte	.LASF72
+ 1643 076a 2C030000 		.4byte	.LASF72
+ 1644 076e 10       		.byte	0x10
+ 1645 076f 17       		.byte	0x17
+ 1646 0770 1B       		.uleb128 0x1b
+ 1647 0771 6F010000 		.4byte	.LASF73
+ 1648 0775 6F010000 		.4byte	.LASF73
+ 1649 0779 10       		.byte	0x10
+ 1650 077a 18       		.byte	0x18
+ 1651 077b 1B       		.uleb128 0x1b
+ 1652 077c 49010000 		.4byte	.LASF74
+ 1653 0780 49010000 		.4byte	.LASF74
+ 1654 0784 11       		.byte	0x11
+ 1655 0785 17       		.byte	0x17
+ 1656 0786 1B       		.uleb128 0x1b
+ 1657 0787 CE030000 		.4byte	.LASF75
+ 1658 078b CE030000 		.4byte	.LASF75
+ 1659 078f 11       		.byte	0x11
+ 1660 0790 18       		.byte	0x18
+ 1661 0791 1B       		.uleb128 0x1b
+ 1662 0792 66030000 		.4byte	.LASF76
+ 1663 0796 66030000 		.4byte	.LASF76
+ 1664 079a 11       		.byte	0x11
+ 1665 079b 23       		.byte	0x23
+ 1666 079c 1B       		.uleb128 0x1b
+ 1667 079d 2A040000 		.4byte	.LASF77
+ 1668 07a1 2A040000 		.4byte	.LASF77
+ 1669 07a5 12       		.byte	0x12
+ 1670 07a6 17       		.byte	0x17
+ 1671 07a7 1B       		.uleb128 0x1b
+ 1672 07a8 48030000 		.4byte	.LASF78
+ 1673 07ac 48030000 		.4byte	.LASF78
+ 1674 07b0 12       		.byte	0x12
+ 1675 07b1 18       		.byte	0x18
+ 1676 07b2 1B       		.uleb128 0x1b
+ 1677 07b3 F2030000 		.4byte	.LASF79
+ 1678 07b7 F2030000 		.4byte	.LASF79
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 35
+
+
+ 1679 07bb 12       		.byte	0x12
+ 1680 07bc 23       		.byte	0x23
+ 1681 07bd 1B       		.uleb128 0x1b
+ 1682 07be 96000000 		.4byte	.LASF80
+ 1683 07c2 96000000 		.4byte	.LASF80
+ 1684 07c6 0D       		.byte	0xd
+ 1685 07c7 68       		.byte	0x68
+ 1686 07c8 00       		.byte	0
+ 1687              		.section	.debug_abbrev,"",%progbits
+ 1688              	.Ldebug_abbrev0:
+ 1689 0000 01       		.uleb128 0x1
+ 1690 0001 11       		.uleb128 0x11
+ 1691 0002 01       		.byte	0x1
+ 1692 0003 25       		.uleb128 0x25
+ 1693 0004 0E       		.uleb128 0xe
+ 1694 0005 13       		.uleb128 0x13
+ 1695 0006 0B       		.uleb128 0xb
+ 1696 0007 03       		.uleb128 0x3
+ 1697 0008 0E       		.uleb128 0xe
+ 1698 0009 1B       		.uleb128 0x1b
+ 1699 000a 0E       		.uleb128 0xe
+ 1700 000b 55       		.uleb128 0x55
+ 1701 000c 17       		.uleb128 0x17
+ 1702 000d 11       		.uleb128 0x11
+ 1703 000e 01       		.uleb128 0x1
+ 1704 000f 10       		.uleb128 0x10
+ 1705 0010 17       		.uleb128 0x17
+ 1706 0011 00       		.byte	0
+ 1707 0012 00       		.byte	0
+ 1708 0013 02       		.uleb128 0x2
+ 1709 0014 24       		.uleb128 0x24
+ 1710 0015 00       		.byte	0
+ 1711 0016 0B       		.uleb128 0xb
+ 1712 0017 0B       		.uleb128 0xb
+ 1713 0018 3E       		.uleb128 0x3e
+ 1714 0019 0B       		.uleb128 0xb
+ 1715 001a 03       		.uleb128 0x3
+ 1716 001b 0E       		.uleb128 0xe
+ 1717 001c 00       		.byte	0
+ 1718 001d 00       		.byte	0
+ 1719 001e 03       		.uleb128 0x3
+ 1720 001f 16       		.uleb128 0x16
+ 1721 0020 00       		.byte	0
+ 1722 0021 03       		.uleb128 0x3
+ 1723 0022 0E       		.uleb128 0xe
+ 1724 0023 3A       		.uleb128 0x3a
+ 1725 0024 0B       		.uleb128 0xb
+ 1726 0025 3B       		.uleb128 0x3b
+ 1727 0026 0B       		.uleb128 0xb
+ 1728 0027 49       		.uleb128 0x49
+ 1729 0028 13       		.uleb128 0x13
+ 1730 0029 00       		.byte	0
+ 1731 002a 00       		.byte	0
+ 1732 002b 04       		.uleb128 0x4
+ 1733 002c 24       		.uleb128 0x24
+ 1734 002d 00       		.byte	0
+ 1735 002e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 36
+
+
+ 1736 002f 0B       		.uleb128 0xb
+ 1737 0030 3E       		.uleb128 0x3e
+ 1738 0031 0B       		.uleb128 0xb
+ 1739 0032 03       		.uleb128 0x3
+ 1740 0033 08       		.uleb128 0x8
+ 1741 0034 00       		.byte	0
+ 1742 0035 00       		.byte	0
+ 1743 0036 05       		.uleb128 0x5
+ 1744 0037 16       		.uleb128 0x16
+ 1745 0038 00       		.byte	0
+ 1746 0039 03       		.uleb128 0x3
+ 1747 003a 0E       		.uleb128 0xe
+ 1748 003b 3A       		.uleb128 0x3a
+ 1749 003c 0B       		.uleb128 0xb
+ 1750 003d 3B       		.uleb128 0x3b
+ 1751 003e 05       		.uleb128 0x5
+ 1752 003f 49       		.uleb128 0x49
+ 1753 0040 13       		.uleb128 0x13
+ 1754 0041 00       		.byte	0
+ 1755 0042 00       		.byte	0
+ 1756 0043 06       		.uleb128 0x6
+ 1757 0044 13       		.uleb128 0x13
+ 1758 0045 01       		.byte	0x1
+ 1759 0046 03       		.uleb128 0x3
+ 1760 0047 0E       		.uleb128 0xe
+ 1761 0048 0B       		.uleb128 0xb
+ 1762 0049 0B       		.uleb128 0xb
+ 1763 004a 3A       		.uleb128 0x3a
+ 1764 004b 0B       		.uleb128 0xb
+ 1765 004c 3B       		.uleb128 0x3b
+ 1766 004d 0B       		.uleb128 0xb
+ 1767 004e 01       		.uleb128 0x1
+ 1768 004f 13       		.uleb128 0x13
+ 1769 0050 00       		.byte	0
+ 1770 0051 00       		.byte	0
+ 1771 0052 07       		.uleb128 0x7
+ 1772 0053 0D       		.uleb128 0xd
+ 1773 0054 00       		.byte	0
+ 1774 0055 03       		.uleb128 0x3
+ 1775 0056 0E       		.uleb128 0xe
+ 1776 0057 3A       		.uleb128 0x3a
+ 1777 0058 0B       		.uleb128 0xb
+ 1778 0059 3B       		.uleb128 0x3b
+ 1779 005a 0B       		.uleb128 0xb
+ 1780 005b 49       		.uleb128 0x49
+ 1781 005c 13       		.uleb128 0x13
+ 1782 005d 38       		.uleb128 0x38
+ 1783 005e 0B       		.uleb128 0xb
+ 1784 005f 00       		.byte	0
+ 1785 0060 00       		.byte	0
+ 1786 0061 08       		.uleb128 0x8
+ 1787 0062 0F       		.uleb128 0xf
+ 1788 0063 00       		.byte	0
+ 1789 0064 0B       		.uleb128 0xb
+ 1790 0065 0B       		.uleb128 0xb
+ 1791 0066 49       		.uleb128 0x49
+ 1792 0067 13       		.uleb128 0x13
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 37
+
+
+ 1793 0068 00       		.byte	0
+ 1794 0069 00       		.byte	0
+ 1795 006a 09       		.uleb128 0x9
+ 1796 006b 01       		.uleb128 0x1
+ 1797 006c 01       		.byte	0x1
+ 1798 006d 49       		.uleb128 0x49
+ 1799 006e 13       		.uleb128 0x13
+ 1800 006f 01       		.uleb128 0x1
+ 1801 0070 13       		.uleb128 0x13
+ 1802 0071 00       		.byte	0
+ 1803 0072 00       		.byte	0
+ 1804 0073 0A       		.uleb128 0xa
+ 1805 0074 21       		.uleb128 0x21
+ 1806 0075 00       		.byte	0
+ 1807 0076 49       		.uleb128 0x49
+ 1808 0077 13       		.uleb128 0x13
+ 1809 0078 2F       		.uleb128 0x2f
+ 1810 0079 0B       		.uleb128 0xb
+ 1811 007a 00       		.byte	0
+ 1812 007b 00       		.byte	0
+ 1813 007c 0B       		.uleb128 0xb
+ 1814 007d 2E       		.uleb128 0x2e
+ 1815 007e 01       		.byte	0x1
+ 1816 007f 3F       		.uleb128 0x3f
+ 1817 0080 19       		.uleb128 0x19
+ 1818 0081 03       		.uleb128 0x3
+ 1819 0082 0E       		.uleb128 0xe
+ 1820 0083 3A       		.uleb128 0x3a
+ 1821 0084 0B       		.uleb128 0xb
+ 1822 0085 3B       		.uleb128 0x3b
+ 1823 0086 0B       		.uleb128 0xb
+ 1824 0087 27       		.uleb128 0x27
+ 1825 0088 19       		.uleb128 0x19
+ 1826 0089 11       		.uleb128 0x11
+ 1827 008a 01       		.uleb128 0x1
+ 1828 008b 12       		.uleb128 0x12
+ 1829 008c 06       		.uleb128 0x6
+ 1830 008d 40       		.uleb128 0x40
+ 1831 008e 18       		.uleb128 0x18
+ 1832 008f 9742     		.uleb128 0x2117
+ 1833 0091 19       		.uleb128 0x19
+ 1834 0092 01       		.uleb128 0x1
+ 1835 0093 13       		.uleb128 0x13
+ 1836 0094 00       		.byte	0
+ 1837 0095 00       		.byte	0
+ 1838 0096 0C       		.uleb128 0xc
+ 1839 0097 898201   		.uleb128 0x4109
+ 1840 009a 01       		.byte	0x1
+ 1841 009b 11       		.uleb128 0x11
+ 1842 009c 01       		.uleb128 0x1
+ 1843 009d 31       		.uleb128 0x31
+ 1844 009e 13       		.uleb128 0x13
+ 1845 009f 01       		.uleb128 0x1
+ 1846 00a0 13       		.uleb128 0x13
+ 1847 00a1 00       		.byte	0
+ 1848 00a2 00       		.byte	0
+ 1849 00a3 0D       		.uleb128 0xd
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 38
+
+
+ 1850 00a4 8A8201   		.uleb128 0x410a
+ 1851 00a7 00       		.byte	0
+ 1852 00a8 02       		.uleb128 0x2
+ 1853 00a9 18       		.uleb128 0x18
+ 1854 00aa 9142     		.uleb128 0x2111
+ 1855 00ac 18       		.uleb128 0x18
+ 1856 00ad 00       		.byte	0
+ 1857 00ae 00       		.byte	0
+ 1858 00af 0E       		.uleb128 0xe
+ 1859 00b0 898201   		.uleb128 0x4109
+ 1860 00b3 00       		.byte	0
+ 1861 00b4 11       		.uleb128 0x11
+ 1862 00b5 01       		.uleb128 0x1
+ 1863 00b6 31       		.uleb128 0x31
+ 1864 00b7 13       		.uleb128 0x13
+ 1865 00b8 00       		.byte	0
+ 1866 00b9 00       		.byte	0
+ 1867 00ba 0F       		.uleb128 0xf
+ 1868 00bb 898201   		.uleb128 0x4109
+ 1869 00be 01       		.byte	0x1
+ 1870 00bf 11       		.uleb128 0x11
+ 1871 00c0 01       		.uleb128 0x1
+ 1872 00c1 31       		.uleb128 0x31
+ 1873 00c2 13       		.uleb128 0x13
+ 1874 00c3 00       		.byte	0
+ 1875 00c4 00       		.byte	0
+ 1876 00c5 10       		.uleb128 0x10
+ 1877 00c6 34       		.uleb128 0x34
+ 1878 00c7 00       		.byte	0
+ 1879 00c8 03       		.uleb128 0x3
+ 1880 00c9 08       		.uleb128 0x8
+ 1881 00ca 3A       		.uleb128 0x3a
+ 1882 00cb 0B       		.uleb128 0xb
+ 1883 00cc 3B       		.uleb128 0x3b
+ 1884 00cd 0B       		.uleb128 0xb
+ 1885 00ce 49       		.uleb128 0x49
+ 1886 00cf 13       		.uleb128 0x13
+ 1887 00d0 02       		.uleb128 0x2
+ 1888 00d1 17       		.uleb128 0x17
+ 1889 00d2 00       		.byte	0
+ 1890 00d3 00       		.byte	0
+ 1891 00d4 11       		.uleb128 0x11
+ 1892 00d5 2E       		.uleb128 0x2e
+ 1893 00d6 01       		.byte	0x1
+ 1894 00d7 3F       		.uleb128 0x3f
+ 1895 00d8 19       		.uleb128 0x19
+ 1896 00d9 03       		.uleb128 0x3
+ 1897 00da 0E       		.uleb128 0xe
+ 1898 00db 3A       		.uleb128 0x3a
+ 1899 00dc 0B       		.uleb128 0xb
+ 1900 00dd 3B       		.uleb128 0x3b
+ 1901 00de 0B       		.uleb128 0xb
+ 1902 00df 27       		.uleb128 0x27
+ 1903 00e0 19       		.uleb128 0x19
+ 1904 00e1 49       		.uleb128 0x49
+ 1905 00e2 13       		.uleb128 0x13
+ 1906 00e3 11       		.uleb128 0x11
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 39
+
+
+ 1907 00e4 01       		.uleb128 0x1
+ 1908 00e5 12       		.uleb128 0x12
+ 1909 00e6 06       		.uleb128 0x6
+ 1910 00e7 40       		.uleb128 0x40
+ 1911 00e8 18       		.uleb128 0x18
+ 1912 00e9 9742     		.uleb128 0x2117
+ 1913 00eb 19       		.uleb128 0x19
+ 1914 00ec 01       		.uleb128 0x1
+ 1915 00ed 13       		.uleb128 0x13
+ 1916 00ee 00       		.byte	0
+ 1917 00ef 00       		.byte	0
+ 1918 00f0 12       		.uleb128 0x12
+ 1919 00f1 05       		.uleb128 0x5
+ 1920 00f2 00       		.byte	0
+ 1921 00f3 03       		.uleb128 0x3
+ 1922 00f4 0E       		.uleb128 0xe
+ 1923 00f5 3A       		.uleb128 0x3a
+ 1924 00f6 0B       		.uleb128 0xb
+ 1925 00f7 3B       		.uleb128 0x3b
+ 1926 00f8 0B       		.uleb128 0xb
+ 1927 00f9 49       		.uleb128 0x49
+ 1928 00fa 13       		.uleb128 0x13
+ 1929 00fb 02       		.uleb128 0x2
+ 1930 00fc 17       		.uleb128 0x17
+ 1931 00fd 00       		.byte	0
+ 1932 00fe 00       		.byte	0
+ 1933 00ff 13       		.uleb128 0x13
+ 1934 0100 34       		.uleb128 0x34
+ 1935 0101 00       		.byte	0
+ 1936 0102 03       		.uleb128 0x3
+ 1937 0103 0E       		.uleb128 0xe
+ 1938 0104 3A       		.uleb128 0x3a
+ 1939 0105 0B       		.uleb128 0xb
+ 1940 0106 3B       		.uleb128 0x3b
+ 1941 0107 0B       		.uleb128 0xb
+ 1942 0108 49       		.uleb128 0x49
+ 1943 0109 13       		.uleb128 0x13
+ 1944 010a 02       		.uleb128 0x2
+ 1945 010b 17       		.uleb128 0x17
+ 1946 010c 00       		.byte	0
+ 1947 010d 00       		.byte	0
+ 1948 010e 14       		.uleb128 0x14
+ 1949 010f 05       		.uleb128 0x5
+ 1950 0110 00       		.byte	0
+ 1951 0111 03       		.uleb128 0x3
+ 1952 0112 08       		.uleb128 0x8
+ 1953 0113 3A       		.uleb128 0x3a
+ 1954 0114 0B       		.uleb128 0xb
+ 1955 0115 3B       		.uleb128 0x3b
+ 1956 0116 0B       		.uleb128 0xb
+ 1957 0117 49       		.uleb128 0x49
+ 1958 0118 13       		.uleb128 0x13
+ 1959 0119 02       		.uleb128 0x2
+ 1960 011a 18       		.uleb128 0x18
+ 1961 011b 00       		.byte	0
+ 1962 011c 00       		.byte	0
+ 1963 011d 15       		.uleb128 0x15
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 40
+
+
+ 1964 011e 2E       		.uleb128 0x2e
+ 1965 011f 01       		.byte	0x1
+ 1966 0120 3F       		.uleb128 0x3f
+ 1967 0121 19       		.uleb128 0x19
+ 1968 0122 03       		.uleb128 0x3
+ 1969 0123 0E       		.uleb128 0xe
+ 1970 0124 3A       		.uleb128 0x3a
+ 1971 0125 0B       		.uleb128 0xb
+ 1972 0126 3B       		.uleb128 0x3b
+ 1973 0127 0B       		.uleb128 0xb
+ 1974 0128 27       		.uleb128 0x27
+ 1975 0129 19       		.uleb128 0x19
+ 1976 012a 49       		.uleb128 0x49
+ 1977 012b 13       		.uleb128 0x13
+ 1978 012c 8701     		.uleb128 0x87
+ 1979 012e 19       		.uleb128 0x19
+ 1980 012f 11       		.uleb128 0x11
+ 1981 0130 01       		.uleb128 0x1
+ 1982 0131 12       		.uleb128 0x12
+ 1983 0132 06       		.uleb128 0x6
+ 1984 0133 40       		.uleb128 0x40
+ 1985 0134 18       		.uleb128 0x18
+ 1986 0135 9742     		.uleb128 0x2117
+ 1987 0137 19       		.uleb128 0x19
+ 1988 0138 01       		.uleb128 0x1
+ 1989 0139 13       		.uleb128 0x13
+ 1990 013a 00       		.byte	0
+ 1991 013b 00       		.byte	0
+ 1992 013c 16       		.uleb128 0x16
+ 1993 013d 34       		.uleb128 0x34
+ 1994 013e 00       		.byte	0
+ 1995 013f 03       		.uleb128 0x3
+ 1996 0140 0E       		.uleb128 0xe
+ 1997 0141 3A       		.uleb128 0x3a
+ 1998 0142 0B       		.uleb128 0xb
+ 1999 0143 3B       		.uleb128 0x3b
+ 2000 0144 0B       		.uleb128 0xb
+ 2001 0145 49       		.uleb128 0x49
+ 2002 0146 13       		.uleb128 0x13
+ 2003 0147 02       		.uleb128 0x2
+ 2004 0148 18       		.uleb128 0x18
+ 2005 0149 00       		.byte	0
+ 2006 014a 00       		.byte	0
+ 2007 014b 17       		.uleb128 0x17
+ 2008 014c 0B       		.uleb128 0xb
+ 2009 014d 01       		.byte	0x1
+ 2010 014e 55       		.uleb128 0x55
+ 2011 014f 17       		.uleb128 0x17
+ 2012 0150 01       		.uleb128 0x1
+ 2013 0151 13       		.uleb128 0x13
+ 2014 0152 00       		.byte	0
+ 2015 0153 00       		.byte	0
+ 2016 0154 18       		.uleb128 0x18
+ 2017 0155 34       		.uleb128 0x34
+ 2018 0156 00       		.byte	0
+ 2019 0157 03       		.uleb128 0x3
+ 2020 0158 0E       		.uleb128 0xe
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 41
+
+
+ 2021 0159 3A       		.uleb128 0x3a
+ 2022 015a 0B       		.uleb128 0xb
+ 2023 015b 3B       		.uleb128 0x3b
+ 2024 015c 05       		.uleb128 0x5
+ 2025 015d 49       		.uleb128 0x49
+ 2026 015e 13       		.uleb128 0x13
+ 2027 015f 3F       		.uleb128 0x3f
+ 2028 0160 19       		.uleb128 0x19
+ 2029 0161 3C       		.uleb128 0x3c
+ 2030 0162 19       		.uleb128 0x19
+ 2031 0163 00       		.byte	0
+ 2032 0164 00       		.byte	0
+ 2033 0165 19       		.uleb128 0x19
+ 2034 0166 35       		.uleb128 0x35
+ 2035 0167 00       		.byte	0
+ 2036 0168 49       		.uleb128 0x49
+ 2037 0169 13       		.uleb128 0x13
+ 2038 016a 00       		.byte	0
+ 2039 016b 00       		.byte	0
+ 2040 016c 1A       		.uleb128 0x1a
+ 2041 016d 34       		.uleb128 0x34
+ 2042 016e 00       		.byte	0
+ 2043 016f 03       		.uleb128 0x3
+ 2044 0170 0E       		.uleb128 0xe
+ 2045 0171 3A       		.uleb128 0x3a
+ 2046 0172 0B       		.uleb128 0xb
+ 2047 0173 3B       		.uleb128 0x3b
+ 2048 0174 0B       		.uleb128 0xb
+ 2049 0175 49       		.uleb128 0x49
+ 2050 0176 13       		.uleb128 0x13
+ 2051 0177 3F       		.uleb128 0x3f
+ 2052 0178 19       		.uleb128 0x19
+ 2053 0179 02       		.uleb128 0x2
+ 2054 017a 18       		.uleb128 0x18
+ 2055 017b 00       		.byte	0
+ 2056 017c 00       		.byte	0
+ 2057 017d 1B       		.uleb128 0x1b
+ 2058 017e 2E       		.uleb128 0x2e
+ 2059 017f 00       		.byte	0
+ 2060 0180 3F       		.uleb128 0x3f
+ 2061 0181 19       		.uleb128 0x19
+ 2062 0182 3C       		.uleb128 0x3c
+ 2063 0183 19       		.uleb128 0x19
+ 2064 0184 6E       		.uleb128 0x6e
+ 2065 0185 0E       		.uleb128 0xe
+ 2066 0186 03       		.uleb128 0x3
+ 2067 0187 0E       		.uleb128 0xe
+ 2068 0188 3A       		.uleb128 0x3a
+ 2069 0189 0B       		.uleb128 0xb
+ 2070 018a 3B       		.uleb128 0x3b
+ 2071 018b 0B       		.uleb128 0xb
+ 2072 018c 00       		.byte	0
+ 2073 018d 00       		.byte	0
+ 2074 018e 00       		.byte	0
+ 2075              		.section	.debug_loc,"",%progbits
+ 2076              	.Ldebug_loc0:
+ 2077              	.LLST0:
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 42
+
+
+ 2078 0000 14000000 		.4byte	.LVL5
+ 2079 0004 18000000 		.4byte	.LVL6
+ 2080 0008 0200     		.2byte	0x2
+ 2081 000a 30       		.byte	0x30
+ 2082 000b 9F       		.byte	0x9f
+ 2083 000c 18000000 		.4byte	.LVL6
+ 2084 0010 26000000 		.4byte	.LVL7
+ 2085 0014 0100     		.2byte	0x1
+ 2086 0016 53       		.byte	0x53
+ 2087 0017 28000000 		.4byte	.LVL8
+ 2088 001b 30000000 		.4byte	.LVL9
+ 2089 001f 0100     		.2byte	0x1
+ 2090 0021 53       		.byte	0x53
+ 2091 0022 00000000 		.4byte	0
+ 2092 0026 00000000 		.4byte	0
+ 2093              	.LLST1:
+ 2094 002a 00000000 		.4byte	.LVL12
+ 2095 002e 06000000 		.4byte	.LVL13
+ 2096 0032 0100     		.2byte	0x1
+ 2097 0034 50       		.byte	0x50
+ 2098 0035 06000000 		.4byte	.LVL13
+ 2099 0039 24000000 		.4byte	.LFE64
+ 2100 003d 0100     		.2byte	0x1
+ 2101 003f 55       		.byte	0x55
+ 2102 0040 00000000 		.4byte	0
+ 2103 0044 00000000 		.4byte	0
+ 2104              	.LLST2:
+ 2105 0048 0C000000 		.4byte	.LVL15
+ 2106 004c 1A000000 		.4byte	.LVL16
+ 2107 0050 0100     		.2byte	0x1
+ 2108 0052 50       		.byte	0x50
+ 2109 0053 1A000000 		.4byte	.LVL16
+ 2110 0057 24000000 		.4byte	.LFE64
+ 2111 005b 0100     		.2byte	0x1
+ 2112 005d 54       		.byte	0x54
+ 2113 005e 00000000 		.4byte	0
+ 2114 0062 00000000 		.4byte	0
+ 2115              	.LLST3:
+ 2116 0066 00000000 		.4byte	.LVL18
+ 2117 006a 04000000 		.4byte	.LVL19
+ 2118 006e 0100     		.2byte	0x1
+ 2119 0070 50       		.byte	0x50
+ 2120 0071 04000000 		.4byte	.LVL19
+ 2121 0075 0E000000 		.4byte	.LFE65
+ 2122 0079 0400     		.2byte	0x4
+ 2123 007b F3       		.byte	0xf3
+ 2124 007c 01       		.uleb128 0x1
+ 2125 007d 50       		.byte	0x50
+ 2126 007e 9F       		.byte	0x9f
+ 2127 007f 00000000 		.4byte	0
+ 2128 0083 00000000 		.4byte	0
+ 2129              	.LLST4:
+ 2130 0087 00000000 		.4byte	.LVL20
+ 2131 008b 02000000 		.4byte	.LVL21
+ 2132 008f 0100     		.2byte	0x1
+ 2133 0091 50       		.byte	0x50
+ 2134 0092 02000000 		.4byte	.LVL21
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 43
+
+
+ 2135 0096 0A000000 		.4byte	.LFE66
+ 2136 009a 0400     		.2byte	0x4
+ 2137 009c F3       		.byte	0xf3
+ 2138 009d 01       		.uleb128 0x1
+ 2139 009e 50       		.byte	0x50
+ 2140 009f 9F       		.byte	0x9f
+ 2141 00a0 00000000 		.4byte	0
+ 2142 00a4 00000000 		.4byte	0
+ 2143              	.LLST5:
+ 2144 00a8 00000000 		.4byte	.LVL22
+ 2145 00ac 09000000 		.4byte	.LVL23-1
+ 2146 00b0 0100     		.2byte	0x1
+ 2147 00b2 50       		.byte	0x50
+ 2148 00b3 09000000 		.4byte	.LVL23-1
+ 2149 00b7 30000000 		.4byte	.LVL25
+ 2150 00bb 0100     		.2byte	0x1
+ 2151 00bd 54       		.byte	0x54
+ 2152 00be 30000000 		.4byte	.LVL25
+ 2153 00c2 34000000 		.4byte	.LFE67
+ 2154 00c6 0400     		.2byte	0x4
+ 2155 00c8 F3       		.byte	0xf3
+ 2156 00c9 01       		.uleb128 0x1
+ 2157 00ca 50       		.byte	0x50
+ 2158 00cb 9F       		.byte	0x9f
+ 2159 00cc 00000000 		.4byte	0
+ 2160 00d0 00000000 		.4byte	0
+ 2161              	.LLST6:
+ 2162 00d4 00000000 		.4byte	.LVL22
+ 2163 00d8 09000000 		.4byte	.LVL23-1
+ 2164 00dc 0100     		.2byte	0x1
+ 2165 00de 51       		.byte	0x51
+ 2166 00df 09000000 		.4byte	.LVL23-1
+ 2167 00e3 30000000 		.4byte	.LVL25
+ 2168 00e7 0100     		.2byte	0x1
+ 2169 00e9 55       		.byte	0x55
+ 2170 00ea 30000000 		.4byte	.LVL25
+ 2171 00ee 34000000 		.4byte	.LFE67
+ 2172 00f2 0400     		.2byte	0x4
+ 2173 00f4 F3       		.byte	0xf3
+ 2174 00f5 01       		.uleb128 0x1
+ 2175 00f6 51       		.byte	0x51
+ 2176 00f7 9F       		.byte	0x9f
+ 2177 00f8 00000000 		.4byte	0
+ 2178 00fc 00000000 		.4byte	0
+ 2179              	.LLST7:
+ 2180 0100 00000000 		.4byte	.LVL26
+ 2181 0104 07000000 		.4byte	.LVL27-1
+ 2182 0108 0100     		.2byte	0x1
+ 2183 010a 50       		.byte	0x50
+ 2184 010b 07000000 		.4byte	.LVL27-1
+ 2185 010f 2C000000 		.4byte	.LFE68
+ 2186 0113 0100     		.2byte	0x1
+ 2187 0115 54       		.byte	0x54
+ 2188 0116 00000000 		.4byte	0
+ 2189 011a 00000000 		.4byte	0
+ 2190              	.LLST8:
+ 2191 011e 10000000 		.4byte	.LVL28
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 44
+
+
+ 2192 0122 26000000 		.4byte	.LVL29
+ 2193 0126 0100     		.2byte	0x1
+ 2194 0128 50       		.byte	0x50
+ 2195 0129 00000000 		.4byte	0
+ 2196 012d 00000000 		.4byte	0
+ 2197              	.LLST9:
+ 2198 0131 00000000 		.4byte	.LVL37
+ 2199 0135 07000000 		.4byte	.LVL38-1
+ 2200 0139 0100     		.2byte	0x1
+ 2201 013b 50       		.byte	0x50
+ 2202 013c 07000000 		.4byte	.LVL38-1
+ 2203 0140 18000000 		.4byte	.LFE69
+ 2204 0144 0100     		.2byte	0x1
+ 2205 0146 54       		.byte	0x54
+ 2206 0147 00000000 		.4byte	0
+ 2207 014b 00000000 		.4byte	0
+ 2208              	.LLST10:
+ 2209 014f 00000000 		.4byte	.LVL40
+ 2210 0153 07000000 		.4byte	.LVL41-1
+ 2211 0157 0100     		.2byte	0x1
+ 2212 0159 50       		.byte	0x50
+ 2213 015a 07000000 		.4byte	.LVL41-1
+ 2214 015e 18000000 		.4byte	.LFE70
+ 2215 0162 0100     		.2byte	0x1
+ 2216 0164 54       		.byte	0x54
+ 2217 0165 00000000 		.4byte	0
+ 2218 0169 00000000 		.4byte	0
+ 2219              	.LLST11:
+ 2220 016d 00000000 		.4byte	.LVL43
+ 2221 0171 04000000 		.4byte	.LVL44
+ 2222 0175 0100     		.2byte	0x1
+ 2223 0177 50       		.byte	0x50
+ 2224 0178 04000000 		.4byte	.LVL44
+ 2225 017c 0C000000 		.4byte	.LFE71
+ 2226 0180 0400     		.2byte	0x4
+ 2227 0182 F3       		.byte	0xf3
+ 2228 0183 01       		.uleb128 0x1
+ 2229 0184 50       		.byte	0x50
+ 2230 0185 9F       		.byte	0x9f
+ 2231 0186 00000000 		.4byte	0
+ 2232 018a 00000000 		.4byte	0
+ 2233              	.LLST12:
+ 2234 018e 7E000000 		.4byte	.LVL64
+ 2235 0192 8E000000 		.4byte	.LVL67
+ 2236 0196 0100     		.2byte	0x1
+ 2237 0198 54       		.byte	0x54
+ 2238 0199 90000000 		.4byte	.LVL68
+ 2239 019d BC000000 		.4byte	.LFE75
+ 2240 01a1 0100     		.2byte	0x1
+ 2241 01a3 54       		.byte	0x54
+ 2242 01a4 00000000 		.4byte	0
+ 2243 01a8 00000000 		.4byte	0
+ 2244              		.section	.debug_aranges,"",%progbits
+ 2245 0000 74000000 		.4byte	0x74
+ 2246 0004 0200     		.2byte	0x2
+ 2247 0006 00000000 		.4byte	.Ldebug_info0
+ 2248 000a 04       		.byte	0x4
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 45
+
+
+ 2249 000b 00       		.byte	0
+ 2250 000c 0000     		.2byte	0
+ 2251 000e 0000     		.2byte	0
+ 2252 0010 00000000 		.4byte	.LFB72
+ 2253 0014 44000000 		.4byte	.LFE72-.LFB72
+ 2254 0018 00000000 		.4byte	.LFB73
+ 2255 001c 54000000 		.4byte	.LFE73-.LFB73
+ 2256 0020 00000000 		.4byte	.LFB64
+ 2257 0024 24000000 		.4byte	.LFE64-.LFB64
+ 2258 0028 00000000 		.4byte	.LFB65
+ 2259 002c 0E000000 		.4byte	.LFE65-.LFB65
+ 2260 0030 00000000 		.4byte	.LFB66
+ 2261 0034 0A000000 		.4byte	.LFE66-.LFB66
+ 2262 0038 00000000 		.4byte	.LFB67
+ 2263 003c 34000000 		.4byte	.LFE67-.LFB67
+ 2264 0040 00000000 		.4byte	.LFB68
+ 2265 0044 2C000000 		.4byte	.LFE68-.LFB68
+ 2266 0048 00000000 		.4byte	.LFB74
+ 2267 004c 54000000 		.4byte	.LFE74-.LFB74
+ 2268 0050 00000000 		.4byte	.LFB69
+ 2269 0054 18000000 		.4byte	.LFE69-.LFB69
+ 2270 0058 00000000 		.4byte	.LFB70
+ 2271 005c 18000000 		.4byte	.LFE70-.LFB70
+ 2272 0060 00000000 		.4byte	.LFB71
+ 2273 0064 0C000000 		.4byte	.LFE71-.LFB71
+ 2274 0068 00000000 		.4byte	.LFB75
+ 2275 006c BC000000 		.4byte	.LFE75-.LFB75
+ 2276 0070 00000000 		.4byte	0
+ 2277 0074 00000000 		.4byte	0
+ 2278              		.section	.debug_ranges,"",%progbits
+ 2279              	.Ldebug_ranges0:
+ 2280 0000 7E000000 		.4byte	.LBB2
+ 2281 0004 8E000000 		.4byte	.LBE2
+ 2282 0008 90000000 		.4byte	.LBB3
+ 2283 000c 98000000 		.4byte	.LBE3
+ 2284 0010 00000000 		.4byte	0
+ 2285 0014 00000000 		.4byte	0
+ 2286 0018 00000000 		.4byte	.LFB72
+ 2287 001c 44000000 		.4byte	.LFE72
+ 2288 0020 00000000 		.4byte	.LFB73
+ 2289 0024 54000000 		.4byte	.LFE73
+ 2290 0028 00000000 		.4byte	.LFB64
+ 2291 002c 24000000 		.4byte	.LFE64
+ 2292 0030 00000000 		.4byte	.LFB65
+ 2293 0034 0E000000 		.4byte	.LFE65
+ 2294 0038 00000000 		.4byte	.LFB66
+ 2295 003c 0A000000 		.4byte	.LFE66
+ 2296 0040 00000000 		.4byte	.LFB67
+ 2297 0044 34000000 		.4byte	.LFE67
+ 2298 0048 00000000 		.4byte	.LFB68
+ 2299 004c 2C000000 		.4byte	.LFE68
+ 2300 0050 00000000 		.4byte	.LFB74
+ 2301 0054 54000000 		.4byte	.LFE74
+ 2302 0058 00000000 		.4byte	.LFB69
+ 2303 005c 18000000 		.4byte	.LFE69
+ 2304 0060 00000000 		.4byte	.LFB70
+ 2305 0064 18000000 		.4byte	.LFE70
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 46
+
+
+ 2306 0068 00000000 		.4byte	.LFB71
+ 2307 006c 0C000000 		.4byte	.LFE71
+ 2308 0070 00000000 		.4byte	.LFB75
+ 2309 0074 BC000000 		.4byte	.LFE75
+ 2310 0078 00000000 		.4byte	0
+ 2311 007c 00000000 		.4byte	0
+ 2312              		.section	.debug_line,"",%progbits
+ 2313              	.Ldebug_line0:
+ 2314 0000 C1030000 		.section	.debug_str,"MS",%progbits,1
+ 2314      02008002 
+ 2314      00000201 
+ 2314      FB0E0D00 
+ 2314      01010101 
+ 2315              	.LASF49:
+ 2316 0000 5472616E 		.ascii	"TransmitBuffer\000"
+ 2316      736D6974 
+ 2316      42756666 
+ 2316      657200
+ 2317              	.LASF39:
+ 2318 000f 74656D70 		.ascii	"tempotoseconds\000"
+ 2318      6F746F73 
+ 2318      65636F6E 
+ 2318      647300
+ 2319              	.LASF69:
+ 2320 001e 42797465 		.ascii	"ByteCounter_Enable\000"
+ 2320      436F756E 
+ 2320      7465725F 
+ 2320      456E6162 
+ 2320      6C6500
+ 2321              	.LASF2:
+ 2322 0031 73686F72 		.ascii	"short int\000"
+ 2322      7420696E 
+ 2322      7400
+ 2323              	.LASF60:
+ 2324 003b 6D616C6C 		.ascii	"malloc\000"
+ 2324      6F6300
+ 2325              	.LASF17:
+ 2326 0042 73697A65 		.ascii	"sizetype\000"
+ 2326      74797065 
+ 2326      00
+ 2327              	.LASF71:
+ 2328 004b 4E6F7465 		.ascii	"NoteTimer_Start\000"
+ 2328      54696D65 
+ 2328      725F5374 
+ 2328      61727400 
+ 2329              	.LASF51:
+ 2330 005b 74656D70 		.ascii	"tempo\000"
+ 2330      6F00
+ 2331              	.LASF41:
+ 2332 0061 6E6F7465 		.ascii	"noteQueue\000"
+ 2332      51756575 
+ 2332      6500
+ 2333              	.LASF58:
+ 2334 006b 42797465 		.ascii	"ByteCounter_WriteCompare\000"
+ 2334      436F756E 
+ 2334      7465725F 
+ 2334      57726974 
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 47
+
+
+ 2334      65436F6D 
+ 2335              	.LASF84:
+ 2336 0084 6D61696E 		.ascii	"main\000"
+ 2336      00
+ 2337              	.LASF18:
+ 2338 0089 75696E74 		.ascii	"uint\000"
+ 2338      00
+ 2339              	.LASF34:
+ 2340 008e 6973456D 		.ascii	"isEmpty\000"
+ 2340      70747900 
+ 2341              	.LASF80:
+ 2342 0096 4E6F7465 		.ascii	"NoteTimer_WritePeriod\000"
+ 2342      54696D65 
+ 2342      725F5772 
+ 2342      69746550 
+ 2342      6572696F 
+ 2343              	.LASF29:
+ 2344 00ac 42797465 		.ascii	"ByteReceived\000"
+ 2344      52656365 
+ 2344      69766564 
+ 2344      00
+ 2345              	.LASF48:
+ 2346 00b9 52656365 		.ascii	"ReceivedBuffer\000"
+ 2346      69766564 
+ 2346      42756666 
+ 2346      657200
+ 2347              	.LASF63:
+ 2348 00c8 4C454444 		.ascii	"LEDDrive_Read\000"
+ 2348      72697665 
+ 2348      5F526561 
+ 2348      6400
+ 2349              	.LASF67:
+ 2350 00d6 4C616256 		.ascii	"LabVIEW_UART_Start\000"
+ 2350      4945575F 
+ 2350      55415254 
+ 2350      5F537461 
+ 2350      727400
+ 2351              	.LASF12:
+ 2352 00e9 696E7431 		.ascii	"int16\000"
+ 2352      3600
+ 2353              	.LASF57:
+ 2354 00ef 4C616256 		.ascii	"LabVIEW_UART_GetByte\000"
+ 2354      4945575F 
+ 2354      55415254 
+ 2354      5F476574 
+ 2354      42797465 
+ 2355              	.LASF53:
+ 2356 0104 636C6F63 		.ascii	"clockRate\000"
+ 2356      6B526174 
+ 2356      6500
+ 2357              	.LASF59:
+ 2358 010e 42797465 		.ascii	"ByteCounter_ReadStatusRegister\000"
+ 2358      436F756E 
+ 2358      7465725F 
+ 2358      52656164 
+ 2358      53746174 
+ 2359              	.LASF55:
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 48
+
+
+ 2360 012d 5472616E 		.ascii	"Transmit_Packet\000"
+ 2360      736D6974 
+ 2360      5F506163 
+ 2360      6B657400 
+ 2361              	.LASF32:
+ 2362 013d 63726561 		.ascii	"createQueue\000"
+ 2362      74655175 
+ 2362      65756500 
+ 2363              	.LASF74:
+ 2364 0149 42797465 		.ascii	"ByteReceived_Start\000"
+ 2364      52656365 
+ 2364      69766564 
+ 2364      5F537461 
+ 2364      727400
+ 2365              	.LASF0:
+ 2366 015c 7369676E 		.ascii	"signed char\000"
+ 2366      65642063 
+ 2366      68617200 
+ 2367              	.LASF33:
+ 2368 0168 69734675 		.ascii	"isFull\000"
+ 2368      6C6C00
+ 2369              	.LASF73:
+ 2370 016f 4E6F7465 		.ascii	"NoteInterrupt_StartEx\000"
+ 2370      496E7465 
+ 2370      72727570 
+ 2370      745F5374 
+ 2370      61727445 
+ 2371              	.LASF13:
+ 2372 0185 666C6F61 		.ascii	"float\000"
+ 2372      7400
+ 2373              	.LASF6:
+ 2374 018b 6C6F6E67 		.ascii	"long long int\000"
+ 2374      206C6F6E 
+ 2374      6720696E 
+ 2374      7400
+ 2375              	.LASF19:
+ 2376 0199 66726F6E 		.ascii	"front\000"
+ 2376      7400
+ 2377              	.LASF52:
+ 2378 019f 6E6F7465 		.ascii	"noteReady\000"
+ 2378      52656164 
+ 2378      7900
+ 2379              	.LASF15:
+ 2380 01a9 63686172 		.ascii	"char\000"
+ 2380      00
+ 2381              	.LASF4:
+ 2382 01ae 6C6F6E67 		.ascii	"long int\000"
+ 2382      20696E74 
+ 2382      00
+ 2383              	.LASF43:
+ 2384 01b7 42797465 		.ascii	"ByteCount\000"
+ 2384      436F756E 
+ 2384      7400
+ 2385              	.LASF20:
+ 2386 01c1 72656172 		.ascii	"rear\000"
+ 2386      00
+ 2387              	.LASF61:
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 49
+
+
+ 2388 01c6 7072696E 		.ascii	"printf\000"
+ 2388      746600
+ 2389              	.LASF68:
+ 2390 01cd 42797465 		.ascii	"ByteCounter_Start\000"
+ 2390      436F756E 
+ 2390      7465725F 
+ 2390      53746172 
+ 2390      7400
+ 2391              	.LASF25:
+ 2392 01df 636F6D6D 		.ascii	"command_protocol\000"
+ 2392      616E645F 
+ 2392      70726F74 
+ 2392      6F636F6C 
+ 2392      00
+ 2393              	.LASF56:
+ 2394 01f0 4C454444 		.ascii	"LEDDrive_Write\000"
+ 2394      72697665 
+ 2394      5F577269 
+ 2394      746500
+ 2395              	.LASF31:
+ 2396 01ff 71756575 		.ascii	"queue\000"
+ 2396      6500
+ 2397              	.LASF35:
+ 2398 0205 656E7175 		.ascii	"enqueue\000"
+ 2398      65756500 
+ 2399              	.LASF16:
+ 2400 020d 6C6F6E67 		.ascii	"long double\000"
+ 2400      20646F75 
+ 2400      626C6500 
+ 2401              	.LASF1:
+ 2402 0219 756E7369 		.ascii	"unsigned char\000"
+ 2402      676E6564 
+ 2402      20636861 
+ 2402      7200
+ 2403              	.LASF70:
+ 2404 0227 42797465 		.ascii	"ByteCounter_SetInterruptMode\000"
+ 2404      436F756E 
+ 2404      7465725F 
+ 2404      53657449 
+ 2404      6E746572 
+ 2405              	.LASF22:
+ 2406 0244 63617061 		.ascii	"capacity\000"
+ 2406      63697479 
+ 2406      00
+ 2407              	.LASF7:
+ 2408 024d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2408      206C6F6E 
+ 2408      6720756E 
+ 2408      7369676E 
+ 2408      65642069 
+ 2409              	.LASF40:
+ 2410 0264 636C6F63 		.ascii	"clockrate\000"
+ 2410      6B726174 
+ 2410      6500
+ 2411              	.LASF30:
+ 2412 026e 436F6D6D 		.ascii	"CommandReceived\000"
+ 2412      616E6452 
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 50
+
+
+ 2412      65636569 
+ 2412      76656400 
+ 2413              	.LASF8:
+ 2414 027e 756E7369 		.ascii	"unsigned int\000"
+ 2414      676E6564 
+ 2414      20696E74 
+ 2414      00
+ 2415              	.LASF26:
+ 2416 028b 7061636B 		.ascii	"packet_size\000"
+ 2416      65745F73 
+ 2416      697A6500 
+ 2417              	.LASF5:
+ 2418 0297 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2418      20756E73 
+ 2418      69676E65 
+ 2418      6420696E 
+ 2418      7400
+ 2419              	.LASF46:
+ 2420 02a9 436F756E 		.ascii	"Count\000"
+ 2420      7400
+ 2421              	.LASF3:
+ 2422 02af 73686F72 		.ascii	"short unsigned int\000"
+ 2422      7420756E 
+ 2422      7369676E 
+ 2422      65642069 
+ 2422      6E7400
+ 2423              	.LASF83:
+ 2424 02c2 433A5C55 		.ascii	"C:\\Users\\dshen\\Documents\\school\\me135\\symphon"
+ 2424      73657273 
+ 2424      5C647368 
+ 2424      656E5C44 
+ 2424      6F63756D 
+ 2425 02ef 6975735C 		.ascii	"ius\\Symphonius\\Symphonius.cydsn\000"
+ 2425      53796D70 
+ 2425      686F6E69 
+ 2425      75735C53 
+ 2425      796D7068 
+ 2426              	.LASF54:
+ 2427 030f 436F6D6D 		.ascii	"Command_Packet\000"
+ 2427      616E645F 
+ 2427      5061636B 
+ 2427      657400
+ 2428              	.LASF38:
+ 2429 031e 4E6F7465 		.ascii	"NoteInterrupt\000"
+ 2429      496E7465 
+ 2429      72727570 
+ 2429      7400
+ 2430              	.LASF72:
+ 2431 032c 4E6F7465 		.ascii	"NoteInterrupt_Start\000"
+ 2431      496E7465 
+ 2431      72727570 
+ 2431      745F5374 
+ 2431      61727400 
+ 2432              	.LASF10:
+ 2433 0340 696E7433 		.ascii	"int32_t\000"
+ 2433      325F7400 
+ 2434              	.LASF78:
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 51
+
+
+ 2435 0348 436F6D6D 		.ascii	"CommandReceived_StartEx\000"
+ 2435      616E6452 
+ 2435      65636569 
+ 2435      7665645F 
+ 2435      53746172 
+ 2436              	.LASF11:
+ 2437 0360 75696E74 		.ascii	"uint8\000"
+ 2437      3800
+ 2438              	.LASF76:
+ 2439 0366 42797465 		.ascii	"ByteReceived_Enable\000"
+ 2439      52656365 
+ 2439      69766564 
+ 2439      5F456E61 
+ 2439      626C6500 
+ 2440              	.LASF24:
+ 2441 037a 51756575 		.ascii	"Queue\000"
+ 2441      6500
+ 2442              	.LASF28:
+ 2443 0380 62756666 		.ascii	"buffer\000"
+ 2443      657200
+ 2444              	.LASF82:
+ 2445 0387 6D61696E 		.ascii	"main.c\000"
+ 2445      2E6300
+ 2446              	.LASF64:
+ 2447 038e 4C616256 		.ascii	"LabVIEW_UART_PutArray\000"
+ 2447      4945575F 
+ 2447      55415254 
+ 2447      5F507574 
+ 2447      41727261 
+ 2448              	.LASF14:
+ 2449 03a4 646F7562 		.ascii	"double\000"
+ 2449      6C6500
+ 2450              	.LASF45:
+ 2451 03ab 436F6D6D 		.ascii	"CommandReady\000"
+ 2451      616E6452 
+ 2451      65616479 
+ 2451      00
+ 2452              	.LASF65:
+ 2453 03b8 55415254 		.ascii	"UARTReset_Write\000"
+ 2453      52657365 
+ 2453      745F5772 
+ 2453      69746500 
+ 2454              	.LASF23:
+ 2455 03c8 61727261 		.ascii	"array\000"
+ 2455      7900
+ 2456              	.LASF75:
+ 2457 03ce 42797465 		.ascii	"ByteReceived_StartEx\000"
+ 2457      52656365 
+ 2457      69766564 
+ 2457      5F537461 
+ 2457      72744578 
+ 2458              	.LASF21:
+ 2459 03e3 73697A65 		.ascii	"size\000"
+ 2459      00
+ 2460              	.LASF9:
+ 2461 03e8 5F5F696E 		.ascii	"__int32_t\000"
+ 2461      7433325F 
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 52
+
+
+ 2461      7400
+ 2462              	.LASF79:
+ 2463 03f2 436F6D6D 		.ascii	"CommandReceived_Enable\000"
+ 2463      616E6452 
+ 2463      65636569 
+ 2463      7665645F 
+ 2463      456E6162 
+ 2464              	.LASF47:
+ 2465 0409 53746174 		.ascii	"Status\000"
+ 2465      757300
+ 2466              	.LASF36:
+ 2467 0410 6974656D 		.ascii	"item\000"
+ 2467      00
+ 2468              	.LASF50:
+ 2469 0415 4C656443 		.ascii	"LedCommand\000"
+ 2469      6F6D6D61 
+ 2469      6E6400
+ 2470              	.LASF44:
+ 2471 0420 66697273 		.ascii	"firstbyte\000"
+ 2471      74627974 
+ 2471      6500
+ 2472              	.LASF77:
+ 2473 042a 436F6D6D 		.ascii	"CommandReceived_Start\000"
+ 2473      616E6452 
+ 2473      65636569 
+ 2473      7665645F 
+ 2473      53746172 
+ 2474              	.LASF42:
+ 2475 0440 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2475      52784275 
+ 2475      66666572 
+ 2475      00
+ 2476              	.LASF81:
+ 2477 044d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2477      43313120 
+ 2477      352E342E 
+ 2477      31203230 
+ 2477      31363036 
+ 2478 0480 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2478      20726576 
+ 2478      6973696F 
+ 2478      6E203233 
+ 2478      37373135 
+ 2479 04b3 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2479      66756E63 
+ 2479      74696F6E 
+ 2479      2D736563 
+ 2479      74696F6E 
+ 2480              	.LASF37:
+ 2481 04db 64657175 		.ascii	"dequeue\000"
+ 2481      65756500 
+ 2482              	.LASF27:
+ 2483 04e3 636F6D6D 		.ascii	"command\000"
+ 2483      616E6400 
+ 2484              	.LASF62:
+ 2485 04eb 4E6F7465 		.ascii	"NoteTimer_ReadStatusRegister\000"
+ 2485      54696D65 
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccgGOd1G.s 			page 53
+
+
+ 2485      725F5265 
+ 2485      61645374 
+ 2485      61747573 
+ 2486              	.LASF66:
+ 2487 0508 42797465 		.ascii	"ByteCountReset_Write\000"
+ 2487      436F756E 
+ 2487      74526573 
+ 2487      65745F57 
+ 2487      72697465 
+ 2488              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

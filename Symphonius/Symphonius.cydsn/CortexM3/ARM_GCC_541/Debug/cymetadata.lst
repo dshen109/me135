@@ -1,0 +1,1824 @@
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cymetadata.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_metadata
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_meta_wonvl
+  22              		.global	cy_meta_custnvl
+  23              		.global	cy_meta_configecc
+  24              		.section	.cyconfigecc,"a",%progbits
+  25              		.align	2
+  26              		.type	cy_meta_configecc, %object
+  27              		.size	cy_meta_configecc, 1252
+  28              	cy_meta_configecc:
+  29 0000 02       		.byte	2
+  30 0001 4F       		.byte	79
+  31 0002 00       		.byte	0
+  32 0003 40       		.byte	64
+  33 0004 03       		.byte	3
+  34 0005 52       		.byte	82
+  35 0006 00       		.byte	0
+  36 0007 40       		.byte	64
+  37 0008 02       		.byte	2
+  38 0009 64       		.byte	100
+  39 000a 00       		.byte	0
+  40 000b 40       		.byte	64
+  41 000c 05       		.byte	5
+  42 000d 65       		.byte	101
+  43 000e 00       		.byte	0
+  44 000f 40       		.byte	64
+  45 0010 01       		.byte	1
+  46 0011 07       		.byte	7
+  47 0012 01       		.byte	1
+  48 0013 40       		.byte	64
+  49 0014 6E       		.byte	110
+  50 0015 08       		.byte	8
+  51 0016 01       		.byte	1
+  52 0017 40       		.byte	64
+  53 0018 42       		.byte	66
+  54 0019 09       		.byte	9
+  55 001a 01       		.byte	1
+  56 001b 40       		.byte	64
+  57 001c 01       		.byte	1
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 2
+
+
+  58 001d 17       		.byte	23
+  59 001e 01       		.byte	1
+  60 001f 40       		.byte	64
+  61 0020 5F       		.byte	95
+  62 0021 18       		.byte	24
+  63 0022 01       		.byte	1
+  64 0023 40       		.byte	64
+  65 0024 4E       		.byte	78
+  66 0025 19       		.byte	25
+  67 0026 01       		.byte	1
+  68 0027 40       		.byte	64
+  69 0028 15       		.byte	21
+  70 0029 1A       		.byte	26
+  71 002a 01       		.byte	1
+  72 002b 40       		.byte	64
+  73 002c 53       		.byte	83
+  74 002d 1B       		.byte	27
+  75 002e 01       		.byte	1
+  76 002f 40       		.byte	64
+  77 0030 03       		.byte	3
+  78 0031 40       		.byte	64
+  79 0032 01       		.byte	1
+  80 0033 40       		.byte	64
+  81 0034 01       		.byte	1
+  82 0035 41       		.byte	65
+  83 0036 01       		.byte	1
+  84 0037 40       		.byte	64
+  85 0038 01       		.byte	1
+  86 0039 42       		.byte	66
+  87 003a 01       		.byte	1
+  88 003b 40       		.byte	64
+  89 003c 05       		.byte	5
+  90 003d 43       		.byte	67
+  91 003e 01       		.byte	1
+  92 003f 40       		.byte	64
+  93 0040 02       		.byte	2
+  94 0041 45       		.byte	69
+  95 0042 01       		.byte	1
+  96 0043 40       		.byte	64
+  97 0044 01       		.byte	1
+  98 0045 46       		.byte	70
+  99 0046 01       		.byte	1
+ 100 0047 40       		.byte	64
+ 101 0048 03       		.byte	3
+ 102 0049 47       		.byte	71
+ 103 004a 01       		.byte	1
+ 104 004b 40       		.byte	64
+ 105 004c 04       		.byte	4
+ 106 004d 48       		.byte	72
+ 107 004e 01       		.byte	1
+ 108 004f 40       		.byte	64
+ 109 0050 09       		.byte	9
+ 110 0051 4D       		.byte	77
+ 111 0052 01       		.byte	1
+ 112 0053 40       		.byte	64
+ 113 0054 04       		.byte	4
+ 114 0055 50       		.byte	80
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 3
+
+
+ 115 0056 01       		.byte	1
+ 116 0057 40       		.byte	64
+ 117 0058 01       		.byte	1
+ 118 0059 51       		.byte	81
+ 119 005a 01       		.byte	1
+ 120 005b 40       		.byte	64
+ 121 005c 01       		.byte	1
+ 122 005d 20       		.byte	32
+ 123 005e 0A       		.byte	10
+ 124 005f 27       		.byte	39
+ 125 0060 11       		.byte	17
+ 126 0061 02       		.byte	2
+ 127 0062 61       		.byte	97
+ 128 0063 80       		.byte	-128
+ 129 0064 64       		.byte	100
+ 130 0065 40       		.byte	64
+ 131 0066 79       		.byte	121
+ 132 0067 01       		.byte	1
+ 133 0068 88       		.byte	-120
+ 134 0069 0F       		.byte	15
+ 135 006a 78       		.byte	120
+ 136 006b 01       		.byte	1
+ 137 006c 7A       		.byte	122
+ 138 006d 01       		.byte	1
+ 139 006e 89       		.byte	-119
+ 140 006f 67       		.byte	103
+ 141 0070 8A       		.byte	-118
+ 142 0071 38       		.byte	56
+ 143 0072 8B       		.byte	-117
+ 144 0073 72       		.byte	114
+ 145 0074 E6       		.byte	-26
+ 146 0075 01       		.byte	1
+ 147 0076 04       		.byte	4
+ 148 0077 10       		.byte	16
+ 149 0078 07       		.byte	7
+ 150 0079 10       		.byte	16
+ 151 007a 09       		.byte	9
+ 152 007b 43       		.byte	67
+ 153 007c 0A       		.byte	10
+ 154 007d 0C       		.byte	12
+ 155 007e 0B       		.byte	11
+ 156 007f 08       		.byte	8
+ 157 0080 0C       		.byte	12
+ 158 0081 1F       		.byte	31
+ 159 0082 0D       		.byte	13
+ 160 0083 03       		.byte	3
+ 161 0084 0F       		.byte	15
+ 162 0085 48       		.byte	72
+ 163 0086 11       		.byte	17
+ 164 0087 43       		.byte	67
+ 165 0088 13       		.byte	19
+ 166 0089 1C       		.byte	28
+ 167 008a 16       		.byte	22
+ 168 008b 08       		.byte	8
+ 169 008c 17       		.byte	23
+ 170 008d 49       		.byte	73
+ 171 008e 18       		.byte	24
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 4
+
+
+ 172 008f 20       		.byte	32
+ 173 0090 1B       		.byte	27
+ 174 0091 20       		.byte	32
+ 175 0092 1D       		.byte	29
+ 176 0093 23       		.byte	35
+ 177 0094 1F       		.byte	31
+ 178 0095 04       		.byte	4
+ 179 0096 20       		.byte	32
+ 180 0097 02       		.byte	2
+ 181 0098 22       		.byte	34
+ 182 0099 05       		.byte	5
+ 183 009a 24       		.byte	36
+ 184 009b 0C       		.byte	12
+ 185 009c 26       		.byte	38
+ 186 009d 13       		.byte	19
+ 187 009e 28       		.byte	40
+ 188 009f 01       		.byte	1
+ 189 00a0 29       		.byte	41
+ 190 00a1 12       		.byte	18
+ 191 00a2 2A       		.byte	42
+ 192 00a3 0E       		.byte	14
+ 193 00a4 2B       		.byte	43
+ 194 00a5 48       		.byte	72
+ 195 00a6 32       		.byte	50
+ 196 00a7 1F       		.byte	31
+ 197 00a8 33       		.byte	51
+ 198 00a9 40       		.byte	64
+ 199 00aa 34       		.byte	52
+ 200 00ab 20       		.byte	32
+ 201 00ac 35       		.byte	53
+ 202 00ad 20       		.byte	32
+ 203 00ae 37       		.byte	55
+ 204 00af 1F       		.byte	31
+ 205 00b0 38       		.byte	56
+ 206 00b1 80       		.byte	-128
+ 207 00b2 3B       		.byte	59
+ 208 00b3 80       		.byte	-128
+ 209 00b4 3E       		.byte	62
+ 210 00b5 50       		.byte	80
+ 211 00b6 3F       		.byte	63
+ 212 00b7 04       		.byte	4
+ 213 00b8 40       		.byte	64
+ 214 00b9 46       		.byte	70
+ 215 00ba 41       		.byte	65
+ 216 00bb 02       		.byte	2
+ 217 00bc 45       		.byte	69
+ 218 00bd 0E       		.byte	14
+ 219 00be 46       		.byte	70
+ 220 00bf 0C       		.byte	12
+ 221 00c0 47       		.byte	71
+ 222 00c1 B0       		.byte	-80
+ 223 00c2 48       		.byte	72
+ 224 00c3 25       		.byte	37
+ 225 00c4 49       		.byte	73
+ 226 00c5 FF       		.byte	-1
+ 227 00c6 4A       		.byte	74
+ 228 00c7 FF       		.byte	-1
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 5
+
+
+ 229 00c8 4B       		.byte	75
+ 230 00c9 FF       		.byte	-1
+ 231 00ca 4E       		.byte	78
+ 232 00cb F0       		.byte	-16
+ 233 00cc 4F       		.byte	79
+ 234 00cd 44       		.byte	68
+ 235 00ce 50       		.byte	80
+ 236 00cf 0C       		.byte	12
+ 237 00d0 54       		.byte	84
+ 238 00d1 01       		.byte	1
+ 239 00d2 58       		.byte	88
+ 240 00d3 04       		.byte	4
+ 241 00d4 59       		.byte	89
+ 242 00d5 04       		.byte	4
+ 243 00d6 5A       		.byte	90
+ 244 00d7 04       		.byte	4
+ 245 00d8 5B       		.byte	91
+ 246 00d9 04       		.byte	4
+ 247 00da 5C       		.byte	92
+ 248 00db 11       		.byte	17
+ 249 00dc 5D       		.byte	93
+ 250 00dd 11       		.byte	17
+ 251 00de 5F       		.byte	95
+ 252 00df 0D       		.byte	13
+ 253 00e0 66       		.byte	102
+ 254 00e1 C0       		.byte	-64
+ 255 00e2 6A       		.byte	106
+ 256 00e3 40       		.byte	64
+ 257 00e4 6B       		.byte	107
+ 258 00e5 02       		.byte	2
+ 259 00e6 82       		.byte	-126
+ 260 00e7 20       		.byte	32
+ 261 00e8 85       		.byte	-123
+ 262 00e9 20       		.byte	32
+ 263 00ea 86       		.byte	-122
+ 264 00eb 03       		.byte	3
+ 265 00ec 87       		.byte	-121
+ 266 00ed 44       		.byte	68
+ 267 00ee 89       		.byte	-119
+ 268 00ef D0       		.byte	-48
+ 269 00f0 8B       		.byte	-117
+ 270 00f1 0E       		.byte	14
+ 271 00f2 8C       		.byte	-116
+ 272 00f3 3F       		.byte	63
+ 273 00f4 90       		.byte	-112
+ 274 00f5 14       		.byte	20
+ 275 00f6 94       		.byte	-108
+ 276 00f7 1C       		.byte	28
+ 277 00f8 95       		.byte	-107
+ 278 00f9 89       		.byte	-119
+ 279 00fa 96       		.byte	-106
+ 280 00fb 02       		.byte	2
+ 281 00fc 97       		.byte	-105
+ 282 00fd 14       		.byte	20
+ 283 00fe 98       		.byte	-104
+ 284 00ff 09       		.byte	9
+ 285 0100 9A       		.byte	-102
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 6
+
+
+ 286 0101 10       		.byte	16
+ 287 0102 9B       		.byte	-101
+ 288 0103 08       		.byte	8
+ 289 0104 9D       		.byte	-99
+ 290 0105 D0       		.byte	-48
+ 291 0106 9F       		.byte	-97
+ 292 0107 05       		.byte	5
+ 293 0108 A0       		.byte	-96
+ 294 0109 10       		.byte	16
+ 295 010a A1       		.byte	-95
+ 296 010b 01       		.byte	1
+ 297 010c A2       		.byte	-94
+ 298 010d 0C       		.byte	12
+ 299 010e A3       		.byte	-93
+ 300 010f 02       		.byte	2
+ 301 0110 A4       		.byte	-92
+ 302 0111 10       		.byte	16
+ 303 0112 A7       		.byte	-89
+ 304 0113 09       		.byte	9
+ 305 0114 A8       		.byte	-88
+ 306 0115 0C       		.byte	12
+ 307 0116 AA       		.byte	-86
+ 308 0117 11       		.byte	17
+ 309 0118 B0       		.byte	-80
+ 310 0119 20       		.byte	32
+ 311 011a B1       		.byte	-79
+ 312 011b C0       		.byte	-64
+ 313 011c B3       		.byte	-77
+ 314 011d 0F       		.byte	15
+ 315 011e B4       		.byte	-76
+ 316 011f 1F       		.byte	31
+ 317 0120 B5       		.byte	-75
+ 318 0121 30       		.byte	48
+ 319 0122 B9       		.byte	-71
+ 320 0123 22       		.byte	34
+ 321 0124 BB       		.byte	-69
+ 322 0125 08       		.byte	8
+ 323 0126 BF       		.byte	-65
+ 324 0127 01       		.byte	1
+ 325 0128 C0       		.byte	-64
+ 326 0129 04       		.byte	4
+ 327 012a C5       		.byte	-59
+ 328 012b 04       		.byte	4
+ 329 012c C9       		.byte	-55
+ 330 012d FF       		.byte	-1
+ 331 012e CA       		.byte	-54
+ 332 012f 07       		.byte	7
+ 333 0130 CB       		.byte	-53
+ 334 0131 FF       		.byte	-1
+ 335 0132 CC       		.byte	-52
+ 336 0133 40       		.byte	64
+ 337 0134 CD       		.byte	-51
+ 338 0135 20       		.byte	32
+ 339 0136 CE       		.byte	-50
+ 340 0137 F0       		.byte	-16
+ 341 0138 CF       		.byte	-49
+ 342 0139 05       		.byte	5
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 7
+
+
+ 343 013a D0       		.byte	-48
+ 344 013b 08       		.byte	8
+ 345 013c D8       		.byte	-40
+ 346 013d 04       		.byte	4
+ 347 013e D9       		.byte	-39
+ 348 013f 04       		.byte	4
+ 349 0140 DA       		.byte	-38
+ 350 0141 04       		.byte	4
+ 351 0142 DB       		.byte	-37
+ 352 0143 04       		.byte	4
+ 353 0144 DC       		.byte	-36
+ 354 0145 11       		.byte	17
+ 355 0146 DD       		.byte	-35
+ 356 0147 01       		.byte	1
+ 357 0148 DF       		.byte	-33
+ 358 0149 09       		.byte	9
+ 359 014a E0       		.byte	-32
+ 360 014b 40       		.byte	64
+ 361 014c E1       		.byte	-31
+ 362 014d A8       		.byte	-88
+ 363 014e E2       		.byte	-30
+ 364 014f 40       		.byte	64
+ 365 0150 E3       		.byte	-29
+ 366 0151 20       		.byte	32
+ 367 0152 00       		.byte	0
+ 368 0153 04       		.byte	4
+ 369 0154 01       		.byte	1
+ 370 0155 02       		.byte	2
+ 371 0156 02       		.byte	2
+ 372 0157 01       		.byte	1
+ 373 0158 04       		.byte	4
+ 374 0159 08       		.byte	8
+ 375 015a 06       		.byte	6
+ 376 015b 01       		.byte	1
+ 377 015c 07       		.byte	7
+ 378 015d 08       		.byte	8
+ 379 015e 09       		.byte	9
+ 380 015f 09       		.byte	9
+ 381 0160 0B       		.byte	11
+ 382 0161 04       		.byte	4
+ 383 0162 0E       		.byte	14
+ 384 0163 20       		.byte	32
+ 385 0164 0F       		.byte	15
+ 386 0165 08       		.byte	8
+ 387 0166 10       		.byte	16
+ 388 0167 20       		.byte	32
+ 389 0168 13       		.byte	19
+ 390 0169 22       		.byte	34
+ 391 016a 16       		.byte	22
+ 392 016b 20       		.byte	32
+ 393 016c 17       		.byte	23
+ 394 016d 22       		.byte	34
+ 395 016e 18       		.byte	24
+ 396 016f 04       		.byte	4
+ 397 0170 19       		.byte	25
+ 398 0171 02       		.byte	2
+ 399 0172 1D       		.byte	29
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 8
+
+
+ 400 0173 0C       		.byte	12
+ 401 0174 1E       		.byte	30
+ 402 0175 0A       		.byte	10
+ 403 0176 1F       		.byte	31
+ 404 0177 04       		.byte	4
+ 405 0178 20       		.byte	32
+ 406 0179 50       		.byte	80
+ 407 017a 23       		.byte	35
+ 408 017b 2C       		.byte	44
+ 409 017c 26       		.byte	38
+ 410 017d A0       		.byte	-96
+ 411 017e 27       		.byte	39
+ 412 017f 12       		.byte	18
+ 413 0180 28       		.byte	40
+ 414 0181 80       		.byte	-128
+ 415 0182 2A       		.byte	42
+ 416 0183 09       		.byte	9
+ 417 0184 2E       		.byte	46
+ 418 0185 20       		.byte	32
+ 419 0186 2F       		.byte	47
+ 420 0187 04       		.byte	4
+ 421 0188 30       		.byte	48
+ 422 0189 20       		.byte	32
+ 423 018a 31       		.byte	49
+ 424 018b 04       		.byte	4
+ 425 018c 32       		.byte	50
+ 426 018d 80       		.byte	-128
+ 427 018e 34       		.byte	52
+ 428 018f 80       		.byte	-128
+ 429 0190 36       		.byte	54
+ 430 0191 28       		.byte	40
+ 431 0192 37       		.byte	55
+ 432 0193 02       		.byte	2
+ 433 0194 38       		.byte	56
+ 434 0195 18       		.byte	24
+ 435 0196 3C       		.byte	60
+ 436 0197 10       		.byte	16
+ 437 0198 3D       		.byte	61
+ 438 0199 40       		.byte	64
+ 439 019a 3E       		.byte	62
+ 440 019b 08       		.byte	8
+ 441 019c 3F       		.byte	63
+ 442 019d 84       		.byte	-124
+ 443 019e 40       		.byte	64
+ 444 019f 40       		.byte	64
+ 445 01a0 47       		.byte	71
+ 446 01a1 22       		.byte	34
+ 447 01a2 48       		.byte	72
+ 448 01a3 20       		.byte	32
+ 449 01a4 4A       		.byte	74
+ 450 01a5 10       		.byte	16
+ 451 01a6 4C       		.byte	76
+ 452 01a7 04       		.byte	4
+ 453 01a8 4D       		.byte	77
+ 454 01a9 04       		.byte	4
+ 455 01aa 4F       		.byte	79
+ 456 01ab 08       		.byte	8
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 9
+
+
+ 457 01ac 50       		.byte	80
+ 458 01ad 04       		.byte	4
+ 459 01ae 52       		.byte	82
+ 460 01af 08       		.byte	8
+ 461 01b0 55       		.byte	85
+ 462 01b1 01       		.byte	1
+ 463 01b2 57       		.byte	87
+ 464 01b3 40       		.byte	64
+ 465 01b4 5C       		.byte	92
+ 466 01b5 22       		.byte	34
+ 467 01b6 5E       		.byte	94
+ 468 01b7 48       		.byte	72
+ 469 01b8 68       		.byte	104
+ 470 01b9 01       		.byte	1
+ 471 01ba 78       		.byte	120
+ 472 01bb 80       		.byte	-128
+ 473 01bc 7C       		.byte	124
+ 474 01bd 80       		.byte	-128
+ 475 01be 82       		.byte	-126
+ 476 01bf 01       		.byte	1
+ 477 01c0 88       		.byte	-120
+ 478 01c1 01       		.byte	1
+ 479 01c2 C0       		.byte	-64
+ 480 01c3 ED       		.byte	-19
+ 481 01c4 C2       		.byte	-62
+ 482 01c5 6E       		.byte	110
+ 483 01c6 C4       		.byte	-60
+ 484 01c7 7E       		.byte	126
+ 485 01c8 CA       		.byte	-54
+ 486 01c9 23       		.byte	35
+ 487 01ca CC       		.byte	-52
+ 488 01cb FE       		.byte	-2
+ 489 01cc CE       		.byte	-50
+ 490 01cd 76       		.byte	118
+ 491 01ce D0       		.byte	-48
+ 492 01cf A1       		.byte	-95
+ 493 01d0 D2       		.byte	-46
+ 494 01d1 20       		.byte	32
+ 495 01d2 D6       		.byte	-42
+ 496 01d3 F0       		.byte	-16
+ 497 01d4 DE       		.byte	-34
+ 498 01d5 18       		.byte	24
+ 499 01d6 E2       		.byte	-30
+ 500 01d7 44       		.byte	68
+ 501 01d8 00       		.byte	0
+ 502 01d9 30       		.byte	48
+ 503 01da 01       		.byte	1
+ 504 01db 08       		.byte	8
+ 505 01dc 02       		.byte	2
+ 506 01dd 06       		.byte	6
+ 507 01de 04       		.byte	4
+ 508 01df 06       		.byte	6
+ 509 01e0 05       		.byte	5
+ 510 01e1 2F       		.byte	47
+ 511 01e2 08       		.byte	8
+ 512 01e3 02       		.byte	2
+ 513 01e4 0B       		.byte	11
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 10
+
+
+ 514 01e5 21       		.byte	33
+ 515 01e6 0D       		.byte	13
+ 516 01e7 4F       		.byte	79
+ 517 01e8 0F       		.byte	15
+ 518 01e9 10       		.byte	16
+ 519 01ea 10       		.byte	16
+ 520 01eb 06       		.byte	6
+ 521 01ec 11       		.byte	17
+ 522 01ed 23       		.byte	35
+ 523 01ee 12       		.byte	18
+ 524 01ef 38       		.byte	56
+ 525 01f0 13       		.byte	19
+ 526 01f1 0C       		.byte	12
+ 527 01f2 15       		.byte	21
+ 528 01f3 0E       		.byte	14
+ 529 01f4 16       		.byte	22
+ 530 01f5 30       		.byte	48
+ 531 01f6 17       		.byte	23
+ 532 01f7 30       		.byte	48
+ 533 01f8 19       		.byte	25
+ 534 01f9 0C       		.byte	12
+ 535 01fa 1C       		.byte	28
+ 536 01fb 36       		.byte	54
+ 537 01fc 1E       		.byte	30
+ 538 01fd 01       		.byte	1
+ 539 01fe 1F       		.byte	31
+ 540 01ff 02       		.byte	2
+ 541 0200 20       		.byte	32
+ 542 0201 27       		.byte	39
+ 543 0202 22       		.byte	34
+ 544 0203 08       		.byte	8
+ 545 0204 25       		.byte	37
+ 546 0205 04       		.byte	4
+ 547 0206 28       		.byte	40
+ 548 0207 26       		.byte	38
+ 549 0208 29       		.byte	41
+ 550 0209 02       		.byte	2
+ 551 020a 2A       		.byte	42
+ 552 020b 10       		.byte	16
+ 553 020c 2B       		.byte	43
+ 554 020d 40       		.byte	64
+ 555 020e 2C       		.byte	44
+ 556 020f 04       		.byte	4
+ 557 0210 2D       		.byte	45
+ 558 0211 0E       		.byte	14
+ 559 0212 2F       		.byte	47
+ 560 0213 01       		.byte	1
+ 561 0214 30       		.byte	48
+ 562 0215 1E       		.byte	30
+ 563 0216 33       		.byte	51
+ 564 0217 3F       		.byte	63
+ 565 0218 34       		.byte	52
+ 566 0219 01       		.byte	1
+ 567 021a 36       		.byte	54
+ 568 021b 26       		.byte	38
+ 569 021c 37       		.byte	55
+ 570 021d 40       		.byte	64
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 11
+
+
+ 571 021e 3A       		.byte	58
+ 572 021f 02       		.byte	2
+ 573 0220 3B       		.byte	59
+ 574 0221 08       		.byte	8
+ 575 0222 58       		.byte	88
+ 576 0223 04       		.byte	4
+ 577 0224 59       		.byte	89
+ 578 0225 04       		.byte	4
+ 579 0226 5B       		.byte	91
+ 580 0227 04       		.byte	4
+ 581 0228 5C       		.byte	92
+ 582 0229 11       		.byte	17
+ 583 022a 5F       		.byte	95
+ 584 022b 01       		.byte	1
+ 585 022c 82       		.byte	-126
+ 586 022d 0C       		.byte	12
+ 587 022e 84       		.byte	-124
+ 588 022f 02       		.byte	2
+ 589 0230 8E       		.byte	-114
+ 590 0231 01       		.byte	1
+ 591 0232 8F       		.byte	-113
+ 592 0233 02       		.byte	2
+ 593 0234 91       		.byte	-111
+ 594 0235 0C       		.byte	12
+ 595 0236 92       		.byte	-110
+ 596 0237 01       		.byte	1
+ 597 0238 94       		.byte	-108
+ 598 0239 04       		.byte	4
+ 599 023a 9F       		.byte	-97
+ 600 023b 09       		.byte	9
+ 601 023c A4       		.byte	-92
+ 602 023d 01       		.byte	1
+ 603 023e AD       		.byte	-83
+ 604 023f 04       		.byte	4
+ 605 0240 B0       		.byte	-80
+ 606 0241 02       		.byte	2
+ 607 0242 B1       		.byte	-79
+ 608 0243 01       		.byte	1
+ 609 0244 B2       		.byte	-78
+ 610 0245 08       		.byte	8
+ 611 0246 B3       		.byte	-77
+ 612 0247 04       		.byte	4
+ 613 0248 B4       		.byte	-76
+ 614 0249 04       		.byte	4
+ 615 024a B5       		.byte	-75
+ 616 024b 02       		.byte	2
+ 617 024c B6       		.byte	-74
+ 618 024d 01       		.byte	1
+ 619 024e B7       		.byte	-73
+ 620 024f 08       		.byte	8
+ 621 0250 B9       		.byte	-71
+ 622 0251 08       		.byte	8
+ 623 0252 BE       		.byte	-66
+ 624 0253 51       		.byte	81
+ 625 0254 BF       		.byte	-65
+ 626 0255 44       		.byte	68
+ 627 0256 C0       		.byte	-64
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 12
+
+
+ 628 0257 13       		.byte	19
+ 629 0258 C1       		.byte	-63
+ 630 0259 05       		.byte	5
+ 631 025a C5       		.byte	-59
+ 632 025b 42       		.byte	66
+ 633 025c C6       		.byte	-58
+ 634 025d C0       		.byte	-64
+ 635 025e C7       		.byte	-57
+ 636 025f 0E       		.byte	14
+ 637 0260 C8       		.byte	-56
+ 638 0261 1F       		.byte	31
+ 639 0262 C9       		.byte	-55
+ 640 0263 FF       		.byte	-1
+ 641 0264 CA       		.byte	-54
+ 642 0265 FF       		.byte	-1
+ 643 0266 CB       		.byte	-53
+ 644 0267 FF       		.byte	-1
+ 645 0268 CD       		.byte	-51
+ 646 0269 A0       		.byte	-96
+ 647 026a CF       		.byte	-49
+ 648 026b 01       		.byte	1
+ 649 026c D0       		.byte	-48
+ 650 026d 18       		.byte	24
+ 651 026e D2       		.byte	-46
+ 652 026f 80       		.byte	-128
+ 653 0270 D4       		.byte	-44
+ 654 0271 07       		.byte	7
+ 655 0272 D6       		.byte	-42
+ 656 0273 04       		.byte	4
+ 657 0274 D8       		.byte	-40
+ 658 0275 04       		.byte	4
+ 659 0276 D9       		.byte	-39
+ 660 0277 04       		.byte	4
+ 661 0278 DA       		.byte	-38
+ 662 0279 04       		.byte	4
+ 663 027a DB       		.byte	-37
+ 664 027b 04       		.byte	4
+ 665 027c DF       		.byte	-33
+ 666 027d 05       		.byte	5
+ 667 027e E0       		.byte	-32
+ 668 027f 40       		.byte	64
+ 669 0280 E2       		.byte	-30
+ 670 0281 80       		.byte	-128
+ 671 0282 E4       		.byte	-28
+ 672 0283 40       		.byte	64
+ 673 0284 E5       		.byte	-27
+ 674 0285 40       		.byte	64
+ 675 0286 E6       		.byte	-26
+ 676 0287 80       		.byte	-128
+ 677 0288 E8       		.byte	-24
+ 678 0289 40       		.byte	64
+ 679 028a EA       		.byte	-22
+ 680 028b 50       		.byte	80
+ 681 028c EB       		.byte	-21
+ 682 028d A8       		.byte	-88
+ 683 028e EC       		.byte	-20
+ 684 028f 40       		.byte	64
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 13
+
+
+ 685 0290 ED       		.byte	-19
+ 686 0291 20       		.byte	32
+ 687 0292 EE       		.byte	-18
+ 688 0293 50       		.byte	80
+ 689 0294 EF       		.byte	-17
+ 690 0295 A8       		.byte	-88
+ 691 0296 00       		.byte	0
+ 692 0297 44       		.byte	68
+ 693 0298 02       		.byte	2
+ 694 0299 40       		.byte	64
+ 695 029a 05       		.byte	5
+ 696 029b 01       		.byte	1
+ 697 029c 06       		.byte	6
+ 698 029d 08       		.byte	8
+ 699 029e 07       		.byte	7
+ 700 029f 20       		.byte	32
+ 701 02a0 0A       		.byte	10
+ 702 02a1 20       		.byte	32
+ 703 02a2 0B       		.byte	11
+ 704 02a3 40       		.byte	64
+ 705 02a4 0E       		.byte	14
+ 706 02a5 40       		.byte	64
+ 707 02a6 0F       		.byte	15
+ 708 02a7 12       		.byte	18
+ 709 02a8 13       		.byte	19
+ 710 02a9 04       		.byte	4
+ 711 02aa 14       		.byte	20
+ 712 02ab 80       		.byte	-128
+ 713 02ac 16       		.byte	22
+ 714 02ad 02       		.byte	2
+ 715 02ae 17       		.byte	23
+ 716 02af 10       		.byte	16
+ 717 02b0 18       		.byte	24
+ 718 02b1 81       		.byte	-127
+ 719 02b2 1A       		.byte	26
+ 720 02b3 24       		.byte	36
+ 721 02b4 1C       		.byte	28
+ 722 02b5 08       		.byte	8
+ 723 02b6 1E       		.byte	30
+ 724 02b7 40       		.byte	64
+ 725 02b8 1F       		.byte	31
+ 726 02b9 60       		.byte	96
+ 727 02ba 21       		.byte	33
+ 728 02bb 06       		.byte	6
+ 729 02bc 22       		.byte	34
+ 730 02bd 40       		.byte	64
+ 731 02be 23       		.byte	35
+ 732 02bf 04       		.byte	4
+ 733 02c0 26       		.byte	38
+ 734 02c1 88       		.byte	-120
+ 735 02c2 27       		.byte	39
+ 736 02c3 10       		.byte	16
+ 737 02c4 2B       		.byte	43
+ 738 02c5 02       		.byte	2
+ 739 02c6 2C       		.byte	44
+ 740 02c7 08       		.byte	8
+ 741 02c8 2E       		.byte	46
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 14
+
+
+ 742 02c9 48       		.byte	72
+ 743 02ca 30       		.byte	48
+ 744 02cb 80       		.byte	-128
+ 745 02cc 31       		.byte	49
+ 746 02cd 02       		.byte	2
+ 747 02ce 35       		.byte	53
+ 748 02cf 01       		.byte	1
+ 749 02d0 36       		.byte	54
+ 750 02d1 88       		.byte	-120
+ 751 02d2 37       		.byte	55
+ 752 02d3 20       		.byte	32
+ 753 02d4 38       		.byte	56
+ 754 02d5 40       		.byte	64
+ 755 02d6 3C       		.byte	60
+ 756 02d7 08       		.byte	8
+ 757 02d8 3D       		.byte	61
+ 758 02d9 40       		.byte	64
+ 759 02da 3E       		.byte	62
+ 760 02db 02       		.byte	2
+ 761 02dc 3F       		.byte	63
+ 762 02dd 10       		.byte	16
+ 763 02de 40       		.byte	64
+ 764 02df 01       		.byte	1
+ 765 02e0 41       		.byte	65
+ 766 02e1 04       		.byte	4
+ 767 02e2 48       		.byte	72
+ 768 02e3 80       		.byte	-128
+ 769 02e4 49       		.byte	73
+ 770 02e5 04       		.byte	4
+ 771 02e6 4A       		.byte	74
+ 772 02e7 01       		.byte	1
+ 773 02e8 51       		.byte	81
+ 774 02e9 08       		.byte	8
+ 775 02ea 52       		.byte	82
+ 776 02eb 50       		.byte	80
+ 777 02ec 58       		.byte	88
+ 778 02ed 10       		.byte	16
+ 779 02ee 5A       		.byte	90
+ 780 02ef 84       		.byte	-124
+ 781 02f0 61       		.byte	97
+ 782 02f1 08       		.byte	8
+ 783 02f2 62       		.byte	98
+ 784 02f3 10       		.byte	16
+ 785 02f4 63       		.byte	99
+ 786 02f5 80       		.byte	-128
+ 787 02f6 64       		.byte	100
+ 788 02f7 10       		.byte	16
+ 789 02f8 65       		.byte	101
+ 790 02f9 04       		.byte	4
+ 791 02fa 6F       		.byte	111
+ 792 02fb 02       		.byte	2
+ 793 02fc 73       		.byte	115
+ 794 02fd 40       		.byte	64
+ 795 02fe 7B       		.byte	123
+ 796 02ff 02       		.byte	2
+ 797 0300 83       		.byte	-125
+ 798 0301 40       		.byte	64
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 15
+
+
+ 799 0302 88       		.byte	-120
+ 800 0303 08       		.byte	8
+ 801 0304 8B       		.byte	-117
+ 802 0305 21       		.byte	33
+ 803 0306 8C       		.byte	-116
+ 804 0307 40       		.byte	64
+ 805 0308 90       		.byte	-112
+ 806 0309 04       		.byte	4
+ 807 030a 9C       		.byte	-100
+ 808 030b 80       		.byte	-128
+ 809 030c A2       		.byte	-94
+ 810 030d 01       		.byte	1
+ 811 030e A8       		.byte	-88
+ 812 030f 20       		.byte	32
+ 813 0310 A9       		.byte	-87
+ 814 0311 40       		.byte	64
+ 815 0312 B0       		.byte	-80
+ 816 0313 02       		.byte	2
+ 817 0314 B1       		.byte	-79
+ 818 0315 04       		.byte	4
+ 819 0316 B6       		.byte	-74
+ 820 0317 40       		.byte	64
+ 821 0318 B7       		.byte	-73
+ 822 0319 10       		.byte	16
+ 823 031a C0       		.byte	-64
+ 824 031b 7D       		.byte	125
+ 825 031c C2       		.byte	-62
+ 826 031d BC       		.byte	-68
+ 827 031e C4       		.byte	-60
+ 828 031f D4       		.byte	-44
+ 829 0320 CA       		.byte	-54
+ 830 0321 78       		.byte	120
+ 831 0322 CC       		.byte	-52
+ 832 0323 F9       		.byte	-7
+ 833 0324 CE       		.byte	-50
+ 834 0325 F8       		.byte	-8
+ 835 0326 D0       		.byte	-48
+ 836 0327 0A       		.byte	10
+ 837 0328 D2       		.byte	-46
+ 838 0329 08       		.byte	8
+ 839 032a D6       		.byte	-42
+ 840 032b 0E       		.byte	14
+ 841 032c D8       		.byte	-40
+ 842 032d 07       		.byte	7
+ 843 032e DE       		.byte	-34
+ 844 032f 08       		.byte	8
+ 845 0330 E2       		.byte	-30
+ 846 0331 40       		.byte	64
+ 847 0332 01       		.byte	1
+ 848 0333 01       		.byte	1
+ 849 0334 07       		.byte	7
+ 850 0335 02       		.byte	2
+ 851 0336 09       		.byte	9
+ 852 0337 01       		.byte	1
+ 853 0338 0F       		.byte	15
+ 854 0339 04       		.byte	4
+ 855 033a 17       		.byte	23
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 16
+
+
+ 856 033b 04       		.byte	4
+ 857 033c 1B       		.byte	27
+ 858 033d 02       		.byte	2
+ 859 033e 25       		.byte	37
+ 860 033f 01       		.byte	1
+ 861 0340 2E       		.byte	46
+ 862 0341 01       		.byte	1
+ 863 0342 33       		.byte	51
+ 864 0343 01       		.byte	1
+ 865 0344 35       		.byte	53
+ 866 0345 02       		.byte	2
+ 867 0346 36       		.byte	54
+ 868 0347 01       		.byte	1
+ 869 0348 37       		.byte	55
+ 870 0349 04       		.byte	4
+ 871 034a 3F       		.byte	63
+ 872 034b 50       		.byte	80
+ 873 034c 54       		.byte	84
+ 874 034d 18       		.byte	24
+ 875 034e 56       		.byte	86
+ 876 034f 04       		.byte	4
+ 877 0350 58       		.byte	88
+ 878 0351 04       		.byte	4
+ 879 0352 59       		.byte	89
+ 880 0353 04       		.byte	4
+ 881 0354 5B       		.byte	91
+ 882 0355 04       		.byte	4
+ 883 0356 5C       		.byte	92
+ 884 0357 11       		.byte	17
+ 885 0358 5D       		.byte	93
+ 886 0359 10       		.byte	16
+ 887 035a 5F       		.byte	95
+ 888 035b 05       		.byte	5
+ 889 035c 04       		.byte	4
+ 890 035d 80       		.byte	-128
+ 891 035e 05       		.byte	5
+ 892 035f 01       		.byte	1
+ 893 0360 06       		.byte	6
+ 894 0361 08       		.byte	8
+ 895 0362 07       		.byte	7
+ 896 0363 20       		.byte	32
+ 897 0364 0D       		.byte	13
+ 898 0365 10       		.byte	16
+ 899 0366 0E       		.byte	14
+ 900 0367 40       		.byte	64
+ 901 0368 0F       		.byte	15
+ 902 0369 12       		.byte	18
+ 903 036a 10       		.byte	16
+ 904 036b 12       		.byte	18
+ 905 036c 11       		.byte	17
+ 906 036d 08       		.byte	8
+ 907 036e 14       		.byte	20
+ 908 036f 90       		.byte	-112
+ 909 0370 16       		.byte	22
+ 910 0371 02       		.byte	2
+ 911 0372 17       		.byte	23
+ 912 0373 10       		.byte	16
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 17
+
+
+ 913 0374 1A       		.byte	26
+ 914 0375 02       		.byte	2
+ 915 0376 1D       		.byte	29
+ 916 0377 0B       		.byte	11
+ 917 0378 1E       		.byte	30
+ 918 0379 08       		.byte	8
+ 919 037a 20       		.byte	32
+ 920 037b 04       		.byte	4
+ 921 037c 22       		.byte	34
+ 922 037d 80       		.byte	-128
+ 923 037e 23       		.byte	35
+ 924 037f 10       		.byte	16
+ 925 0380 24       		.byte	36
+ 926 0381 80       		.byte	-128
+ 927 0382 25       		.byte	37
+ 928 0383 25       		.byte	37
+ 929 0384 27       		.byte	39
+ 930 0385 01       		.byte	1
+ 931 0386 2B       		.byte	43
+ 932 0387 20       		.byte	32
+ 933 0388 2C       		.byte	44
+ 934 0389 08       		.byte	8
+ 935 038a 2D       		.byte	45
+ 936 038b 41       		.byte	65
+ 937 038c 2F       		.byte	47
+ 938 038d 20       		.byte	32
+ 939 038e 31       		.byte	49
+ 940 038f 20       		.byte	32
+ 941 0390 33       		.byte	51
+ 942 0391 08       		.byte	8
+ 943 0392 34       		.byte	52
+ 944 0393 08       		.byte	8
+ 945 0394 35       		.byte	53
+ 946 0395 01       		.byte	1
+ 947 0396 37       		.byte	55
+ 948 0397 10       		.byte	16
+ 949 0398 38       		.byte	56
+ 950 0399 02       		.byte	2
+ 951 039a 39       		.byte	57
+ 952 039b 14       		.byte	20
+ 953 039c 3B       		.byte	59
+ 954 039d C0       		.byte	-64
+ 955 039e 3D       		.byte	61
+ 956 039f 1A       		.byte	26
+ 957 03a0 3E       		.byte	62
+ 958 03a1 40       		.byte	64
+ 959 03a2 44       		.byte	68
+ 960 03a3 08       		.byte	8
+ 961 03a4 45       		.byte	69
+ 962 03a5 0A       		.byte	10
+ 963 03a6 4D       		.byte	77
+ 964 03a7 04       		.byte	4
+ 965 03a8 4F       		.byte	79
+ 966 03a9 50       		.byte	80
+ 967 03aa 57       		.byte	87
+ 968 03ab 08       		.byte	8
+ 969 03ac 5B       		.byte	91
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 18
+
+
+ 970 03ad 01       		.byte	1
+ 971 03ae 5E       		.byte	94
+ 972 03af 08       		.byte	8
+ 973 03b0 60       		.byte	96
+ 974 03b1 44       		.byte	68
+ 975 03b2 62       		.byte	98
+ 976 03b3 80       		.byte	-128
+ 977 03b4 68       		.byte	104
+ 978 03b5 02       		.byte	2
+ 979 03b6 6C       		.byte	108
+ 980 03b7 01       		.byte	1
+ 981 03b8 6D       		.byte	109
+ 982 03b9 10       		.byte	16
+ 983 03ba 6F       		.byte	111
+ 984 03bb 20       		.byte	32
+ 985 03bc 76       		.byte	118
+ 986 03bd 0A       		.byte	10
+ 987 03be 77       		.byte	119
+ 988 03bf 20       		.byte	32
+ 989 03c0 78       		.byte	120
+ 990 03c1 80       		.byte	-128
+ 991 03c2 7C       		.byte	124
+ 992 03c3 80       		.byte	-128
+ 993 03c4 7D       		.byte	125
+ 994 03c5 40       		.byte	64
+ 995 03c6 7E       		.byte	126
+ 996 03c7 01       		.byte	1
+ 997 03c8 85       		.byte	-123
+ 998 03c9 01       		.byte	1
+ 999 03ca 87       		.byte	-121
+ 1000 03cb 10       		.byte	16
+ 1001 03cc 88       		.byte	-120
+ 1002 03cd 08       		.byte	8
+ 1003 03ce 89       		.byte	-119
+ 1004 03cf 10       		.byte	16
+ 1005 03d0 92       		.byte	-110
+ 1006 03d1 40       		.byte	64
+ 1007 03d2 93       		.byte	-109
+ 1008 03d3 80       		.byte	-128
+ 1009 03d4 94       		.byte	-108
+ 1010 03d5 40       		.byte	64
+ 1011 03d6 95       		.byte	-107
+ 1012 03d7 40       		.byte	64
+ 1013 03d8 97       		.byte	-105
+ 1014 03d9 10       		.byte	16
+ 1015 03da 98       		.byte	-104
+ 1016 03db 08       		.byte	8
+ 1017 03dc 9B       		.byte	-101
+ 1018 03dd 10       		.byte	16
+ 1019 03de 9C       		.byte	-100
+ 1020 03df 80       		.byte	-128
+ 1021 03e0 9D       		.byte	-99
+ 1022 03e1 01       		.byte	1
+ 1023 03e2 9E       		.byte	-98
+ 1024 03e3 0A       		.byte	10
+ 1025 03e4 9F       		.byte	-97
+ 1026 03e5 20       		.byte	32
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 19
+
+
+ 1027 03e6 A3       		.byte	-93
+ 1028 03e7 01       		.byte	1
+ 1029 03e8 A4       		.byte	-92
+ 1030 03e9 08       		.byte	8
+ 1031 03ea B4       		.byte	-76
+ 1032 03eb 40       		.byte	64
+ 1033 03ec C0       		.byte	-64
+ 1034 03ed F0       		.byte	-16
+ 1035 03ee C2       		.byte	-62
+ 1036 03ef F0       		.byte	-16
+ 1037 03f0 C4       		.byte	-60
+ 1038 03f1 F1       		.byte	-15
+ 1039 03f2 CA       		.byte	-54
+ 1040 03f3 F2       		.byte	-14
+ 1041 03f4 CC       		.byte	-52
+ 1042 03f5 E6       		.byte	-26
+ 1043 03f6 CE       		.byte	-50
+ 1044 03f7 FF       		.byte	-1
+ 1045 03f8 D0       		.byte	-48
+ 1046 03f9 E0       		.byte	-32
+ 1047 03fa D2       		.byte	-46
+ 1048 03fb 30       		.byte	48
+ 1049 03fc D6       		.byte	-42
+ 1050 03fd 41       		.byte	65
+ 1051 03fe D8       		.byte	-40
+ 1052 03ff 0D       		.byte	13
+ 1053 0400 DE       		.byte	-34
+ 1054 0401 18       		.byte	24
+ 1055 0402 31       		.byte	49
+ 1056 0403 10       		.byte	16
+ 1057 0404 35       		.byte	53
+ 1058 0405 80       		.byte	-128
+ 1059 0406 CC       		.byte	-52
+ 1060 0407 30       		.byte	48
+ 1061 0408 9D       		.byte	-99
+ 1062 0409 90       		.byte	-112
+ 1063 040a 9D       		.byte	-99
+ 1064 040b 90       		.byte	-112
+ 1065 040c 6B       		.byte	107
+ 1066 040d 40       		.byte	64
+ 1067 040e 83       		.byte	-125
+ 1068 040f 40       		.byte	64
+ 1069 0410 9D       		.byte	-99
+ 1070 0411 90       		.byte	-112
+ 1071 0412 DC       		.byte	-36
+ 1072 0413 20       		.byte	32
+ 1073 0414 E6       		.byte	-26
+ 1074 0415 80       		.byte	-128
+ 1075 0416 58       		.byte	88
+ 1076 0417 40       		.byte	64
+ 1077 0418 D4       		.byte	-44
+ 1078 0419 01       		.byte	1
+ 1079 041a 9C       		.byte	-100
+ 1080 041b 40       		.byte	64
+ 1081 041c 88       		.byte	-120
+ 1082 041d 40       		.byte	64
+ 1083 041e 9C       		.byte	-100
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 20
+
+
+ 1084 041f 40       		.byte	64
+ 1085 0420 E0       		.byte	-32
+ 1086 0421 01       		.byte	1
+ 1087 0422 81       		.byte	-127
+ 1088 0423 80       		.byte	-128
+ 1089 0424 8D       		.byte	-115
+ 1090 0425 10       		.byte	16
+ 1091 0426 9D       		.byte	-99
+ 1092 0427 90       		.byte	-112
+ 1093 0428 E2       		.byte	-30
+ 1094 0429 20       		.byte	32
+ 1095 042a 10       		.byte	16
+ 1096 042b 20       		.byte	32
+ 1097 042c 72       		.byte	114
+ 1098 042d 10       		.byte	16
+ 1099 042e 88       		.byte	-120
+ 1100 042f 20       		.byte	32
+ 1101 0430 92       		.byte	-110
+ 1102 0431 10       		.byte	16
+ 1103 0432 B6       		.byte	-74
+ 1104 0433 10       		.byte	16
+ 1105 0434 C4       		.byte	-60
+ 1106 0435 08       		.byte	8
+ 1107 0436 DC       		.byte	-36
+ 1108 0437 01       		.byte	1
+ 1109 0438 E6       		.byte	-26
+ 1110 0439 04       		.byte	4
+ 1111 043a EC       		.byte	-20
+ 1112 043b 08       		.byte	8
+ 1113 043c 00       		.byte	0
+ 1114 043d 02       		.byte	2
+ 1115 043e 0C       		.byte	12
+ 1116 043f 02       		.byte	2
+ 1117 0440 10       		.byte	16
+ 1118 0441 03       		.byte	3
+ 1119 0442 1C       		.byte	28
+ 1120 0443 03       		.byte	3
+ 1121 0444 00       		.byte	0
+ 1122 0445 0F       		.byte	15
+ 1123 0446 00       		.byte	0
+ 1124 0447 00       		.byte	0
+ 1125 0448 23       		.byte	35
+ 1126 0449 07       		.byte	7
+ 1127 044a 1C       		.byte	28
+ 1128 044b 18       		.byte	24
+ 1129 044c 18       		.byte	24
+ 1130 044d 52       		.byte	82
+ 1131 044e 00       		.byte	0
+ 1132 044f 24       		.byte	36
+ 1133 0450 08       		.byte	8
+ 1134 0451 7C       		.byte	124
+ 1135 0452 00       		.byte	0
+ 1136 0453 00       		.byte	0
+ 1137 0454 03       		.byte	3
+ 1138 0455 00       		.byte	0
+ 1139 0456 40       		.byte	64
+ 1140 0457 83       		.byte	-125
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 21
+
+
+ 1141 0458 3B       		.byte	59
+ 1142 0459 83       		.byte	-125
+ 1143 045a 00       		.byte	0
+ 1144 045b 00       		.byte	0
+ 1145 045c 00       		.byte	0
+ 1146 045d 83       		.byte	-125
+ 1147 045e 03       		.byte	3
+ 1148 045f 00       		.byte	0
+ 1149 0460 01       		.byte	1
+ 1150 0461 00       		.byte	0
+ 1151 0462 80       		.byte	-128
+ 1152 0463 83       		.byte	-125
+ 1153 0464 3B       		.byte	59
+ 1154 0465 00       		.byte	0
+ 1155 0466 00       		.byte	0
+ 1156 0467 00       		.byte	0
+ 1157 0468 03       		.byte	3
+ 1158 0469 00       		.byte	0
+ 1159 046a 04       		.byte	4
+ 1160 046b 03       		.byte	3
+ 1161 046c 02       		.byte	2
+ 1162 046d 7C       		.byte	124
+ 1163 046e 80       		.byte	-128
+ 1164 046f 00       		.byte	0
+ 1165 0470 38       		.byte	56
+ 1166 0471 29       		.byte	41
+ 1167 0472 03       		.byte	3
+ 1168 0473 44       		.byte	68
+ 1169 0474 10       		.byte	16
+ 1170 0475 7F       		.byte	127
+ 1171 0476 00       		.byte	0
+ 1172 0477 00       		.byte	0
+ 1173 0478 1F       		.byte	31
+ 1174 0479 1C       		.byte	28
+ 1175 047a C0       		.byte	-64
+ 1176 047b 60       		.byte	96
+ 1177 047c 20       		.byte	32
+ 1178 047d 80       		.byte	-128
+ 1179 047e 00       		.byte	0
+ 1180 047f 03       		.byte	3
+ 1181 0480 00       		.byte	0
+ 1182 0481 20       		.byte	32
+ 1183 0482 02       		.byte	2
+ 1184 0483 00       		.byte	0
+ 1185 0484 00       		.byte	0
+ 1186 0485 00       		.byte	0
+ 1187 0486 14       		.byte	20
+ 1188 0487 00       		.byte	0
+ 1189 0488 46       		.byte	70
+ 1190 0489 02       		.byte	2
+ 1191 048a 05       		.byte	5
+ 1192 048b 00       		.byte	0
+ 1193 048c 03       		.byte	3
+ 1194 048d 0E       		.byte	14
+ 1195 048e 00       		.byte	0
+ 1196 048f 0C       		.byte	12
+ 1197 0490 11       		.byte	17
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 22
+
+
+ 1198 0491 FF       		.byte	-1
+ 1199 0492 FF       		.byte	-1
+ 1200 0493 FF       		.byte	-1
+ 1201 0494 62       		.byte	98
+ 1202 0495 A0       		.byte	-96
+ 1203 0496 F0       		.byte	-16
+ 1204 0497 41       		.byte	65
+ 1205 0498 0C       		.byte	12
+ 1206 0499 00       		.byte	0
+ 1207 049a 00       		.byte	0
+ 1208 049b 00       		.byte	0
+ 1209 049c 00       		.byte	0
+ 1210 049d 00       		.byte	0
+ 1211 049e 02       		.byte	2
+ 1212 049f 12       		.byte	18
+ 1213 04a0 04       		.byte	4
+ 1214 04a1 04       		.byte	4
+ 1215 04a2 04       		.byte	4
+ 1216 04a3 04       		.byte	4
+ 1217 04a4 11       		.byte	17
+ 1218 04a5 11       		.byte	17
+ 1219 04a6 08       		.byte	8
+ 1220 04a7 09       		.byte	9
+ 1221 04a8 00       		.byte	0
+ 1222 04a9 00       		.byte	0
+ 1223 04aa 00       		.byte	0
+ 1224 04ab 00       		.byte	0
+ 1225 04ac 00       		.byte	0
+ 1226 04ad 00       		.byte	0
+ 1227 04ae 40       		.byte	64
+ 1228 04af 02       		.byte	2
+ 1229 04b0 00       		.byte	0
+ 1230 04b1 10       		.byte	16
+ 1231 04b2 30       		.byte	48
+ 1232 04b3 10       		.byte	16
+ 1233 04b4 00       		.byte	0
+ 1234 04b5 10       		.byte	16
+ 1235 04b6 10       		.byte	16
+ 1236 04b7 12       		.byte	18
+ 1237 04b8 00       		.byte	0
+ 1238 04b9 00       		.byte	0
+ 1239 04ba 00       		.byte	0
+ 1240 04bb 00       		.byte	0
+ 1241 04bc 00       		.byte	0
+ 1242 04bd 00       		.byte	0
+ 1243 04be 00       		.byte	0
+ 1244 04bf 00       		.byte	0
+ 1245 04c0 00       		.byte	0
+ 1246 04c1 00       		.byte	0
+ 1247 04c2 00       		.byte	0
+ 1248 04c3 00       		.byte	0
+ 1249 04c4 00       		.byte	0
+ 1250 04c5 00       		.byte	0
+ 1251 04c6 00       		.byte	0
+ 1252 04c7 00       		.byte	0
+ 1253 04c8 80       		.byte	-128
+ 1254 04c9 00       		.byte	0
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 23
+
+
+ 1255 04ca 40       		.byte	64
+ 1256 04cb 80       		.byte	-128
+ 1257 04cc 80       		.byte	-128
+ 1258 04cd 00       		.byte	0
+ 1259 04ce 80       		.byte	-128
+ 1260 04cf 00       		.byte	0
+ 1261 04d0 00       		.byte	0
+ 1262 04d1 00       		.byte	0
+ 1263 04d2 00       		.byte	0
+ 1264 04d3 00       		.byte	0
+ 1265 04d4 00       		.byte	0
+ 1266 04d5 0B       		.byte	11
+ 1267 04d6 0B       		.byte	11
+ 1268 04d7 00       		.byte	0
+ 1269 04d8 00       		.byte	0
+ 1270 04d9 00       		.byte	0
+ 1271 04da 00       		.byte	0
+ 1272 04db 00       		.byte	0
+ 1273 04dc 00       		.byte	0
+ 1274 04dd 02       		.byte	2
+ 1275 04de 02       		.byte	2
+ 1276 04df 00       		.byte	0
+ 1277 04e0 02       		.byte	2
+ 1278 04e1 00       		.byte	0
+ 1279 04e2 00       		.byte	0
+ 1280 04e3 00       		.byte	0
+ 1281              		.section	.cywolatch,"a",%progbits
+ 1282              		.align	2
+ 1283              		.type	cy_meta_wonvl, %object
+ 1284              		.size	cy_meta_wonvl, 4
+ 1285              	cy_meta_wonvl:
+ 1286 0000 BC       		.byte	-68
+ 1287 0001 90       		.byte	-112
+ 1288 0002 AC       		.byte	-84
+ 1289 0003 AF       		.byte	-81
+ 1290              		.section	.cycustnvl,"a",%progbits
+ 1291              		.align	2
+ 1292              		.type	cy_meta_custnvl, %object
+ 1293              		.size	cy_meta_custnvl, 4
+ 1294              	cy_meta_custnvl:
+ 1295 0000 00       		.byte	0
+ 1296 0001 00       		.byte	0
+ 1297 0002 40       		.byte	64
+ 1298 0003 05       		.byte	5
+ 1299              		.section	.cymeta,"a",%progbits
+ 1300              		.align	2
+ 1301              		.type	cy_metadata, %object
+ 1302              		.size	cy_metadata, 12
+ 1303              	cy_metadata:
+ 1304 0000 00       		.byte	0
+ 1305 0001 01       		.byte	1
+ 1306 0002 2E       		.byte	46
+ 1307 0003 16       		.byte	22
+ 1308 0004 10       		.byte	16
+ 1309 0005 69       		.byte	105
+ 1310 0006 00       		.byte	0
+ 1311 0007 01       		.byte	1
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 24
+
+
+ 1312 0008 00       		.byte	0
+ 1313 0009 00       		.byte	0
+ 1314 000a 00       		.byte	0
+ 1315 000b 00       		.byte	0
+ 1316              		.section	.cyflashprotect,"a",%progbits
+ 1317              		.align	2
+ 1318              		.type	cy_meta_flashprotect, %object
+ 1319              		.size	cy_meta_flashprotect, 256
+ 1320              	cy_meta_flashprotect:
+ 1321 0000 00000000 		.space	256
+ 1321      00000000 
+ 1321      00000000 
+ 1321      00000000 
+ 1321      00000000 
+ 1322              		.text
+ 1323              	.Letext0:
+ 1324              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1325              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1326              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
+ 1327              		.section	.debug_info,"",%progbits
+ 1328              	.Ldebug_info0:
+ 1329 0000 32010000 		.4byte	0x132
+ 1330 0004 0400     		.2byte	0x4
+ 1331 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1332 000a 04       		.byte	0x4
+ 1333 000b 01       		.uleb128 0x1
+ 1334 000c 24000000 		.4byte	.LASF17
+ 1335 0010 0C       		.byte	0xc
+ 1336 0011 CB010000 		.4byte	.LASF18
+ 1337 0015 D7000000 		.4byte	.LASF19
+ 1338 0019 00000000 		.4byte	.Ldebug_line0
+ 1339 001d 02       		.uleb128 0x2
+ 1340 001e 01       		.byte	0x1
+ 1341 001f 06       		.byte	0x6
+ 1342 0020 BF010000 		.4byte	.LASF0
+ 1343 0024 03       		.uleb128 0x3
+ 1344 0025 00000000 		.4byte	.LASF9
+ 1345 0029 01       		.byte	0x1
+ 1346 002a 1D       		.byte	0x1d
+ 1347 002b 2F000000 		.4byte	0x2f
+ 1348 002f 02       		.uleb128 0x2
+ 1349 0030 01       		.byte	0x1
+ 1350 0031 08       		.byte	0x8
+ 1351 0032 16000000 		.4byte	.LASF1
+ 1352 0036 02       		.uleb128 0x2
+ 1353 0037 02       		.byte	0x2
+ 1354 0038 05       		.byte	0x5
+ 1355 0039 AC010000 		.4byte	.LASF2
+ 1356 003d 02       		.uleb128 0x2
+ 1357 003e 02       		.byte	0x2
+ 1358 003f 07       		.byte	0x7
+ 1359 0040 C4000000 		.4byte	.LASF3
+ 1360 0044 02       		.uleb128 0x2
+ 1361 0045 04       		.byte	0x4
+ 1362 0046 05       		.byte	0x5
+ 1363 0047 B6010000 		.4byte	.LASF4
+ 1364 004b 02       		.uleb128 0x2
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 25
+
+
+ 1365 004c 04       		.byte	0x4
+ 1366 004d 07       		.byte	0x7
+ 1367 004e B2000000 		.4byte	.LASF5
+ 1368 0052 02       		.uleb128 0x2
+ 1369 0053 08       		.byte	0x8
+ 1370 0054 05       		.byte	0x5
+ 1371 0055 9E010000 		.4byte	.LASF6
+ 1372 0059 02       		.uleb128 0x2
+ 1373 005a 08       		.byte	0x8
+ 1374 005b 07       		.byte	0x7
+ 1375 005c 53010000 		.4byte	.LASF7
+ 1376 0060 04       		.uleb128 0x4
+ 1377 0061 04       		.byte	0x4
+ 1378 0062 05       		.byte	0x5
+ 1379 0063 696E7400 		.ascii	"int\000"
+ 1380 0067 02       		.uleb128 0x2
+ 1381 0068 04       		.byte	0x4
+ 1382 0069 07       		.byte	0x7
+ 1383 006a 46010000 		.4byte	.LASF8
+ 1384 006e 03       		.uleb128 0x3
+ 1385 006f 6A010000 		.4byte	.LASF10
+ 1386 0073 02       		.byte	0x2
+ 1387 0074 18       		.byte	0x18
+ 1388 0075 24000000 		.4byte	0x24
+ 1389 0079 05       		.uleb128 0x5
+ 1390 007a 91000000 		.4byte	0x91
+ 1391 007e 8A000000 		.4byte	0x8a
+ 1392 0082 06       		.uleb128 0x6
+ 1393 0083 8A000000 		.4byte	0x8a
+ 1394 0087 E304     		.2byte	0x4e3
+ 1395 0089 00       		.byte	0
+ 1396 008a 02       		.uleb128 0x2
+ 1397 008b 04       		.byte	0x4
+ 1398 008c 07       		.byte	0x7
+ 1399 008d 95010000 		.4byte	.LASF11
+ 1400 0091 07       		.uleb128 0x7
+ 1401 0092 6E000000 		.4byte	0x6e
+ 1402 0096 08       		.uleb128 0x8
+ 1403 0097 34010000 		.4byte	.LASF12
+ 1404 009b 03       		.byte	0x3
+ 1405 009c 1F       		.byte	0x1f
+ 1406 009d A7000000 		.4byte	0xa7
+ 1407 00a1 05       		.uleb128 0x5
+ 1408 00a2 03       		.byte	0x3
+ 1409 00a3 00000000 		.4byte	cy_meta_configecc
+ 1410 00a7 07       		.uleb128 0x7
+ 1411 00a8 79000000 		.4byte	0x79
+ 1412 00ac 05       		.uleb128 0x5
+ 1413 00ad 91000000 		.4byte	0x91
+ 1414 00b1 BC000000 		.4byte	0xbc
+ 1415 00b5 09       		.uleb128 0x9
+ 1416 00b6 8A000000 		.4byte	0x8a
+ 1417 00ba 03       		.byte	0x3
+ 1418 00bb 00       		.byte	0
+ 1419 00bc 08       		.uleb128 0x8
+ 1420 00bd 24010000 		.4byte	.LASF13
+ 1421 00c1 03       		.byte	0x3
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 26
+
+
+ 1422 00c2 C9       		.byte	0xc9
+ 1423 00c3 CD000000 		.4byte	0xcd
+ 1424 00c7 05       		.uleb128 0x5
+ 1425 00c8 03       		.byte	0x3
+ 1426 00c9 00000000 		.4byte	cy_meta_custnvl
+ 1427 00cd 07       		.uleb128 0x7
+ 1428 00ce AC000000 		.4byte	0xac
+ 1429 00d2 08       		.uleb128 0x8
+ 1430 00d3 87010000 		.4byte	.LASF14
+ 1431 00d7 03       		.byte	0x3
+ 1432 00d8 D7       		.byte	0xd7
+ 1433 00d9 E3000000 		.4byte	0xe3
+ 1434 00dd 05       		.uleb128 0x5
+ 1435 00de 03       		.byte	0x3
+ 1436 00df 00000000 		.4byte	cy_meta_wonvl
+ 1437 00e3 07       		.uleb128 0x7
+ 1438 00e4 AC000000 		.4byte	0xac
+ 1439 00e8 05       		.uleb128 0x5
+ 1440 00e9 91000000 		.4byte	0x91
+ 1441 00ed F8000000 		.4byte	0xf8
+ 1442 00f1 09       		.uleb128 0x9
+ 1443 00f2 8A000000 		.4byte	0x8a
+ 1444 00f6 FF       		.byte	0xff
+ 1445 00f7 00       		.byte	0
+ 1446 00f8 08       		.uleb128 0x8
+ 1447 00f9 72010000 		.4byte	.LASF15
+ 1448 00fd 03       		.byte	0x3
+ 1449 00fe E5       		.byte	0xe5
+ 1450 00ff 09010000 		.4byte	0x109
+ 1451 0103 05       		.uleb128 0x5
+ 1452 0104 03       		.byte	0x3
+ 1453 0105 00000000 		.4byte	cy_meta_flashprotect
+ 1454 0109 07       		.uleb128 0x7
+ 1455 010a E8000000 		.4byte	0xe8
+ 1456 010e 05       		.uleb128 0x5
+ 1457 010f 91000000 		.4byte	0x91
+ 1458 0113 1E010000 		.4byte	0x11e
+ 1459 0117 09       		.uleb128 0x9
+ 1460 0118 8A000000 		.4byte	0x8a
+ 1461 011c 0B       		.byte	0xb
+ 1462 011d 00       		.byte	0
+ 1463 011e 0A       		.uleb128 0xa
+ 1464 011f 0A000000 		.4byte	.LASF16
+ 1465 0123 03       		.byte	0x3
+ 1466 0124 1201     		.2byte	0x112
+ 1467 0126 30010000 		.4byte	0x130
+ 1468 012a 05       		.uleb128 0x5
+ 1469 012b 03       		.byte	0x3
+ 1470 012c 00000000 		.4byte	cy_metadata
+ 1471 0130 07       		.uleb128 0x7
+ 1472 0131 0E010000 		.4byte	0x10e
+ 1473 0135 00       		.byte	0
+ 1474              		.section	.debug_abbrev,"",%progbits
+ 1475              	.Ldebug_abbrev0:
+ 1476 0000 01       		.uleb128 0x1
+ 1477 0001 11       		.uleb128 0x11
+ 1478 0002 01       		.byte	0x1
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 27
+
+
+ 1479 0003 25       		.uleb128 0x25
+ 1480 0004 0E       		.uleb128 0xe
+ 1481 0005 13       		.uleb128 0x13
+ 1482 0006 0B       		.uleb128 0xb
+ 1483 0007 03       		.uleb128 0x3
+ 1484 0008 0E       		.uleb128 0xe
+ 1485 0009 1B       		.uleb128 0x1b
+ 1486 000a 0E       		.uleb128 0xe
+ 1487 000b 10       		.uleb128 0x10
+ 1488 000c 17       		.uleb128 0x17
+ 1489 000d 00       		.byte	0
+ 1490 000e 00       		.byte	0
+ 1491 000f 02       		.uleb128 0x2
+ 1492 0010 24       		.uleb128 0x24
+ 1493 0011 00       		.byte	0
+ 1494 0012 0B       		.uleb128 0xb
+ 1495 0013 0B       		.uleb128 0xb
+ 1496 0014 3E       		.uleb128 0x3e
+ 1497 0015 0B       		.uleb128 0xb
+ 1498 0016 03       		.uleb128 0x3
+ 1499 0017 0E       		.uleb128 0xe
+ 1500 0018 00       		.byte	0
+ 1501 0019 00       		.byte	0
+ 1502 001a 03       		.uleb128 0x3
+ 1503 001b 16       		.uleb128 0x16
+ 1504 001c 00       		.byte	0
+ 1505 001d 03       		.uleb128 0x3
+ 1506 001e 0E       		.uleb128 0xe
+ 1507 001f 3A       		.uleb128 0x3a
+ 1508 0020 0B       		.uleb128 0xb
+ 1509 0021 3B       		.uleb128 0x3b
+ 1510 0022 0B       		.uleb128 0xb
+ 1511 0023 49       		.uleb128 0x49
+ 1512 0024 13       		.uleb128 0x13
+ 1513 0025 00       		.byte	0
+ 1514 0026 00       		.byte	0
+ 1515 0027 04       		.uleb128 0x4
+ 1516 0028 24       		.uleb128 0x24
+ 1517 0029 00       		.byte	0
+ 1518 002a 0B       		.uleb128 0xb
+ 1519 002b 0B       		.uleb128 0xb
+ 1520 002c 3E       		.uleb128 0x3e
+ 1521 002d 0B       		.uleb128 0xb
+ 1522 002e 03       		.uleb128 0x3
+ 1523 002f 08       		.uleb128 0x8
+ 1524 0030 00       		.byte	0
+ 1525 0031 00       		.byte	0
+ 1526 0032 05       		.uleb128 0x5
+ 1527 0033 01       		.uleb128 0x1
+ 1528 0034 01       		.byte	0x1
+ 1529 0035 49       		.uleb128 0x49
+ 1530 0036 13       		.uleb128 0x13
+ 1531 0037 01       		.uleb128 0x1
+ 1532 0038 13       		.uleb128 0x13
+ 1533 0039 00       		.byte	0
+ 1534 003a 00       		.byte	0
+ 1535 003b 06       		.uleb128 0x6
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 28
+
+
+ 1536 003c 21       		.uleb128 0x21
+ 1537 003d 00       		.byte	0
+ 1538 003e 49       		.uleb128 0x49
+ 1539 003f 13       		.uleb128 0x13
+ 1540 0040 2F       		.uleb128 0x2f
+ 1541 0041 05       		.uleb128 0x5
+ 1542 0042 00       		.byte	0
+ 1543 0043 00       		.byte	0
+ 1544 0044 07       		.uleb128 0x7
+ 1545 0045 26       		.uleb128 0x26
+ 1546 0046 00       		.byte	0
+ 1547 0047 49       		.uleb128 0x49
+ 1548 0048 13       		.uleb128 0x13
+ 1549 0049 00       		.byte	0
+ 1550 004a 00       		.byte	0
+ 1551 004b 08       		.uleb128 0x8
+ 1552 004c 34       		.uleb128 0x34
+ 1553 004d 00       		.byte	0
+ 1554 004e 03       		.uleb128 0x3
+ 1555 004f 0E       		.uleb128 0xe
+ 1556 0050 3A       		.uleb128 0x3a
+ 1557 0051 0B       		.uleb128 0xb
+ 1558 0052 3B       		.uleb128 0x3b
+ 1559 0053 0B       		.uleb128 0xb
+ 1560 0054 49       		.uleb128 0x49
+ 1561 0055 13       		.uleb128 0x13
+ 1562 0056 3F       		.uleb128 0x3f
+ 1563 0057 19       		.uleb128 0x19
+ 1564 0058 02       		.uleb128 0x2
+ 1565 0059 18       		.uleb128 0x18
+ 1566 005a 00       		.byte	0
+ 1567 005b 00       		.byte	0
+ 1568 005c 09       		.uleb128 0x9
+ 1569 005d 21       		.uleb128 0x21
+ 1570 005e 00       		.byte	0
+ 1571 005f 49       		.uleb128 0x49
+ 1572 0060 13       		.uleb128 0x13
+ 1573 0061 2F       		.uleb128 0x2f
+ 1574 0062 0B       		.uleb128 0xb
+ 1575 0063 00       		.byte	0
+ 1576 0064 00       		.byte	0
+ 1577 0065 0A       		.uleb128 0xa
+ 1578 0066 34       		.uleb128 0x34
+ 1579 0067 00       		.byte	0
+ 1580 0068 03       		.uleb128 0x3
+ 1581 0069 0E       		.uleb128 0xe
+ 1582 006a 3A       		.uleb128 0x3a
+ 1583 006b 0B       		.uleb128 0xb
+ 1584 006c 3B       		.uleb128 0x3b
+ 1585 006d 05       		.uleb128 0x5
+ 1586 006e 49       		.uleb128 0x49
+ 1587 006f 13       		.uleb128 0x13
+ 1588 0070 3F       		.uleb128 0x3f
+ 1589 0071 19       		.uleb128 0x19
+ 1590 0072 02       		.uleb128 0x2
+ 1591 0073 18       		.uleb128 0x18
+ 1592 0074 00       		.byte	0
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 29
+
+
+ 1593 0075 00       		.byte	0
+ 1594 0076 00       		.byte	0
+ 1595              		.section	.debug_aranges,"",%progbits
+ 1596 0000 14000000 		.4byte	0x14
+ 1597 0004 0200     		.2byte	0x2
+ 1598 0006 00000000 		.4byte	.Ldebug_info0
+ 1599 000a 04       		.byte	0x4
+ 1600 000b 00       		.byte	0
+ 1601 000c 0000     		.2byte	0
+ 1602 000e 0000     		.2byte	0
+ 1603 0010 00000000 		.4byte	0
+ 1604 0014 00000000 		.4byte	0
+ 1605              		.section	.debug_line,"",%progbits
+ 1606              	.Ldebug_line0:
+ 1607 0000 3D010000 		.section	.debug_str,"MS",%progbits,1
+ 1607      02003701 
+ 1607      00000201 
+ 1607      FB0E0D00 
+ 1607      01010101 
+ 1608              	.LASF9:
+ 1609 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1609      6E74385F 
+ 1609      7400
+ 1610              	.LASF16:
+ 1611 000a 63795F6D 		.ascii	"cy_metadata\000"
+ 1611      65746164 
+ 1611      61746100 
+ 1612              	.LASF1:
+ 1613 0016 756E7369 		.ascii	"unsigned char\000"
+ 1613      676E6564 
+ 1613      20636861 
+ 1613      7200
+ 1614              	.LASF17:
+ 1615 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1615      43313120 
+ 1615      352E342E 
+ 1615      31203230 
+ 1615      31363036 
+ 1616 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1616      20726576 
+ 1616      6973696F 
+ 1616      6E203233 
+ 1616      37373135 
+ 1617 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1617      66756E63 
+ 1617      74696F6E 
+ 1617      2D736563 
+ 1617      74696F6E 
+ 1618              	.LASF5:
+ 1619 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1619      20756E73 
+ 1619      69676E65 
+ 1619      6420696E 
+ 1619      7400
+ 1620              	.LASF3:
+ 1621 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 1621      7420756E 
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 30
+
+
+ 1621      7369676E 
+ 1621      65642069 
+ 1621      6E7400
+ 1622              	.LASF19:
+ 1623 00d7 433A5C55 		.ascii	"C:\\Users\\dshen\\Documents\\school\\me135\\symphon"
+ 1623      73657273 
+ 1623      5C647368 
+ 1623      656E5C44 
+ 1623      6F63756D 
+ 1624 0104 6975735C 		.ascii	"ius\\Symphonius\\Symphonius.cydsn\000"
+ 1624      53796D70 
+ 1624      686F6E69 
+ 1624      75735C53 
+ 1624      796D7068 
+ 1625              	.LASF13:
+ 1626 0124 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1626      6574615F 
+ 1626      63757374 
+ 1626      6E766C00 
+ 1627              	.LASF12:
+ 1628 0134 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1628      6574615F 
+ 1628      636F6E66 
+ 1628      69676563 
+ 1628      6300
+ 1629              	.LASF8:
+ 1630 0146 756E7369 		.ascii	"unsigned int\000"
+ 1630      676E6564 
+ 1630      20696E74 
+ 1630      00
+ 1631              	.LASF7:
+ 1632 0153 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1632      206C6F6E 
+ 1632      6720756E 
+ 1632      7369676E 
+ 1632      65642069 
+ 1633              	.LASF10:
+ 1634 016a 75696E74 		.ascii	"uint8_t\000"
+ 1634      385F7400 
+ 1635              	.LASF15:
+ 1636 0172 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 1636      6574615F 
+ 1636      666C6173 
+ 1636      6870726F 
+ 1636      74656374 
+ 1637              	.LASF14:
+ 1638 0187 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1638      6574615F 
+ 1638      776F6E76 
+ 1638      6C00
+ 1639              	.LASF11:
+ 1640 0195 73697A65 		.ascii	"sizetype\000"
+ 1640      74797065 
+ 1640      00
+ 1641              	.LASF6:
+ 1642 019e 6C6F6E67 		.ascii	"long long int\000"
+ 1642      206C6F6E 
+ARM GAS  C:\Users\dshen\AppData\Local\Temp\ccf7jDpS.s 			page 31
+
+
+ 1642      6720696E 
+ 1642      7400
+ 1643              	.LASF2:
+ 1644 01ac 73686F72 		.ascii	"short int\000"
+ 1644      7420696E 
+ 1644      7400
+ 1645              	.LASF4:
+ 1646 01b6 6C6F6E67 		.ascii	"long int\000"
+ 1646      20696E74 
+ 1646      00
+ 1647              	.LASF0:
+ 1648 01bf 7369676E 		.ascii	"signed char\000"
+ 1648      65642063 
+ 1648      68617200 
+ 1649              	.LASF18:
+ 1650 01cb 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 1650      72617465 
+ 1650      645F536F 
+ 1650      75726365 
+ 1650      5C50536F 
+ 1651              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
