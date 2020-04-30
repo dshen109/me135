@@ -8,6 +8,8 @@
 <files />
 <projects>
 <v>.\Symphonius.cydsn\Symphonius.cyprj</v>
+<v>.\Interrupt_Priority.cydsn\Interrupt_Priority.cyprj</v>
+<v>.\TimerInterrupt.cydsn\TimerInterrupt.cyprj</v>
 </projects>
 <workspace_id v="7f4adbf3-663f-4df3-a7fd-c459f334aadb" />
 <WriteAppVersionLastSavedWith v="4.3.0.1445" />
