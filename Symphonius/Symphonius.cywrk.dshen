@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Symphonius\TimerInterrupt\TopDesign">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>Symphonius</v>
 <v>Symphonius\Interrupt_Priority\TopDesign</v>
@@ -50,9 +50,7 @@
 <v>Symphonius\Symphonius\Source Files\main.c</v>
 <v>Symphonius\Symphonius\Source Files\queue.c</v>
 <v>Symphonius\Symphonius\Generated_Source\PSoC5</v>
-<v>Symphonius\TimerInterrupt</v>
 <v>Symphonius\TimerInterrupt\TopDesign</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr</v>
 <v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Pins</v>
 <v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Analog</v>
 <v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Clocks</v>
@@ -70,6 +68,12 @@
 <v>Symphonius\TimerInterrupt\Generated_Source\PSoC5</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
+<v>Symphonius</v>
+<v>Symphonius\Interrupt_Priority</v>
+<v>Symphonius\Symphonius</v>
+<v>Symphonius\Symphonius\TopDesign</v>
+<v>Symphonius\Symphonius\Symphonius.cydwr</v>
+<v>Symphonius\Symphonius\Symphonius.cydwr\Pins</v>
 <v>Symphonius\Symphonius\Symphonius.cydwr\Analog</v>
 <v>Symphonius\Symphonius\Symphonius.cydwr\Clocks</v>
 <v>Symphonius\Symphonius\Symphonius.cydwr\Interrupts</v>
@@ -85,27 +89,6 @@
 <v>Symphonius\Symphonius\Source Files\queue.c</v>
 <v>Symphonius\Symphonius\Generated_Source</v>
 <v>Symphonius\TimerInterrupt</v>
-<v>Symphonius\TimerInterrupt\TopDesign</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Pins</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Analog</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Clocks</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Interrupts</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\DMA</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\System</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Directives</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Flash Security</v>
-<v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\EEPROM</v>
-<v>Symphonius\TimerInterrupt\Header Files</v>
-<v>Symphonius\TimerInterrupt\Header Files\cyapicallbacks.h</v>
-<v>Symphonius\TimerInterrupt\Source Files</v>
-<v>Symphonius\TimerInterrupt\Source Files\main.c</v>
-<v>Symphonius\TimerInterrupt\Generated_Source</v>
-<v>Symphonius\TimerInterrupt\Generated_Source\PSoC5</v>
-<v>Symphonius\TimerInterrupt\Generated_Source\PSoC5\cy_boot</v>
-<v>Symphonius\TimerInterrupt\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
-<v>Symphonius\TimerInterrupt\Generated_Source\PSoC5\LED</v>
-<v>Symphonius\TimerInterrupt\Generated_Source\PSoC5\LEDDrive</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">

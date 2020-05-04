@@ -20,7 +20,7 @@ uint8 Count = 0;
 uint8 Status;
 
 uint8 ReceivedBuffer[66];
-uint8 TransmitBuffer[1];
+uint8 TransmitBuffer[3];
 int16 LedCommand = 10000;
 
 // Tempo in beats per minute.
@@ -32,6 +32,19 @@ uint noteReady = 0;
 // Clock rate of tempo timer.
 // TODO: Figure out if this can be read from TopDesign.
 uint8 clockRate = 100;
+
+#define NUMNOTES 9
+// Sequential number for notes, starting from E4 and ending on F5
+static uint8 noteNums[NUMNOTES] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+// Sequential frequencies [Hz] matching the array above.
+static uint16 noteFreqs[NUMNOTES] = {330, 349, 392, 440, 494, 523, 587, 659, 698};
+
+
+// Help convert uint16 note frequency to Byte array.
+union uint16ToByte {
+    uint8 data[2];
+    uint16 number;
+} ConvertToByte;
 
 struct command_protocol
 {
@@ -109,14 +122,27 @@ CY_ISR(NoteInterrupt) {
     // Write opposite of whatever LED is at
     LEDDrive_Write(!LEDDrive_Read());
     // Do some note writing here.
-    TransmitBuffer[0] = dequeue(noteQueue);
-    LabVIEW_UART_PutArray(TransmitBuffer, 1);
+    // 1 for length and 2 for the note.
+    TransmitBuffer[0] = 3;
+    ConvertToByte.number = dequeue(noteQueue);
+    TransmitBuffer[1] = ConvertToByte.data[0];
+    TransmitBuffer[2] = ConvertToByte.data[1];
+    LabVIEW_UART_PutArray(TransmitBuffer, 2);
     if (isEmpty(noteQueue)) {
         noteReady = 0;
     }
     
     // Clear the interrupt by reading the status register
     NoteTimer_ReadStatusRegister();
+}
+/** Convert a note number to a frequency. */
+uint noteNumToFreq(int number) {
+    for (int i = 0; i < NUMNOTES; i++) {
+        if (noteNums[i] == number) {
+            return noteFreqs[i];
+        }
+    }
+    return 0;
 }
 
 int main(void) {
