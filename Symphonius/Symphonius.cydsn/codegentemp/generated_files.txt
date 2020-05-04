@@ -18,12 +18,12 @@
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\cyfitteriar.inc" value="HEADER;;;;;" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\cyfitter.h" value="HEADER;;;;;" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\cydisabledsheets.h" value="HEADER;;;;;" />
-  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDDrive.h" value="HEADER;;;;;LEDDrive" />
-  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDDrive.c" value="SOURCE_C;CortexM3;;;;LEDDrive" />
-  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDDrive_PM.c" value="SOURCE_C;CortexM3;;;;LEDDrive" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LED_aliases.h" value="HEADER;;;;;LED" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LED.c" value="SOURCE_C;CortexM3;;;;LED" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LED.h" value="HEADER;;;;;LED" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDDuration.c" value="SOURCE_C;CortexM3;;;;LEDDuration" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDDuration.h" value="HEADER;;;;;LEDDuration" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDDuration_PM.c" value="SOURCE_C;CortexM3;;;;LEDDuration" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LabVIEW_UART.c" value="SOURCE_C;CortexM3;;;;LabVIEW_UART" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LabVIEW_UART.h" value="HEADER;;;;;LabVIEW_UART" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LabVIEW_UART_PM.c" value="SOURCE_C;CortexM3;;;;LabVIEW_UART" />
@@ -44,13 +44,22 @@
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\ByteCountReset_PM.c" value="SOURCE_C;CortexM3;;;;ByteCountReset" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\CommandReceived.c" value="SOURCE_C;CortexM3;;;;CommandReceived" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\CommandReceived.h" value="HEADER;;;;;CommandReceived" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\note_clock.c" value="SOURCE_C;CortexM3;;;;note_clock" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\note_clock.h" value="HEADER;;;;;note_clock" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\NoteInterrupt.c" value="SOURCE_C;CortexM3;;;;NoteInterrupt" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\NoteInterrupt.h" value="HEADER;;;;;NoteInterrupt" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\NoteTimer.c" value="SOURCE_C;CortexM3;;;;NoteTimer" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\NoteTimer.h" value="HEADER;;;;;NoteTimer" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\NoteTimer_PM.c" value="SOURCE_C;CortexM3;;;;NoteTimer" />
-  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\NoteInterrupt.c" value="SOURCE_C;CortexM3;;;;NoteInterrupt" />
-  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\NoteInterrupt.h" value="HEADER;;;;;NoteInterrupt" />
-  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\Note_clock.c" value="SOURCE_C;CortexM3;;;;Note_clock" />
-  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\Note_clock.h" value="HEADER;;;;;Note_clock" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LED_Duration_Clock.c" value="SOURCE_C;CortexM3;;;;LED_Duration_Clock" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LED_Duration_Clock.h" value="HEADER;;;;;LED_Duration_Clock" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDPWM.c" value="SOURCE_C;CortexM3;;;;LEDPWM" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDPWM.h" value="HEADER;;;;;LEDPWM" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDPWM_PM.c" value="SOURCE_C;CortexM3;;;;LEDPWM" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LED_PWM_Clock.c" value="SOURCE_C;CortexM3;;;;LED_PWM_Clock" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LED_PWM_Clock.h" value="HEADER;;;;;LED_PWM_Clock" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDOffInterrupt.c" value="SOURCE_C;CortexM3;;;;LEDOffInterrupt" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDOffInterrupt.h" value="HEADER;;;;;LEDOffInterrupt" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LabVIEW_UART_IntClock.c" value="SOURCE_C;CortexM3;;;;LabVIEW_UART_IntClock" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LabVIEW_UART_IntClock.h" value="HEADER;;;;;LabVIEW_UART_IntClock" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />

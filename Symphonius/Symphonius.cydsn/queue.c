@@ -5,14 +5,17 @@
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <limits.h> 
+#include "queue.h"
   
+#if 0 // this is defined in the queue.h
 // A structure to represent a queue 
 struct Queue 
 { 
-    uint front, rear, size; 
+    uint8 front, rear, size; 
     unsigned capacity; 
     uint8* array; 
 }; 
+#endif
   
 // function to create a queue of given capacity.  
 // It initializes size of queue as 0 
@@ -42,8 +45,7 @@ void enqueue(struct Queue* queue, int item)
         return; 
     queue->rear = (queue->rear + 1)%queue->capacity; 
     queue->array[queue->rear] = item; 
-    queue->size = queue->size + 1; 
-    printf("%d enqueued to queue\n", item); 
+    queue->size = queue->size + 1;
 } 
   
 // Function to remove an item from queue.  

@@ -6,7 +6,7 @@
 
 #Build Date:         Sep  9 2019 11:47:43
 
-#File Generated:     Apr 30 2020 01:06:06
+#File Generated:     May 4 2020 16:31:35
 
 #Purpose:            
 
@@ -44,17 +44,17 @@ Phase 2
 Phase 3
 
 Design Statistics after Packing
-    Number of Combinational MCs 	:	13
-    Number of Sequential MCs    	:	22
-    Number of DPs               	:	4
+    Number of Combinational MCs 	:	14
+    Number of Sequential MCs    	:	28
+    Number of DPs               	:	5
     Number of Controls          	:	5
-    Number of Status            	:	3
+    Number of Status            	:	4
     Number of SyncCells         	:	0
     Number of count7cells       	:	1
 
 Device Utilization Summary after Packing
-    Macrocells                  :	35/192
-    UDBS                        :	6/24
+    Macrocells                  :	42/192
+    UDBS                        :	8/24
     IOs                         :	3/72
 
 
@@ -79,16 +79,19 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 9
-Clock: Clock_1              | Frequency:  23.7 MHz | Target:  12.0 MHz
-Clock: CyBUS_CLK            | Frequency:  33.6 MHz | Target:  24.0 MHz
+Number of clocks: 12
+Clock: Clock_1              | Frequency:  23.4 MHz | Target:  12.0 MHz
+Clock: CyBUS_CLK            | Frequency:  33.0 MHz | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
-Clock: CyMASTER_CLK         | Frequency:  23.7 MHz | Target:  24.0 MHz
+Clock: CyMASTER_CLK         | Frequency:  23.4 MHz | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: LabVIEW_UART_IntClock | Frequency:  23.7 MHz | Target:   0.9 MHz
-Clock: Note_clock           | Frequency: N/A       | Target:   0.0 MHz
-Clock: Note_clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
+Clock: LED_Duration_Clock   | Frequency: N/A       | Target:   0.0 MHz
+Clock: LED_Duration_Clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
+Clock: LED_PWM_Clock        | Frequency:  68.4 MHz | Target:  12.0 MHz
+Clock: LabVIEW_UART_IntClock | Frequency:  23.4 MHz | Target:   0.9 MHz
+Clock: note_clock           | Frequency: N/A       | Target:   0.0 MHz
+Clock: note_clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
 
 ======================================================================
                      End of Clock Summary
@@ -100,34 +103,37 @@ Phase 7
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 9
-Clock: Clock_1              | Frequency:  23.1 MHz | Target:  12.0 MHz
-Clock: CyBUS_CLK            | Frequency:   1.6 MHz | Target:  24.0 MHz
+Number of clocks: 12
+Clock: Clock_1              | Frequency:  22.7 MHz | Target:  12.0 MHz
+Clock: CyBUS_CLK            | Frequency:   1.4 MHz | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
-Clock: CyMASTER_CLK         | Frequency:  23.1 MHz | Target:  24.0 MHz
+Clock: CyMASTER_CLK         | Frequency:  22.7 MHz | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: LabVIEW_UART_IntClock | Frequency:   1.6 MHz | Target:   0.9 MHz
-Clock: Note_clock           | Frequency: N/A       | Target:   0.0 MHz
-Clock: Note_clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
+Clock: LED_Duration_Clock   | Frequency: N/A       | Target:   0.0 MHz
+Clock: LED_Duration_Clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
+Clock: LED_PWM_Clock        | Frequency:  68.4 MHz | Target:  12.0 MHz
+Clock: LabVIEW_UART_IntClock | Frequency:   1.4 MHz | Target:   0.9 MHz
+Clock: note_clock           | Frequency: N/A       | Target:   0.0 MHz
+Clock: note_clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
 
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 0.3 (sec)
+D2088: Phase 7, elapsed time : 0.4 (sec)
 
 Final Design Statistics
-    Number of Combinational MCs 	:	13
-    Number of Sequential MCs    	:	22
-    Number of DPs               	:	4
+    Number of Combinational MCs 	:	14
+    Number of Sequential MCs    	:	28
+    Number of DPs               	:	5
     Number of Controls          	:	5
-    Number of Status            	:	3
+    Number of Status            	:	4
     Number of SyncCells         	:	0
     Number of count7cells       	:	1
     Number of IOs       	:	3
 
 Device Utilization Summary
-    Macrocells                  :	35/192
+    Macrocells                  :	42/192
     IOs                         :	3/72
 
 
@@ -144,16 +150,19 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 9
-Clock: Clock_1              | Frequency:  24.4 MHz | Target:  12.0 MHz
-Clock: CyBUS_CLK            | Frequency:   1.6 MHz | Target:  24.0 MHz
+Number of clocks: 12
+Clock: Clock_1              | Frequency:  23.7 MHz | Target:  12.0 MHz
+Clock: CyBUS_CLK            | Frequency:   1.5 MHz | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
-Clock: CyMASTER_CLK         | Frequency:  24.4 MHz | Target:  24.0 MHz
+Clock: CyMASTER_CLK         | Frequency:  23.7 MHz | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: LabVIEW_UART_IntClock | Frequency:   1.6 MHz | Target:   0.9 MHz
-Clock: Note_clock           | Frequency: N/A       | Target:   0.0 MHz
-Clock: Note_clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
+Clock: LED_Duration_Clock   | Frequency: N/A       | Target:   0.0 MHz
+Clock: LED_Duration_Clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
+Clock: LED_PWM_Clock        | Frequency:  81.0 MHz | Target:  12.0 MHz
+Clock: LabVIEW_UART_IntClock | Frequency:   1.5 MHz | Target:   0.9 MHz
+Clock: note_clock           | Frequency: N/A       | Target:   0.0 MHz
+Clock: note_clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
 
 ======================================================================
                      End of Clock Summary
@@ -164,5 +173,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 0.8 sec.
+I2076: Total run-time: 0.9 sec.
 

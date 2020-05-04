@@ -1,3 +1,40 @@
---------------- Rebuild Started: 05/03/2020 22:57:13 Project: main.c, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Rebuild Started: 05/04/2020 16:21:49 Project: main.c, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
---------------- Rebuild Succeeded: 05/03/2020 22:57:14 ---------------
+main.c:117:5: warning: implicit declaration of function 'LEDDuration_WritePeriod' [-Wimplicit-function-declaration]
+     LEDDuration_WritePeriod((int) time * 100);
+     ^
+main.c:117:35: error: 'time' undeclared here (not in a function)
+     LEDDuration_WritePeriod((int) time * 100);
+                                   ^
+main.c:117:46: error: expected ']' before ';' token
+     LEDDuration_WritePeriod((int) time * 100);
+                                              ^
+main.c: In function 'LEDOffInterrupt':
+main.c:123:5: warning: implicit declaration of function 'LEDPWM_WriteCompare1' [-Wimplicit-function-declaration]
+     LEDPWM_WriteCompare1(0);
+     ^
+main.c:124:5: warning: implicit declaration of function 'LEDDuration_ReadStatusRegister' [-Wimplicit-function-declaration]
+     LEDDuration_ReadStatusRegister();
+     ^
+main.c: In function 'NoteInterrupt':
+main.c:132:9: warning: implicit declaration of function 'setLED' [-Wimplicit-function-declaration]
+         setLED(50, 0.2);
+         ^
+main.c:145:5: warning: implicit declaration of function 'setLed' [-Wimplicit-function-declaration]
+     setLed(255, 0.5);
+     ^
+The command 'arm-none-eabi-gcc.exe' failed with exit code '1'.
+main.c: In function 'main':
+main.c:188:5: warning: implicit declaration of function 'LEDDuration_Start' [-Wimplicit-function-declaration]
+     LEDDuration_Start();
+     ^
+main.c:190:5: warning: implicit declaration of function 'LEDOffInterrupt_Start' [-Wimplicit-function-declaration]
+     LEDOffInterrupt_Start();
+     ^
+main.c:191:5: warning: implicit declaration of function 'LEDOffInterrupt_StartEX' [-Wimplicit-function-declaration]
+     LEDOffInterrupt_StartEX(LEDOffInterrupt);
+     ^
+main.c:192:5: warning: implicit declaration of function 'LEDPWM_Start' [-Wimplicit-function-declaration]
+     LEDPWM_Start();
+     ^
+--------------- Rebuild Failed: 05/04/2020 16:21:49 ---------------

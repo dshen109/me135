@@ -98,12 +98,21 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareimport.scat</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDDrive.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDDrive.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDDrive_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LED_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LED.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LED.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDOffInterrupt.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDOffInterrupt.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDDuration.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDDuration.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDDuration_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDPWM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDPWM.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDPWM_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_2.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\TimerInterrupt.cydsn\Export\ARM_GCC_Generic">
