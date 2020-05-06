@@ -1,5 +1,5 @@
 # Symphonius
-# 2020-05-04 23:31:36Z
+# 2020-05-06 00:08:09Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -11,65 +11,81 @@ set_location "ClockBlock" clockblockcell -1 -1 0
 set_io "LED(0)" iocell 2 1
 set_io "Rx_1(0)" iocell 12 6
 set_io "Tx_1(0)" iocell 12 7
-set_location "Net_16" 1 0 0 3
-set_location "\LabVIEW_UART:BUART:counter_load_not\" 1 1 1 2
-set_location "\LabVIEW_UART:BUART:tx_status_0\" 1 0 1 2
-set_location "\LabVIEW_UART:BUART:tx_status_2\" 1 0 0 2
-set_location "\LabVIEW_UART:BUART:rx_counter_load\" 0 3 0 1
-set_location "\LabVIEW_UART:BUART:rx_postpoll\" 0 2 1 3
-set_location "\LabVIEW_UART:BUART:rx_status_4\" 0 3 1 3
-set_location "\LabVIEW_UART:BUART:rx_status_5\" 0 2 0 1
-set_location "\ByteCounter:CounterUDB:reload\" 1 2 0 3
-set_location "\ByteCounter:CounterUDB:status_0\" 1 2 0 2
-set_location "\ByteCounter:CounterUDB:status_2\" 1 2 1 3
-set_location "\ByteCounter:CounterUDB:count_enable\" 0 1 0 1
-set_location "\LEDPWM:PWMUDB:status_2\" 1 3 1 2
+set_io "Speaker(0)" iocell 12 3
+set_location "Net_16" 0 1 1 2
+set_location "\LabVIEW_UART:BUART:counter_load_not\" 0 3 1 1
+set_location "\LabVIEW_UART:BUART:tx_status_0\" 0 3 1 2
+set_location "\LabVIEW_UART:BUART:tx_status_2\" 0 3 0 3
+set_location "\LabVIEW_UART:BUART:rx_counter_load\" 1 0 1 1
+set_location "\LabVIEW_UART:BUART:rx_postpoll\" 1 2 0 1
+set_location "\LabVIEW_UART:BUART:rx_status_4\" 1 2 1 3
+set_location "\LabVIEW_UART:BUART:rx_status_5\" 1 1 0 0
+set_location "\ByteCounter:CounterUDB:reload\" 1 3 0 3
+set_location "\ByteCounter:CounterUDB:status_0\" 1 3 1 1
+set_location "\ByteCounter:CounterUDB:status_2\" 1 3 0 2
+set_location "\ByteCounter:CounterUDB:count_enable\" 1 2 0 3
+set_location "\LEDPWM:PWMUDB:status_2\" 0 0 1 0
+set_location "\SpeakerPWM:PWMUDB:status_2\" 0 2 0 3
+set_location "Net_1165__SYNC" 0 2 5 0
 set_location "\LEDDuration:TimerHW\" timercell -1 -1 0
-set_location "__ONE__" 1 2 1 1
-set_location "\LabVIEW_UART:BUART:sTX:TxShifter:u0\" 1 0 2
-set_location "\LabVIEW_UART:BUART:sTX:sCLOCK:TxBitClkGen\" 1 1 2
-set_location "\LabVIEW_UART:BUART:sTX:TxSts\" 1 0 4
-set_location "\LabVIEW_UART:BUART:sRX:RxShifter:u0\" 0 3 2
-set_location "\LabVIEW_UART:BUART:sRX:RxBitCounter\" 0 3 7
-set_location "\LabVIEW_UART:BUART:sRX:RxSts\" 0 1 4
-set_location "\UARTReset:Sync:ctrl_reg\" 0 2 6
+set_location "__ZERO__" 3 4 1 2
+set_location "__ONE__" 2 1 1 3
+set_location "\LabVIEW_UART:BUART:sTX:TxShifter:u0\" 0 1 2
+set_location "\LabVIEW_UART:BUART:sTX:sCLOCK:TxBitClkGen\" 0 3 2
+set_location "\LabVIEW_UART:BUART:sTX:TxSts\" 0 3 4
+set_location "\LabVIEW_UART:BUART:sRX:RxShifter:u0\" 1 2 2
+set_location "\LabVIEW_UART:BUART:sRX:RxBitCounter\" 1 0 7
+set_location "\LabVIEW_UART:BUART:sRX:RxSts\" 1 1 4
+set_location "\UARTReset:Sync:ctrl_reg\" 1 1 6
 set_location "ByteReceived" interrupt -1 -1 0
-set_location "\ByteCounter:CounterUDB:sCTRLReg:ctrlreg\" 0 0 6
-set_location "\ByteCounter:CounterUDB:sSTSReg:stsreg\" 0 2 4
-set_location "\ByteCounter:CounterUDB:sC8:counterdp:u0\" 0 2 2
-set_location "\ByteCountReset:Sync:ctrl_reg\" 0 1 6
+set_location "\ByteCounter:CounterUDB:sCTRLReg:ctrlreg\" 1 3 6
+set_location "\ByteCounter:CounterUDB:sSTSReg:stsreg\" 1 3 4
+set_location "\ByteCounter:CounterUDB:sC8:counterdp:u0\" 1 3 2
+set_location "\ByteCountReset:Sync:ctrl_reg\" 0 3 6
 set_location "CommandReceived" interrupt -1 -1 1
 set_location "NoteInterrupt" interrupt -1 -1 18
 set_location "\NoteTimer:TimerHW\" timercell -1 -1 1
-set_location "\LEDPWM:PWMUDB:genblk1:ctrlreg\" 1 3 6
-set_location "\LEDPWM:PWMUDB:genblk8:stsreg\" 1 2 4
-set_location "\LEDPWM:PWMUDB:sP8:pwmdp:u0\" 1 3 2
+set_location "\LEDPWM:PWMUDB:genblk1:ctrlreg\" 0 0 6
+set_location "\LEDPWM:PWMUDB:genblk8:stsreg\" 0 0 4
+set_location "\LEDPWM:PWMUDB:sP8:pwmdp:u0\" 0 0 2
 set_location "LEDOffInterrupt" interrupt -1 -1 17
-set_location "\LabVIEW_UART:BUART:reset_reg\" 0 2 0 3
-set_location "\LabVIEW_UART:BUART:txn\" 1 0 0 0
-set_location "\LabVIEW_UART:BUART:tx_state_1\" 1 1 1 0
-set_location "\LabVIEW_UART:BUART:tx_state_0\" 1 0 1 0
-set_location "\LabVIEW_UART:BUART:tx_state_2\" 1 1 0 0
-set_location "\LabVIEW_UART:BUART:tx_bitclk\" 1 1 1 1
-set_location "\LabVIEW_UART:BUART:tx_mark\" 1 0 0 1
-set_location "\LabVIEW_UART:BUART:rx_state_1\" 0 2 1 1
-set_location "\LabVIEW_UART:BUART:rx_state_0\" 0 2 1 0
-set_location "\LabVIEW_UART:BUART:rx_load_fifo\" 0 3 1 0
-set_location "\LabVIEW_UART:BUART:rx_state_3\" 0 3 1 2
-set_location "\LabVIEW_UART:BUART:rx_state_2\" 0 0 1 1
-set_location "\LabVIEW_UART:BUART:rx_bitclk_enable\" 0 1 1 3
-set_location "\LabVIEW_UART:BUART:rx_state_stop1_reg\" 0 3 0 3
-set_location "\LabVIEW_UART:BUART:pollcount_1\" 0 1 1 1
-set_location "\LabVIEW_UART:BUART:pollcount_0\" 0 1 1 2
-set_location "\LabVIEW_UART:BUART:rx_status_3\" 0 1 1 0
-set_location "\LabVIEW_UART:BUART:rx_address_detected\" 0 3 1 1
-set_location "\LabVIEW_UART:BUART:rx_last\" 0 0 1 2
-set_location "\ByteCounter:CounterUDB:overflow_reg_i\" 1 2 1 2
-set_location "\ByteCounter:CounterUDB:prevCompare\" 1 2 1 0
-set_location "\ByteCounter:CounterUDB:count_stored_i\" 0 1 0 3
-set_location "\LEDPWM:PWMUDB:runmode_enable\" 1 3 0 2
-set_location "\LEDPWM:PWMUDB:prevCompare1\" 1 3 0 3
-set_location "\LEDPWM:PWMUDB:prevCompare2\" 1 2 0 1
-set_location "\LEDPWM:PWMUDB:status_0\" 1 3 1 0
-set_location "\LEDPWM:PWMUDB:status_1\" 1 2 0 0
-set_location "Net_792" 1 3 0 1
+set_location "\SpeakerPWM:PWMUDB:genblk1:ctrlreg\" 1 2 6
+set_location "\SpeakerPWM:PWMUDB:genblk8:stsreg\" 1 2 4
+set_location "\SpeakerPWM:PWMUDB:sP8:pwmdp:u0\" 0 2 2
+set_location "\SpeakerClockConverter:CounterHW\" timercell -1 -1 2
+set_location "\SpeakerTimer:TimerHW\" timercell -1 -1 3
+set_location "TurnSpeakerOff" interrupt -1 -1 20
+set_location "\LabVIEW_UART:BUART:reset_reg\" 1 1 0 3
+set_location "\LabVIEW_UART:BUART:txn\" 0 1 1 3
+set_location "\LabVIEW_UART:BUART:tx_state_1\" 0 3 0 0
+set_location "\LabVIEW_UART:BUART:tx_state_0\" 0 3 1 0
+set_location "\LabVIEW_UART:BUART:tx_state_2\" 0 2 1 0
+set_location "\LabVIEW_UART:BUART:tx_bitclk\" 0 3 0 2
+set_location "\LabVIEW_UART:BUART:tx_mark\" 0 3 0 1
+set_location "\LabVIEW_UART:BUART:rx_state_1\" 1 0 0 2
+set_location "\LabVIEW_UART:BUART:rx_state_0\" 1 0 0 0
+set_location "\LabVIEW_UART:BUART:rx_load_fifo\" 1 1 0 2
+set_location "\LabVIEW_UART:BUART:rx_state_3\" 1 1 0 1
+set_location "\LabVIEW_UART:BUART:rx_state_2\" 1 0 1 0
+set_location "\LabVIEW_UART:BUART:rx_bitclk_enable\" 1 1 1 3
+set_location "\LabVIEW_UART:BUART:rx_state_stop1_reg\" 1 0 0 3
+set_location "\LabVIEW_UART:BUART:pollcount_1\" 1 1 1 1
+set_location "\LabVIEW_UART:BUART:pollcount_0\" 1 1 1 2
+set_location "\LabVIEW_UART:BUART:rx_status_3\" 1 1 1 0
+set_location "\LabVIEW_UART:BUART:rx_address_detected\" 1 0 1 2
+set_location "\LabVIEW_UART:BUART:rx_last\" 1 0 0 1
+set_location "\ByteCounter:CounterUDB:overflow_reg_i\" 1 3 0 1
+set_location "\ByteCounter:CounterUDB:prevCompare\" 1 3 1 0
+set_location "\ByteCounter:CounterUDB:count_stored_i\" 1 2 0 0
+set_location "\LEDPWM:PWMUDB:runmode_enable\" 0 0 0 2
+set_location "\LEDPWM:PWMUDB:prevCompare1\" 0 1 0 2
+set_location "\LEDPWM:PWMUDB:prevCompare2\" 0 0 0 1
+set_location "\LEDPWM:PWMUDB:status_0\" 0 1 0 1
+set_location "\LEDPWM:PWMUDB:status_1\" 0 0 0 0
+set_location "Net_792" 0 0 1 2
+set_location "\SpeakerPWM:PWMUDB:runmode_enable\" 1 2 1 2
+set_location "\SpeakerPWM:PWMUDB:prevCompare1\" 0 2 0 1
+set_location "\SpeakerPWM:PWMUDB:prevCompare2\" 1 2 1 1
+set_location "\SpeakerPWM:PWMUDB:status_0\" 0 2 0 0
+set_location "\SpeakerPWM:PWMUDB:status_1\" 1 2 1 0
+set_location "Net_1166" 0 2 0 2

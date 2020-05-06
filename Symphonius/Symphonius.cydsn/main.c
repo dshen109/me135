@@ -10,7 +10,7 @@
  * ========================================
 */
 #include "project.h"
-#include "queue.h"
+#include "cQueue.h"
 
 uint8 ByteCount = 0;
 uint8 firstbyte = 0;
@@ -20,8 +20,13 @@ uint8 CommandReady = 0;
 uint8 ReceivedBuffer[66];
 uint8 TransmitBuffer[3];
 
+// Circular queue that holds notes.
+Queue_t noteQueue;
+// Number of notes to hold in queue at any time.
+uint16 queueSize = 50;
+
 // Tempo in beats per minute.
-uint8 tempo = 60;
+uint8 tempo = 30;
 
 // Tracks if currentNote is ready to be sent to be played.
 uint8 noteReady = 0;
@@ -32,11 +37,23 @@ uint16 currentNote = 0;
 // TODO: Figure out if this can be read from TopDesign?
 uint16 clockRate = 100;
 
+// Total unique number of notes.
 #define NUMNOTES 9
 // Sequential number for notes, starting from E4 and ending on F5
 static uint8 noteNums[NUMNOTES] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 // Sequential frequencies [Hz] matching the array above.
 static uint16 noteFreqs[NUMNOTES] = {330, 349, 392, 440, 494, 523, 587, 659, 698};
+
+// Reference.
+uint8 e4 = 1;
+uint8 f4 = 2;
+uint8 g4 = 3;
+uint8 a5 = 4;
+uint8 b5 = 5;
+uint8 c5 = 6;
+uint8 d5 = 7;
+uint8 e5 = 8;
+uint8 f5 = 9;
 
 
 // Help convert uint16 note frequency to Byte array.
@@ -54,15 +71,14 @@ struct command_protocol
 
 struct command_protocol Transmit_Packet;
 
-struct Queue* noteQueue;
-
-/** Calculate the number of clock cycles between beats given a CLOCKRATE and 
+/** Calculate the number of clock cycles between beats given a CLOCKRATE [Hz] and 
  *  BPM */
 uint16 tempoToCycles(uint16 clockrate, uint8 bpm) {
     clockrate = (float) clockrate;
     bpm = (float) bpm;
     return clockrate * 60.0 / bpm;    
 }
+
 
 /** Interrupt when we get a byte over serial. */
 CY_ISR(ByteReceived) { 
@@ -89,6 +105,7 @@ CY_ISR(ByteReceived) {
     
 }
 
+
 /** Runs once all bytes have been read from the counter and is triggered by
  *  the timer. */
 CY_ISR(CommandReceived) {
@@ -110,45 +127,79 @@ CY_ISR(CommandReceived) {
         ByteCount = 0;
     }
     ByteCounter_ReadStatusRegister();
-    // LEDDrive_Write(0);
 }
 
-/** Set the LED to turn on for *time* milliseconds 
- *  at *pwmMag* intensity*/
+
+/** Set the LED to turn on for *time* milliseconds at *pwmMag* intensity*/
 void setLED(int pwmMag, int time) {
+    LEDPWM_WriteCompare1(0);
+    LEDDuration_Stop();
     LEDDuration_WritePeriod(time);
     LEDPWM_WriteCompare1(pwmMag);
     LEDDuration_WriteCounter(0);
+    LEDDuration_Start();
 }
+
 
 CY_ISR(LEDOffInterrupt) {
     LEDPWM_WriteCompare1(0);
     LEDDuration_ReadStatusRegister();
 }
 
+
+
+/** Play a note for *duration* milliseconds. */
+void playNote(float frequency, float duration) {
+    SpeakerTimer_Stop();
+    SpeakerTimer_WritePeriod((int) duration);
+    SpeakerClockConverter_WritePeriod((int) 1000000 / frequency);
+    // Set appropriate PWM frequency.
+    SpeakerTimer_WriteCounter(0);
+    SpeakerPWM_WriteCompare1(128);
+    SpeakerTimer_Start();
+}
+
+
+CY_ISR(TurnSpeakerOff) {
+    SpeakerPWM_WriteCompare1(0);
+    SpeakerTimer_ReadStatusRegister();
+}
+
+
 /** Interrupt once the timer loops and we need to write a note. */
 CY_ISR(NoteInterrupt) {
-    // If no notes to send, exit.
+    LEDPWM_WriteCompare1(0);
+    // If no notes to send, exit
     if (!noteReady) {
-        // Tun the LED on low for 0.2 seconds.
-        setLED(10, 100);
+        // Tun the LED on low for 50 milliseconds.
+        setLED(5, 5);
         NoteTimer_ReadStatusRegister();
         return;
     }
     // Do some note writing here.
     ConvertToByte.number = currentNote;
-    // 1 for length and 2 for the note.    
+    // Converting U16 to U8    
     TransmitBuffer[0] = 3;
-    TransmitBuffer[1] = ConvertToByte.data[0];
-    TransmitBuffer[2] = ConvertToByte.data[1];
-    LabVIEW_UART_PutArray(TransmitBuffer, 2);
+    // Labview expects big endian but PSOC stores in little endian.
+    TransmitBuffer[1] = ConvertToByte.data[1];
+    TransmitBuffer[2] = ConvertToByte.data[0];
+    LabVIEW_UART_PutArray(TransmitBuffer, 3);
     
-    // Turn the LED on for 0.5 second.
-    setLED(255, 500);
+    // Calculate the period in ms for the given tempo. Make this a little
+    // shorter than the actual time so we can see differences in the LED.
+    int period = (int) 60000.0 / (float) tempo * 0.8;
+    
+    // Turn the LED on high for 0.5 second.
+    setLED(255, period);
+    // Play the note.
+    playNote(currentNote, period);
+    
     // Note has been consumed.
     noteReady = 0;
     NoteTimer_ReadStatusRegister();
 }
+
+
 /** Convert a note number to a frequency. */
 uint16 noteNumToFreq(int number) {
     for (int i = 0; i < NUMNOTES; i++) {
@@ -158,6 +209,7 @@ uint16 noteNumToFreq(int number) {
     }
     return 0;
 }
+
 
 int main(void) {
     CyGlobalIntEnable; /* Enable global interrupts. */
@@ -194,42 +246,57 @@ int main(void) {
     LEDPWM_Start();
     LEDPWM_WriteCompare1(0);
     
+    SpeakerClockConverter_Start();
+    SpeakerTimer_Start();
+    TurnSpeakerOff_Start();
+    TurnSpeakerOff_StartEx(TurnSpeakerOff);
+    SpeakerPWM_Start();
+    SpeakerPWM_WriteCompare1(0);
+    
     // Queue that store the notes to be played.
-    struct Queue* noteQueue = createQueue((uint8) 100);
+    q_init(&noteQueue, sizeof(uint8), queueSize, FIFO, 1);
     
     // Enqueue some notes as a test.
-    enqueue(noteQueue, 1);
-    enqueue(noteQueue, 2);
-    enqueue(noteQueue, 3);
-    enqueue(noteQueue, 4);
-    enqueue(noteQueue, 1);
-    enqueue(noteQueue, 2);
-    enqueue(noteQueue, 3);
-    enqueue(noteQueue, 4);
+    /** 
+    q_push(&noteQueue, &g4);
+    q_push(&noteQueue, &c5);
+    q_push(&noteQueue, &g4);
+    q_push(&noteQueue, &a5);
+    q_push(&noteQueue, &e4);
+    q_push(&noteQueue, &e4);
+    q_push(&noteQueue, &a5);
+    q_push(&noteQueue, &g4);
+    q_push(&noteQueue, &f4);
+    q_push(&noteQueue, &g4);
+    q_push(&noteQueue, &c5);
+    */
     
     for(;;)
     {
-        switch (CommandReady) {
-            // Tempo payload:
-            case 1:
-                // Reset the tempo by changing the period of the NoteTimer
-                tempo = Command_Packet.buffer[0];
-                NoteTimer_WritePeriod(tempoToCycles(clockRate, tempo));
-                CommandReady = 0;
-                break;
-            // Note Payload
-            case 2:
-                // Enqueue all the notes into the buffer.
-                for (int i = 0; i < Command_Packet.packet_size; i++) {
-                    enqueue(noteQueue, Command_Packet.buffer[i]);
-                }
-                CommandReady = 0;
-                break;
-            default:
-                break;
+        if (CommandReady) {
+            switch (Command_Packet.command) {
+                // Tempo payload:
+                case 1:
+                    // Reset the tempo by changing the period of the NoteTimer
+                    tempo = Command_Packet.buffer[0];
+                    NoteTimer_WritePeriod(tempoToCycles(clockRate, tempo));
+                    CommandReady = 0;
+                    break;
+                // Note Payload
+                case 2:
+                    // Enqueue all the notes into the buffer.
+                    for (int i = 0; i < Command_Packet.packet_size - 2; i++) {
+                        q_push(&noteQueue, &Command_Packet.buffer[i]);
+                    }
+                    CommandReady = 0;
+                    break;
+                default:
+                    break;
+            }
         }
-        if (!isEmpty(noteQueue) && !noteReady) {
-            currentNote = noteNumToFreq(dequeue(noteQueue));
+        if (!q_isEmpty(&noteQueue) && !noteReady) {
+            q_pop(&noteQueue, &currentNote);
+            currentNote = noteNumToFreq(currentNote);
             noteReady = 1;
         }
     }

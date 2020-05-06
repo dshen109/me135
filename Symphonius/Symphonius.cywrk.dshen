@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Symphonius\Symphonius">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Symphonius\Symphonius\TopDesign">
 <ExpandedNodeIds>
 <v>Symphonius</v>
 <v>Symphonius\Interrupt_Priority</v>
@@ -46,13 +46,12 @@
 <v>Symphonius\Symphonius\Symphonius.cydwr\Flash Security</v>
 <v>Symphonius\Symphonius\Symphonius.cydwr\EEPROM</v>
 <v>Symphonius\Symphonius\Header Files</v>
+<v>Symphonius\Symphonius\Header Files\cQueue.h</v>
 <v>Symphonius\Symphonius\Header Files\cyapicallbacks.h</v>
-<v>Symphonius\Symphonius\Header Files\queue.h</v>
 <v>Symphonius\Symphonius\Source Files</v>
+<v>Symphonius\Symphonius\Source Files\cQueue.c</v>
 <v>Symphonius\Symphonius\Source Files\main.c</v>
-<v>Symphonius\Symphonius\Source Files\queue.c</v>
 <v>Symphonius\Symphonius\Generated_Source</v>
-<v>Symphonius\TimerInterrupt</v>
 <v>Symphonius\TimerInterrupt\TopDesign</v>
 <v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Pins</v>
 <v>Symphonius\TimerInterrupt\TimerInterrupt.cydwr\Analog</v>
@@ -99,11 +98,11 @@
 <v>Symphonius\Symphonius\Symphonius.cydwr\Flash Security</v>
 <v>Symphonius\Symphonius\Symphonius.cydwr\EEPROM</v>
 <v>Symphonius\Symphonius\Header Files</v>
+<v>Symphonius\Symphonius\Header Files\cQueue.h</v>
 <v>Symphonius\Symphonius\Header Files\cyapicallbacks.h</v>
-<v>Symphonius\Symphonius\Header Files\queue.h</v>
 <v>Symphonius\Symphonius\Source Files</v>
+<v>Symphonius\Symphonius\Source Files\cQueue.c</v>
 <v>Symphonius\Symphonius\Source Files\main.c</v>
-<v>Symphonius\Symphonius\Source Files\queue.c</v>
 <v>Symphonius\Symphonius\Generated_Source</v>
 <v>Symphonius\Symphonius\Generated_Source\PSoC5</v>
 <v>Symphonius\TimerInterrupt</v>
@@ -197,6 +196,7 @@
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\CommandReceived.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\cQueue.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
@@ -225,7 +225,16 @@
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\NoteInterrupt.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\NoteTimer.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\NoteTimer_PM.lst</v>
-<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\queue.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\Speaker.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\Speaker_Clock.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\Speaker_Clock_2.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\SpeakerClockConverter.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\SpeakerClockConverter_PM.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\SpeakerPWM.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\SpeakerPWM_PM.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\SpeakerTimer.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\SpeakerTimer_PM.lst</v>
+<v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\TurnSpeakerOff.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\UARTReset.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Listing Files\UARTReset_PM.lst</v>
 <v>Symphonius\Symphonius\CortexM3\ARM_GCC_541\Debug\Symphonius.elf</v>
@@ -306,7 +315,6 @@
 <v>Symphonius\Interrupt_Priority\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_1.lst</v>
 <v>Symphonius\Interrupt_Priority\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer.lst</v>
 <v>Symphonius\Interrupt_Priority\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_Interrupt.lst</v>
-<v>Symphonius\Interrupt_Priority\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_PM.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -339,7 +347,8 @@
 <v>Symphonius\Symphonius\CY8C58LP Family Datasheet</v>
 <v>Symphonius\Symphonius\System Reference Guides</v>
 <v>Symphonius\Symphonius\System Reference Guides\cy_boot_v5_90</v>
-<v>Symphonius\Symphonius\Counter_v3_0.pdf</v>
+<v>Symphonius\Symphonius\Counter_v3_0</v>
+<v>Symphonius\Symphonius\Counter_v3_0\Counter_v3_0.pdf</v>
 <v>Symphonius\Symphonius\cy_clock_v2_20</v>
 <v>Symphonius\Symphonius\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>Symphonius\Symphonius\cy_isr_v1_70</v>
@@ -348,7 +357,8 @@
 <v>Symphonius\Symphonius\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
 <v>Symphonius\Symphonius\CyControlReg_v1_80</v>
 <v>Symphonius\Symphonius\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
-<v>Symphonius\Symphonius\PWM_v3_30.pdf</v>
+<v>Symphonius\Symphonius\PWM_v3_30</v>
+<v>Symphonius\Symphonius\PWM_v3_30\PWM_v3_30.pdf</v>
 <v>Symphonius\Symphonius\Timer_v2_80</v>
 <v>Symphonius\Symphonius\Timer_v2_80\Timer_v2_80.pdf</v>
 <v>Symphonius\Symphonius\UART_v2_50.pdf</v>
@@ -394,7 +404,8 @@
 <v>Symphonius\Symphonius\CY8C58LP Family Datasheet</v>
 <v>Symphonius\Symphonius\System Reference Guides</v>
 <v>Symphonius\Symphonius\System Reference Guides\cy_boot_v5_90</v>
-<v>Symphonius\Symphonius\Counter_v3_0.pdf</v>
+<v>Symphonius\Symphonius\Counter_v3_0</v>
+<v>Symphonius\Symphonius\Counter_v3_0\Counter_v3_0.pdf</v>
 <v>Symphonius\Symphonius\cy_clock_v2_20</v>
 <v>Symphonius\Symphonius\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>Symphonius\Symphonius\cy_isr_v1_70</v>
@@ -403,10 +414,8 @@
 <v>Symphonius\Symphonius\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
 <v>Symphonius\Symphonius\CyControlReg_v1_80</v>
 <v>Symphonius\Symphonius\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
-<v>Symphonius\Symphonius\PWM_v3_30.pdf</v>
-<v>Symphonius\Symphonius\Timer_v2_80</v>
-<v>Symphonius\Symphonius\Timer_v2_80\Timer_v2_80.pdf</v>
-<v>Symphonius\Symphonius\UART_v2_50.pdf</v>
+<v>Symphonius\Symphonius\PWM_v3_30</v>
+<v>Symphonius\Symphonius\PWM_v3_30\PWM_v3_30.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -423,9 +432,9 @@
 <OpenDocs>
 <name v=".\Symphonius.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\Symphonius.cydsn\main.c" />
-<name v=".\Symphonius.cydsn\queue.c" />
-<name v=".\TimerInterrupt.cydsn\main.c" />
-<name v=".\TimerInterrupt.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\Symphonius.cydsn\cQueue.c" />
+<name v=".\Symphonius.cydsn\Generated_Source\PSoC5\LabVIEW_UART.c" />
+<name v="..\..\lab6\ME135_235\CommandInterpreter.cydsn\main.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -433,7 +442,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1083, 453" SelectedTabbedMdiWindow="9d02bf5e-b327-4962-9314-61b9b93cb394"><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\TopDesign\TopDesign.cysch" Guid="99f7d36d-6ed9-4e46-a381-50b6e0093102" /><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\main.c" Guid="9d02bf5e-b327-4962-9314-61b9b93cb394" /><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\queue.c" Guid="a7903b3c-9c8b-436a-a206-ef0aa6fd0c7f" /><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\TimerInterrupt.cydsn\main.c" Guid="eec12453-b374-47c3-a8c8-63f8f34b63a3" /><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\TimerInterrupt.cydsn\TopDesign\TopDesign.cysch" Guid="d3afe1cf-fb3c-4ee4-9bc8-7027ccc0d576" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical"><TabbedMdiContainer Size="527, 444" SelectedTabbedMdiWindow="9d02bf5e-b327-4962-9314-61b9b93cb394"><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\TopDesign\TopDesign.cysch" Guid="99f7d36d-6ed9-4e46-a381-50b6e0093102" /><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\main.c" Guid="9d02bf5e-b327-4962-9314-61b9b93cb394" /><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\cQueue.c" Guid="eac3c462-d124-4db8-a99d-3fd5e254656a" /><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\Generated_Source\PSoC5\LabVIEW_UART.c" Guid="591fcd85-9878-4c49-9392-847081d7a08f" /><DocumentWindow Key="C:\Users\dshen\Documents\school\me135\lab6\ME135_235\CommandInterpreter.cydsn\main.c" Guid="61d4fa21-beed-455c-823c-779e0a131548" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

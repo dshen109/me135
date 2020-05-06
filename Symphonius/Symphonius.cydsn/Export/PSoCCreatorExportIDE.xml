@@ -37,9 +37,9 @@
       <Folder BuildType="STRICT" Path="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn">
         <Files Root="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn">
           <File BuildType="BUILD" Toolchain="">main.c</File>
-          <File BuildType="BUILD" Toolchain="">queue.c</File>
+          <File BuildType="BUILD" Toolchain="">cQueue.c</File>
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
-          <File BuildType="BUILD" Toolchain="">queue.h</File>
+          <File BuildType="BUILD" Toolchain="">cQueue.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\Generated_Source\PSoC5">
@@ -137,6 +137,24 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LED_PWM_Clock.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDOffInterrupt.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LEDOffInterrupt.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SpeakerPWM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SpeakerPWM.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SpeakerPWM_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Speaker_Clock.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Speaker_Clock.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Speaker_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Speaker.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Speaker.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Speaker_Clock_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Speaker_Clock_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SpeakerTimer.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SpeakerTimer.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SpeakerTimer_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\TurnSpeakerOff.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\TurnSpeakerOff.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SpeakerClockConverter.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SpeakerClockConverter.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SpeakerClockConverter_PM.c</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\Export\ARM_GCC_Generic">

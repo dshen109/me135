@@ -1,6 +1,6 @@
 // ======================================================================
 // Symphonius.v generated from TopDesign.cysch
-// 05/04/2020 at 16:31
+// 05/05/2020 at 17:08
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -654,9 +654,280 @@ module PWM_v3_30_4 (
 
 endmodule
 
+// PWM_v3_30(CaptureMode=0, Clock_CheckTolerance=true, Clock_desired_freq=12, Clock_desired_freq_unit=6, Clock_divisor=1, Clock_FractDividerDenominator=0, Clock_FractDividerNumerator=0, Clock_FractDividerUsed=false, Clock_is_direct=false, Clock_is_divider=false, Clock_is_freq=true, Clock_minus_tolerance=5, Clock_ph_align_clock_id=, Clock_ph_align_clock_name=, Clock_plus_tolerance=5, Clock_source_clock_id=, Clock_source_clock_name=, Compare1_16=false, Compare1_8=false, Compare2_16=false, Compare2_8=true, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=128, CompareValue2=64, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG8, CySetRegReplacementString=CY_SET_REG8, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=false, Period=255, PWMMode=1, PWMModeCenterAligned=0, RegDefReplacementString=reg8, RegSizeReplacementString=uint8, Resolution=8, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TermMode_capture=0, TermMode_clock=0, TermMode_cmp_sel=0, TermMode_enable=0, TermMode_interrupt=0, TermMode_kill=0, TermMode_ph1=0, TermMode_ph2=0, TermMode_pwm=0, TermMode_pwm1=0, TermMode_pwm2=0, TermMode_reset=0, TermMode_tc=0, TermMode_trigger=0, TermVisibility_capture=false, TermVisibility_clock=true, TermVisibility_cmp_sel=false, TermVisibility_enable=false, TermVisibility_interrupt=true, TermVisibility_kill=false, TermVisibility_ph1=false, TermVisibility_ph2=false, TermVisibility_pwm=false, TermVisibility_pwm1=true, TermVisibility_pwm2=true, TermVisibility_reset=true, TermVisibility_tc=true, TermVisibility_trigger=false, TriggerMode=0, UDB16=false, UDB8=true, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP8, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=PWM_v3_30, CY_CONFIG_TITLE=SpeakerPWM, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=SpeakerPWM, CY_INSTANCE_SHORT_NAME=SpeakerPWM, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=30, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.3, INSTANCE_NAME=SpeakerPWM, )
+module PWM_v3_30_5 (
+    reset,
+    clock,
+    tc,
+    pwm1,
+    pwm2,
+    interrupt,
+    capture,
+    kill,
+    enable,
+    trigger,
+    cmp_sel,
+    pwm,
+    ph1,
+    ph2);
+    input       reset;
+    input       clock;
+    output      tc;
+    output      pwm1;
+    output      pwm2;
+    output      interrupt;
+    input       capture;
+    input       kill;
+    input       enable;
+    input       trigger;
+    input       cmp_sel;
+    output      pwm;
+    output      ph1;
+    output      ph2;
+
+    parameter Resolution = 8;
+
+          wire  Net_114;
+          wire  Net_113;
+          wire  Net_107;
+          wire  Net_96;
+          wire  Net_55;
+          wire  Net_57;
+          wire  Net_101;
+          wire  Net_54;
+          wire  Net_63;
+
+    B_PWM_v3_30 PWMUDB (
+        .reset(reset),
+        .clock(clock),
+        .tc(Net_101),
+        .pwm1(pwm1),
+        .pwm2(pwm2),
+        .interrupt(Net_55),
+        .kill(kill),
+        .capture(capture),
+        .enable(enable),
+        .cmp_sel(cmp_sel),
+        .trigger(trigger),
+        .pwm(Net_96),
+        .ph1(ph1),
+        .ph2(ph2));
+    defparam PWMUDB.CaptureMode = 0;
+    defparam PWMUDB.CompareStatusEdgeSense = 1;
+    defparam PWMUDB.CompareType1 = 1;
+    defparam PWMUDB.CompareType2 = 1;
+    defparam PWMUDB.DeadBand = 0;
+    defparam PWMUDB.DitherOffset = 0;
+    defparam PWMUDB.EnableMode = 0;
+    defparam PWMUDB.KillMode = 0;
+    defparam PWMUDB.PWMMode = 1;
+    defparam PWMUDB.Resolution = 8;
+    defparam PWMUDB.RunMode = 0;
+    defparam PWMUDB.TriggerMode = 0;
+    defparam PWMUDB.UseStatus = 1;
+
+	// vmCompare (cy_virtualmux_v1_0)
+	assign pwm = Net_96;
+
+	// vmIRQ (cy_virtualmux_v1_0)
+	assign interrupt = Net_55;
+
+	// vmTC (cy_virtualmux_v1_0)
+	assign tc = Net_101;
+
+    OneTerminal OneTerminal_1 (
+        .o(Net_113));
+
+	// FFKillMux (cy_virtualmux_v1_0)
+	assign Net_107 = Net_114;
+
+    ZeroTerminal ZeroTerminal_1 (
+        .z(Net_114));
+
+
+
+endmodule
+
+// Counter_v3_0(CaptureMode=0, CaptureModeSoftware=0, ClockMode=0, CompareMode=1, CompareModeSoftware=0, CompareStatusEdgeSense=true, CompareValue=1, CONTROL3=1, ControlRegRemoved=0, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, EnableMode=0, FF16=true, FF8=false, FixedFunction=true, FixedFunctionUsed=1, InitCounterValue=0, InterruptOnCapture=false, InterruptOnCompare=false, InterruptOnOverUnderFlow=false, InterruptOnTC=false, Period=1, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, ReloadOnCapture=false, ReloadOnCompare=false, ReloadOnOverUnder=true, ReloadOnReset=true, Resolution=16, RunMode=0, UDB16=false, UDB24=false, UDB32=false, UDB8=false, UDBControlReg=false, UseInterrupt=true, VerilogSectionReplacementString=sC16, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=Counter_v3_0, CY_CONFIG_TITLE=SpeakerClockConverter, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=SpeakerClockConverter, CY_INSTANCE_SHORT_NAME=SpeakerClockConverter, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.3, INSTANCE_NAME=SpeakerClockConverter, )
+module Counter_v3_0_6 (
+    reset,
+    tc,
+    comp,
+    clock,
+    interrupt,
+    enable,
+    capture,
+    upCnt,
+    downCnt,
+    up_ndown,
+    count);
+    input       reset;
+    output      tc;
+    output      comp;
+    input       clock;
+    output      interrupt;
+    input       enable;
+    input       capture;
+    input       upCnt;
+    input       downCnt;
+    input       up_ndown;
+    input       count;
+
+    parameter CaptureMode = 0;
+    parameter ClockMode = 0;
+    parameter CompareMode = 1;
+    parameter CompareStatusEdgeSense = 1;
+    parameter EnableMode = 0;
+    parameter ReloadOnCapture = 0;
+    parameter ReloadOnCompare = 0;
+    parameter ReloadOnOverUnder = 1;
+    parameter ReloadOnReset = 1;
+    parameter Resolution = 16;
+    parameter RunMode = 0;
+    parameter UseInterrupt = 1;
+
+          wire  Net_47;
+          wire  Net_102;
+          wire  Net_95;
+          wire  Net_82;
+          wire  Net_91;
+          wire  Net_89;
+          wire  Net_49;
+          wire  Net_48;
+          wire  Net_42;
+          wire  Net_43;
+
+    cy_psoc3_timer_v1_0 CounterHW (
+        .timer_reset(reset),
+        .capture(capture),
+        .enable(Net_91),
+        .kill(Net_82),
+        .clock(clock),
+        .tc(Net_48),
+        .compare(Net_47),
+        .interrupt(Net_42));
+
+	// int_vm (cy_virtualmux_v1_0)
+	assign interrupt = Net_42;
+
+	// TC_vm (cy_virtualmux_v1_0)
+	assign tc = Net_48;
+
+    ZeroTerminal ZeroTerminal_1 (
+        .z(Net_82));
+
+	// VirtualMux_1 (cy_virtualmux_v1_0)
+	assign Net_89 = up_ndown;
+
+    ZeroTerminal ZeroTerminal_2 (
+        .z(Net_95));
+
+	// vmEnableMode (cy_virtualmux_v1_0)
+	assign Net_91 = enable;
+
+    OneTerminal OneTerminal_1 (
+        .o(Net_102));
+
+
+
+endmodule
+
+// Timer_v2_80(CaptureAlternatingFall=false, CaptureAlternatingRise=false, CaptureCount=2, CaptureCounterEnabled=false, CaptureInputEnabled=true, CaptureMode=1, CONTROL3=1, ControlRegRemoved=0, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeviceFamily=PSoC5, EnableMode=0, FF16=true, FF8=false, FixedFunction=true, FixedFunctionUsed=1, HWCaptureCounterEnabled=false, InterruptOnCapture=false, InterruptOnFIFOFull=false, InterruptOnTC=true, IntOnCapture=0, IntOnFIFOFull=0, IntOnTC=1, NumberOfCaptures=1, param45=1, Period=999, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=rstSts, RunMode=0, SiliconRevision=0, SoftwareCaptureModeEnabled=false, SoftwareTriggerModeEnabled=false, TriggerInputEnabled=false, TriggerMode=0, UDB16=false, UDB24=false, UDB32=false, UDB8=false, UDBControlReg=false, UsesHWEnable=0, VerilogSectionReplacementString=sT16, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=Timer_v2_80, CY_CONFIG_TITLE=SpeakerTimer, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=SpeakerTimer, CY_INSTANCE_SHORT_NAME=SpeakerTimer, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=80, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.3, INSTANCE_NAME=SpeakerTimer, )
+module Timer_v2_80_7 (
+    reset,
+    interrupt,
+    enable,
+    trigger,
+    capture,
+    capture_out,
+    tc,
+    clock);
+    input       reset;
+    output      interrupt;
+    input       enable;
+    input       trigger;
+    input       capture;
+    output      capture_out;
+    output      tc;
+    input       clock;
+
+    parameter CaptureCount = 2;
+    parameter CaptureCounterEnabled = 0;
+    parameter DeviceFamily = "PSoC5";
+    parameter InterruptOnCapture = 0;
+    parameter InterruptOnTC = 1;
+    parameter Resolution = 16;
+    parameter SiliconRevision = "0";
+
+          wire  Net_261;
+          wire  Net_260;
+          wire  Net_266;
+          wire  Net_102;
+          wire  Net_55;
+          wire  Net_57;
+          wire  Net_53;
+          wire  Net_51;
+
+    cy_psoc3_timer_v1_0 TimerHW (
+        .timer_reset(reset),
+        .capture(capture),
+        .enable(Net_266),
+        .kill(Net_260),
+        .clock(clock),
+        .tc(Net_51),
+        .compare(Net_261),
+        .interrupt(Net_57));
+
+    ZeroTerminal ZeroTerminal_1 (
+        .z(Net_260));
+
+	// VirtualMux_2 (cy_virtualmux_v1_0)
+	assign interrupt = Net_57;
+
+	// VirtualMux_3 (cy_virtualmux_v1_0)
+	assign tc = Net_51;
+
+    OneTerminal OneTerminal_1 (
+        .o(Net_102));
+
+	// VirtualMux_1 (cy_virtualmux_v1_0)
+	assign Net_266 = Net_102;
+
+
+
+endmodule
+
 // top
 module top ;
 
+          wire  Net_1250;
+          wire  Net_1249;
+          wire  Net_1248;
+          wire  Net_1247;
+          wire  Net_1246;
+          wire  Net_1245;
+          wire  Net_1343;
+          wire  Net_1157;
+          wire  Net_1529;
+          wire  Net_1528;
+          wire  Net_1527;
+          wire  Net_1526;
+          wire  Net_1525;
+          wire  Net_1524;
+          wire  Net_1523;
+          wire  Net_1522;
+          wire  Net_1661;
+          wire  Net_1660;
+          wire  Net_1659;
+          wire  Net_1658;
+          wire  Net_1657;
+          wire  Net_1656;
+          wire  Net_1655;
+          wire  Net_1654;
+          wire  Net_1653;
+          wire  Net_1652;
+          wire  Net_1651;
+          wire  Net_1142;
           wire  Net_755;
           wire  Net_1060;
           wire  Net_1059;
@@ -720,6 +991,12 @@ module top ;
           wire  Net_725;
           wire  Net_724;
           wire  Net_723;
+          wire  Net_1165;
+          wire  Net_12;
+          wire  Net_1319;
+          wire  Net_1166;
+          wire  Net_1162;
+          wire  Net_1160;
           wire  Net_722;
           wire  Net_728;
           wire  Net_792;
@@ -1189,6 +1466,180 @@ module top ;
 
     ZeroTerminal ZeroTerminal_2 (
         .z(Net_721));
+
+    PWM_v3_30_5 SpeakerPWM (
+        .reset(Net_1142),
+        .clock(Net_1165),
+        .tc(Net_1651),
+        .pwm1(Net_1166),
+        .pwm2(Net_1652),
+        .interrupt(Net_1653),
+        .capture(1'b0),
+        .kill(1'b1),
+        .enable(1'b1),
+        .trigger(1'b0),
+        .cmp_sel(1'b0),
+        .pwm(Net_1659),
+        .ph1(Net_1660),
+        .ph2(Net_1661));
+    defparam SpeakerPWM.Resolution = 8;
+
+    Counter_v3_0_6 SpeakerClockConverter (
+        .reset(Net_1160),
+        .tc(Net_1165),
+        .comp(Net_1522),
+        .clock(Net_1162),
+        .interrupt(Net_1523),
+        .enable(1'b0),
+        .capture(1'b0),
+        .upCnt(1'b0),
+        .downCnt(1'b0),
+        .up_ndown(1'b1),
+        .count(1'b0));
+    defparam SpeakerClockConverter.CaptureMode = 0;
+    defparam SpeakerClockConverter.ClockMode = 0;
+    defparam SpeakerClockConverter.CompareMode = 1;
+    defparam SpeakerClockConverter.CompareStatusEdgeSense = 1;
+    defparam SpeakerClockConverter.EnableMode = 0;
+    defparam SpeakerClockConverter.ReloadOnCapture = 0;
+    defparam SpeakerClockConverter.ReloadOnCompare = 0;
+    defparam SpeakerClockConverter.ReloadOnOverUnder = 1;
+    defparam SpeakerClockConverter.ReloadOnReset = 1;
+    defparam SpeakerClockConverter.Resolution = 16;
+    defparam SpeakerClockConverter.RunMode = 0;
+    defparam SpeakerClockConverter.UseInterrupt = 1;
+
+
+	cy_clock_v1_0
+		#(.id("3c95f01e-be8a-4b1a-a347-a0c5b96a04cb"),
+		  .source_clock_id(""),
+		  .divisor(0),
+		  .period("1000000000"),
+		  .is_direct(0),
+		  .is_digital(1))
+		Speaker_Clock
+		 (.clock_out(Net_1162));
+
+
+    ZeroTerminal ZeroTerminal_3 (
+        .z(Net_1160));
+
+    ZeroTerminal ZeroTerminal_4 (
+        .z(Net_1142));
+
+	wire [0:0] tmpOE__Speaker_net;
+	wire [0:0] tmpFB_0__Speaker_net;
+	wire [0:0] tmpIO_0__Speaker_net;
+	wire [0:0] tmpINTERRUPT_0__Speaker_net;
+	electrical [0:0] tmpSIOVREF__Speaker_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("e851a3b9-efb8-48be-bbb8-b303b216c393"),
+		  .drive_mode(3'b110),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b1),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("O"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		Speaker
+		 (.oe(tmpOE__Speaker_net),
+		  .y({Net_1166}),
+		  .fb({tmpFB_0__Speaker_net[0:0]}),
+		  .io({tmpIO_0__Speaker_net[0:0]}),
+		  .siovref(tmpSIOVREF__Speaker_net),
+		  .interrupt({tmpINTERRUPT_0__Speaker_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__Speaker_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+
+	cy_clock_v1_0
+		#(.id("6de97efe-ccf6-4792-8c24-1fbdb1e03841"),
+		  .source_clock_id(""),
+		  .divisor(0),
+		  .period("1000000000000"),
+		  .is_direct(0),
+		  .is_digital(1))
+		Speaker_Clock_2
+		 (.clock_out(Net_1319));
+
+
+    ZeroTerminal ZeroTerminal_5 (
+        .z(Net_12));
+
+    Timer_v2_80_7 SpeakerTimer (
+        .reset(Net_12),
+        .interrupt(Net_1245),
+        .enable(1'b1),
+        .trigger(1'b1),
+        .capture(1'b0),
+        .capture_out(Net_1249),
+        .tc(Net_1250),
+        .clock(Net_1319));
+    defparam SpeakerTimer.CaptureCount = 2;
+    defparam SpeakerTimer.CaptureCounterEnabled = 0;
+    defparam SpeakerTimer.DeviceFamily = "PSoC5";
+    defparam SpeakerTimer.InterruptOnCapture = 0;
+    defparam SpeakerTimer.InterruptOnTC = 1;
+    defparam SpeakerTimer.Resolution = 16;
+    defparam SpeakerTimer.SiliconRevision = "0";
+
+
+	cy_isr_v1_0
+		#(.int_type(2'b10))
+		TurnSpeakerOff
+		 (.int_signal(Net_1245));
+
 
 
 

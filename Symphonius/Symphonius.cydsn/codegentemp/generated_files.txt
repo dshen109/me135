@@ -60,6 +60,24 @@
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LED_PWM_Clock.h" value="HEADER;;;;;LED_PWM_Clock" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDOffInterrupt.c" value="SOURCE_C;CortexM3;;;;LEDOffInterrupt" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LEDOffInterrupt.h" value="HEADER;;;;;LEDOffInterrupt" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\SpeakerPWM.c" value="SOURCE_C;CortexM3;;;;SpeakerPWM" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\SpeakerPWM.h" value="HEADER;;;;;SpeakerPWM" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\SpeakerPWM_PM.c" value="SOURCE_C;CortexM3;;;;SpeakerPWM" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\SpeakerClockConverter.c" value="SOURCE_C;CortexM3;;;;SpeakerClockConverter" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\SpeakerClockConverter.h" value="HEADER;;;;;SpeakerClockConverter" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\SpeakerClockConverter_PM.c" value="SOURCE_C;CortexM3;;;;SpeakerClockConverter" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\Speaker_Clock.c" value="SOURCE_C;CortexM3;;;;Speaker_Clock" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\Speaker_Clock.h" value="HEADER;;;;;Speaker_Clock" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\Speaker_aliases.h" value="HEADER;;;;;Speaker" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\Speaker.c" value="SOURCE_C;CortexM3;;;;Speaker" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\Speaker.h" value="HEADER;;;;;Speaker" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\Speaker_Clock_2.c" value="SOURCE_C;CortexM3;;;;Speaker_Clock_2" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\Speaker_Clock_2.h" value="HEADER;;;;;Speaker_Clock_2" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\SpeakerTimer.c" value="SOURCE_C;CortexM3;;;;SpeakerTimer" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\SpeakerTimer.h" value="HEADER;;;;;SpeakerTimer" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\SpeakerTimer_PM.c" value="SOURCE_C;CortexM3;;;;SpeakerTimer" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\TurnSpeakerOff.c" value="SOURCE_C;CortexM3;;;;TurnSpeakerOff" />
+  <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\TurnSpeakerOff.h" value="HEADER;;;;;TurnSpeakerOff" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LabVIEW_UART_IntClock.c" value="SOURCE_C;CortexM3;;;;LabVIEW_UART_IntClock" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\LabVIEW_UART_IntClock.h" value="HEADER;;;;;LabVIEW_UART_IntClock" />
   <file name="C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />

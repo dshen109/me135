@@ -1,40 +1,136 @@
---------------- Rebuild Started: 05/04/2020 16:21:49 Project: main.c, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Rebuild Started: 05/05/2020 17:07:59 Project: Symphonius, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\main.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\cQueue.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\cymetadata.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Cm3Start.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\CyDmac.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\CyFlash.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\CyLib.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\cyPm.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\CySpc.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\cyutils.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LED.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_INT.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_BOOT.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\UARTReset.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\UARTReset_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\ByteReceived.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\ByteCounter.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\ByteCounter_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Clock_1.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\ByteCountReset.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\ByteCountReset_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\CommandReceived.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\NoteTimer.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\NoteTimer_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\NoteInterrupt.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\note_clock.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_IntClock.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LEDDuration.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LEDDuration_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LED_Duration_Clock.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LEDPWM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LEDPWM_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LED_PWM_Clock.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\LEDOffInterrupt.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\SpeakerPWM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\SpeakerPWM_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Speaker_Clock.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Speaker.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Speaker_Clock_2.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\SpeakerTimer.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\SpeakerTimer_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\TurnSpeakerOff.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\SpeakerClockConverter.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\SpeakerClockConverter_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Symphonius.hex"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Symphonius.elf"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Symphonius.map"
+Deleting file ".\Symphonius.cycdx"
+Deleting file ".\Symphonius.svd"
+Deleting file ".\Symphonius.rpt"
+Deleting file ".\Symphonius_timing.html"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\.deps\SOURCE_C__ARM_GCC_GENERIC.P"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\.deps\SOURCE_ASM__ARM_GCC_GENERIC.P"
+cydsfit.exe -.appdatapath "C:\Users\dshen\AppData\Local\Cypress Semiconductor\PSoC Creator\4.3" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\Symphonius.cyprj -d CY8C5888LTI-LP097 -s C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+Elaborating Design...
+HDL Generation...
+Synthesis...
+Tech Mapping...
+ADD: pft.M0040: information: The following 1 pin(s) will be assigned a location by the fitter: Speaker(0)
+Analog Placement...
+Analog Routing...
+Analog Code Generation...
+Digital Placement...
+Digital Routing...
+Bitstream Generation...
+Bitstream Verification...
+Static timing analysis...
+API Generation...
+Dependency Generation...
+Cleanup...
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
-main.c:117:5: warning: implicit declaration of function 'LEDDuration_WritePeriod' [-Wimplicit-function-declaration]
-     LEDDuration_WritePeriod((int) time * 100);
-     ^
-main.c:117:35: error: 'time' undeclared here (not in a function)
-     LEDDuration_WritePeriod((int) time * 100);
-                                   ^
-main.c:117:46: error: expected ']' before ';' token
-     LEDDuration_WritePeriod((int) time * 100);
-                                              ^
-main.c: In function 'LEDOffInterrupt':
-main.c:123:5: warning: implicit declaration of function 'LEDPWM_WriteCompare1' [-Wimplicit-function-declaration]
-     LEDPWM_WriteCompare1(0);
-     ^
-main.c:124:5: warning: implicit declaration of function 'LEDDuration_ReadStatusRegister' [-Wimplicit-function-declaration]
-     LEDDuration_ReadStatusRegister();
-     ^
-main.c: In function 'NoteInterrupt':
-main.c:132:9: warning: implicit declaration of function 'setLED' [-Wimplicit-function-declaration]
-         setLED(50, 0.2);
-         ^
-main.c:145:5: warning: implicit declaration of function 'setLed' [-Wimplicit-function-declaration]
-     setLed(255, 0.5);
-     ^
-The command 'arm-none-eabi-gcc.exe' failed with exit code '1'.
-main.c: In function 'main':
-main.c:188:5: warning: implicit declaration of function 'LEDDuration_Start' [-Wimplicit-function-declaration]
-     LEDDuration_Start();
-     ^
-main.c:190:5: warning: implicit declaration of function 'LEDOffInterrupt_Start' [-Wimplicit-function-declaration]
-     LEDOffInterrupt_Start();
-     ^
-main.c:191:5: warning: implicit declaration of function 'LEDOffInterrupt_StartEX' [-Wimplicit-function-declaration]
-     LEDOffInterrupt_StartEX(LEDOffInterrupt);
-     ^
-main.c:192:5: warning: implicit declaration of function 'LEDPWM_Start' [-Wimplicit-function-declaration]
-     LEDPWM_Start();
-     ^
---------------- Rebuild Failed: 05/04/2020 16:21:49 ---------------
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/cQueue.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c cQueue.c -o .\CortexM3\ARM_GCC_541\Debug\cQueue.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/cyfitter_cfg.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\cyfitter_cfg.c -o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/cymetadata.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\cymetadata.c -o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Cm3Start.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\Cm3Start.c -o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/CyDmac.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\CyDmac.c -o .\CortexM3\ARM_GCC_541\Debug\CyDmac.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/CyFlash.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\CyFlash.c -o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/CyLib.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\CyLib.c -o .\CortexM3\ARM_GCC_541\Debug\CyLib.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/cyPm.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\cyPm.c -o .\CortexM3\ARM_GCC_541\Debug\cyPm.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/CySpc.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\CySpc.c -o .\CortexM3\ARM_GCC_541\Debug\CySpc.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/cyutils.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\cyutils.c -o .\CortexM3\ARM_GCC_541\Debug\cyutils.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/cy_em_eeprom.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\cy_em_eeprom.c -o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LED.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LED.c -o .\CortexM3\ARM_GCC_541\Debug\LED.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LabVIEW_UART.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LabVIEW_UART.c -o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LabVIEW_UART_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LabVIEW_UART_PM.c -o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LabVIEW_UART_INT.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LabVIEW_UART_INT.c -o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_INT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LabVIEW_UART_BOOT.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LabVIEW_UART_BOOT.c -o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_BOOT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/UARTReset.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\UARTReset.c -o .\CortexM3\ARM_GCC_541\Debug\UARTReset.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/UARTReset_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\UARTReset_PM.c -o .\CortexM3\ARM_GCC_541\Debug\UARTReset_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/ByteReceived.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\ByteReceived.c -o .\CortexM3\ARM_GCC_541\Debug\ByteReceived.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/ByteCounter.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\ByteCounter.c -o .\CortexM3\ARM_GCC_541\Debug\ByteCounter.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/ByteCounter_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\ByteCounter_PM.c -o .\CortexM3\ARM_GCC_541\Debug\ByteCounter_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Clock_1.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\Clock_1.c -o .\CortexM3\ARM_GCC_541\Debug\Clock_1.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/ByteCountReset.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\ByteCountReset.c -o .\CortexM3\ARM_GCC_541\Debug\ByteCountReset.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/ByteCountReset_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\ByteCountReset_PM.c -o .\CortexM3\ARM_GCC_541\Debug\ByteCountReset_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/CommandReceived.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\CommandReceived.c -o .\CortexM3\ARM_GCC_541\Debug\CommandReceived.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/NoteTimer.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\NoteTimer.c -o .\CortexM3\ARM_GCC_541\Debug\NoteTimer.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/NoteTimer_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\NoteTimer_PM.c -o .\CortexM3\ARM_GCC_541\Debug\NoteTimer_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/NoteInterrupt.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\NoteInterrupt.c -o .\CortexM3\ARM_GCC_541\Debug\NoteInterrupt.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/note_clock.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\note_clock.c -o .\CortexM3\ARM_GCC_541\Debug\note_clock.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LabVIEW_UART_IntClock.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LabVIEW_UART_IntClock.c -o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_IntClock.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LEDDuration.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LEDDuration.c -o .\CortexM3\ARM_GCC_541\Debug\LEDDuration.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LEDDuration_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LEDDuration_PM.c -o .\CortexM3\ARM_GCC_541\Debug\LEDDuration_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LED_Duration_Clock.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LED_Duration_Clock.c -o .\CortexM3\ARM_GCC_541\Debug\LED_Duration_Clock.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LEDPWM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LEDPWM.c -o .\CortexM3\ARM_GCC_541\Debug\LEDPWM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LEDPWM_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LEDPWM_PM.c -o .\CortexM3\ARM_GCC_541\Debug\LEDPWM_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LED_PWM_Clock.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LED_PWM_Clock.c -o .\CortexM3\ARM_GCC_541\Debug\LED_PWM_Clock.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/LEDOffInterrupt.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\LEDOffInterrupt.c -o .\CortexM3\ARM_GCC_541\Debug\LEDOffInterrupt.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/SpeakerPWM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\SpeakerPWM.c -o .\CortexM3\ARM_GCC_541\Debug\SpeakerPWM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/SpeakerPWM_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\SpeakerPWM_PM.c -o .\CortexM3\ARM_GCC_541\Debug\SpeakerPWM_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Speaker_Clock.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\Speaker_Clock.c -o .\CortexM3\ARM_GCC_541\Debug\Speaker_Clock.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Speaker.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\Speaker.c -o .\CortexM3\ARM_GCC_541\Debug\Speaker.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Speaker_Clock_2.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\Speaker_Clock_2.c -o .\CortexM3\ARM_GCC_541\Debug\Speaker_Clock_2.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/SpeakerTimer.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\SpeakerTimer.c -o .\CortexM3\ARM_GCC_541\Debug\SpeakerTimer.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/SpeakerTimer_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\SpeakerTimer_PM.c -o .\CortexM3\ARM_GCC_541\Debug\SpeakerTimer_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/TurnSpeakerOff.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\TurnSpeakerOff.c -o .\CortexM3\ARM_GCC_541\Debug\TurnSpeakerOff.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/SpeakerClockConverter.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\SpeakerClockConverter.c -o .\CortexM3\ARM_GCC_541\Debug\SpeakerClockConverter.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/SpeakerClockConverter_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c Generated_Source\PSoC5\SpeakerClockConverter_PM.c -o .\CortexM3\ARM_GCC_541\Debug\SpeakerClockConverter_PM.o
+arm-none-eabi-as.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -alh=.\CortexM3\ARM_GCC_541\Debug/CyBootAsmGnu.lst -g -W -o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o Generated_Source\PSoC5\CyBootAsmGnu.s
+arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_541\Debug\Symphonius.a .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\LED.o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART.o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_PM.o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_INT.o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_BOOT.o .\CortexM3\ARM_GCC_541\Debug\UARTReset.o .\CortexM3\ARM_GCC_541\Debug\UARTReset_PM.o .\CortexM3\ARM_GCC_541\Debug\ByteReceived.o .\CortexM3\ARM_GCC_541\Debug\ByteCounter.o .\CortexM3\ARM_GCC_541\Debug\ByteCounter_PM.o .\CortexM3\ARM_GCC_541\Debug\Clock_1.o .\CortexM3\ARM_GCC_541\Debug\ByteCountReset.o .\CortexM3\ARM_GCC_541\Debug\ByteCountReset_PM.o .\CortexM3\ARM_GCC_541\Debug\CommandReceived.o .\CortexM3\ARM_GCC_541\Debug\NoteTimer.o .\CortexM3\ARM_GCC_541\Debug\NoteTimer_PM.o .\CortexM3\ARM_GCC_541\Debug\NoteInterrupt.o .\CortexM3\ARM_GCC_541\Debug\note_clock.o .\CortexM3\ARM_GCC_541\Debug\LabVIEW_UART_IntClock.o .\CortexM3\ARM_GCC_541\Debug\LEDDuration.o .\CortexM3\ARM_GCC_541\Debug\LEDDuration_PM.o .\CortexM3\ARM_GCC_541\Debug\LED_Duration_Clock.o .\CortexM3\ARM_GCC_541\Debug\LEDPWM.o .\CortexM3\ARM_GCC_541\Debug\LEDPWM_PM.o .\CortexM3\ARM_GCC_541\Debug\LED_PWM_Clock.o .\CortexM3\ARM_GCC_541\Debug\LEDOffInterrupt.o .\CortexM3\ARM_GCC_541\Debug\SpeakerPWM.o .\CortexM3\ARM_GCC_541\Debug\SpeakerPWM_PM.o .\CortexM3\ARM_GCC_541\Debug\Speaker_Clock.o .\CortexM3\ARM_GCC_541\Debug\Speaker.o .\CortexM3\ARM_GCC_541\Debug\Speaker_Clock_2.o .\CortexM3\ARM_GCC_541\Debug\SpeakerTimer.o .\CortexM3\ARM_GCC_541\Debug\SpeakerTimer_PM.o .\CortexM3\ARM_GCC_541\Debug\TurnSpeakerOff.o .\CortexM3\ARM_GCC_541\Debug\SpeakerClockConverter.o .\CortexM3\ARM_GCC_541\Debug\SpeakerClockConverter_PM.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
+arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Debug\Symphonius.a
+arm-none-eabi-gcc.exe -Wl,--start-group -o C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\CortexM3\ARM_GCC_541\Debug\Symphonius.elf .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\cQueue.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\Symphonius.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -l m -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/Symphonius.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -C C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\CortexM3\ARM_GCC_541\Debug\Symphonius.elf --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
+No ELF section .cychecksum found, creating one
+Application checksum calculated and stored in ELF section .cychecksum
+Checksum calculated and stored in ELF section .cymeta
+cyelftool.exe -S C:\Users\dshen\Documents\school\me135\symphonius\Symphonius\Symphonius.cydsn\CortexM3\ARM_GCC_541\Debug\Symphonius.elf
+Flash used: 8840 of 262144 bytes (3.4%).
+SRAM used: 2793 of 65536 bytes (4.3%). Stack: 2048 bytes. Heap: 128 bytes.
+--------------- Rebuild Succeeded: 05/05/2020 17:08:20 ---------------

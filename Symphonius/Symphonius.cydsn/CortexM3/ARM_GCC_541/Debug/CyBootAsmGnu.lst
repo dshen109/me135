@@ -11352,15 +11352,15 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
   52              	.set LED__PS, CYREG_PRT2_PS
   53              	.set LED__SHIFT, 1
   54              	.set LED__SLW, CYREG_PRT2_SLW
-  55              	.set LED_Duration_Clock__CFG0, CYREG_CLKDIST_DCFG3_CFG0
-  56              	.set LED_Duration_Clock__CFG1, CYREG_CLKDIST_DCFG3_CFG1
-  57              	.set LED_Duration_Clock__CFG2, CYREG_CLKDIST_DCFG3_CFG2
+  55              	.set LED_Duration_Clock__CFG0, CYREG_CLKDIST_DCFG4_CFG0
+  56              	.set LED_Duration_Clock__CFG1, CYREG_CLKDIST_DCFG4_CFG1
+  57              	.set LED_Duration_Clock__CFG2, CYREG_CLKDIST_DCFG4_CFG2
   58              	.set LED_Duration_Clock__CFG2_SRC_SEL_MASK, 0x07
-  59              	.set LED_Duration_Clock__INDEX, 0x03
+  59              	.set LED_Duration_Clock__INDEX, 0x04
   60              	.set LED_Duration_Clock__PM_ACT_CFG, CYREG_PM_ACT_CFG2
-  61              	.set LED_Duration_Clock__PM_ACT_MSK, 0x08
+  61              	.set LED_Duration_Clock__PM_ACT_MSK, 0x10
   62              	.set LED_Duration_Clock__PM_STBY_CFG, CYREG_PM_STBY_CFG2
-  63              	.set LED_Duration_Clock__PM_STBY_MSK, 0x08
+  63              	.set LED_Duration_Clock__PM_STBY_MSK, 0x10
   64              	.set LED_PWM_Clock__CFG0, CYREG_CLKDIST_DCFG0_CFG0
   65              	.set LED_PWM_Clock__CFG1, CYREG_CLKDIST_DCFG0_CFG1
   66              	.set LED_PWM_Clock__CFG2, CYREG_CLKDIST_DCFG0_CFG2
@@ -11441,610 +11441,781 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  138              	.set Tx_1__SLW, CYREG_PRT12_SLW
  139              	
  140              	/* LEDPWM */
- 141              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B0_UDB11_12_ACTL
- 142              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_CONTROL_CONTROL_REG, CYREG_B0_UDB11_12_CTL
- 143              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_CONTROL_COUNT_REG, CYREG_B0_UDB11_12_CTL
- 144              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_COUNT_CONTROL_REG, CYREG_B0_UDB11_12_CTL
- 145              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_COUNT_COUNT_REG, CYREG_B0_UDB11_12_CTL
- 146              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_MASK_MASK_REG, CYREG_B0_UDB11_12_MSK
- 147              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_MASK_PERIOD_REG, CYREG_B0_UDB11_12_MSK
- 148              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_PERIOD_MASK_REG, CYREG_B0_UDB11_12_MSK
- 149              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_PERIOD_PERIOD_REG, CYREG_B0_UDB11_12_MSK
+ 141              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B1_UDB10_11_ACTL
+ 142              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_CONTROL_CONTROL_REG, CYREG_B1_UDB10_11_CTL
+ 143              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_CONTROL_COUNT_REG, CYREG_B1_UDB10_11_CTL
+ 144              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_COUNT_CONTROL_REG, CYREG_B1_UDB10_11_CTL
+ 145              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_COUNT_COUNT_REG, CYREG_B1_UDB10_11_CTL
+ 146              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_MASK_MASK_REG, CYREG_B1_UDB10_11_MSK
+ 147              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_MASK_PERIOD_REG, CYREG_B1_UDB10_11_MSK
+ 148              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_PERIOD_MASK_REG, CYREG_B1_UDB10_11_MSK
+ 149              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__16BIT_PERIOD_PERIOD_REG, CYREG_B1_UDB10_11_MSK
  150              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__7__MASK, 0x80
  151              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__7__POS, 7
- 152              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__CONTROL_AUX_CTL_REG, CYREG_B0_UDB11_ACTL
- 153              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__CONTROL_REG, CYREG_B0_UDB11_CTL
- 154              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__CONTROL_ST_REG, CYREG_B0_UDB11_ST_CTL
- 155              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__COUNT_REG, CYREG_B0_UDB11_CTL
- 156              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__COUNT_ST_REG, CYREG_B0_UDB11_ST_CTL
+ 152              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__CONTROL_AUX_CTL_REG, CYREG_B1_UDB10_ACTL
+ 153              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__CONTROL_REG, CYREG_B1_UDB10_CTL
+ 154              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__CONTROL_ST_REG, CYREG_B1_UDB10_ST_CTL
+ 155              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__COUNT_REG, CYREG_B1_UDB10_CTL
+ 156              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__COUNT_ST_REG, CYREG_B1_UDB10_ST_CTL
  157              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__MASK, 0x80
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 192
 
 
- 158              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__MASK_CTL_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
- 159              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__PER_CTL_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
- 160              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__PERIOD_REG, CYREG_B0_UDB11_MSK
+ 158              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__MASK_CTL_AUX_CTL_REG, CYREG_B1_UDB10_MSK_ACTL
+ 159              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__PER_CTL_AUX_CTL_REG, CYREG_B1_UDB10_MSK_ACTL
+ 160              	.set LEDPWM_PWMUDB_genblk1_ctrlreg__PERIOD_REG, CYREG_B1_UDB10_MSK
  161              	.set LEDPWM_PWMUDB_genblk8_stsreg__0__MASK, 0x01
  162              	.set LEDPWM_PWMUDB_genblk8_stsreg__0__POS, 0
  163              	.set LEDPWM_PWMUDB_genblk8_stsreg__1__MASK, 0x02
  164              	.set LEDPWM_PWMUDB_genblk8_stsreg__1__POS, 1
- 165              	.set LEDPWM_PWMUDB_genblk8_stsreg__16BIT_STATUS_AUX_CTL_REG, CYREG_B0_UDB08_09_ACTL
- 166              	.set LEDPWM_PWMUDB_genblk8_stsreg__16BIT_STATUS_REG, CYREG_B0_UDB08_09_ST
+ 165              	.set LEDPWM_PWMUDB_genblk8_stsreg__16BIT_STATUS_AUX_CTL_REG, CYREG_B1_UDB10_11_ACTL
+ 166              	.set LEDPWM_PWMUDB_genblk8_stsreg__16BIT_STATUS_REG, CYREG_B1_UDB10_11_ST
  167              	.set LEDPWM_PWMUDB_genblk8_stsreg__2__MASK, 0x04
  168              	.set LEDPWM_PWMUDB_genblk8_stsreg__2__POS, 2
  169              	.set LEDPWM_PWMUDB_genblk8_stsreg__3__MASK, 0x08
  170              	.set LEDPWM_PWMUDB_genblk8_stsreg__3__POS, 3
  171              	.set LEDPWM_PWMUDB_genblk8_stsreg__MASK, 0x0F
- 172              	.set LEDPWM_PWMUDB_genblk8_stsreg__MASK_REG, CYREG_B0_UDB08_MSK
- 173              	.set LEDPWM_PWMUDB_genblk8_stsreg__STATUS_AUX_CTL_REG, CYREG_B0_UDB08_ACTL
- 174              	.set LEDPWM_PWMUDB_genblk8_stsreg__STATUS_REG, CYREG_B0_UDB08_ST
- 175              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_A0_REG, CYREG_B0_UDB11_12_A0
- 176              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_A1_REG, CYREG_B0_UDB11_12_A1
- 177              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_D0_REG, CYREG_B0_UDB11_12_D0
- 178              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_D1_REG, CYREG_B0_UDB11_12_D1
- 179              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_DP_AUX_CTL_REG, CYREG_B0_UDB11_12_ACTL
- 180              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_F0_REG, CYREG_B0_UDB11_12_F0
- 181              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_F1_REG, CYREG_B0_UDB11_12_F1
- 182              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__A0_A1_REG, CYREG_B0_UDB11_A0_A1
- 183              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__A0_REG, CYREG_B0_UDB11_A0
- 184              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__A1_REG, CYREG_B0_UDB11_A1
- 185              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__D0_D1_REG, CYREG_B0_UDB11_D0_D1
- 186              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__D0_REG, CYREG_B0_UDB11_D0
- 187              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__D1_REG, CYREG_B0_UDB11_D1
- 188              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__DP_AUX_CTL_REG, CYREG_B0_UDB11_ACTL
- 189              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__F0_F1_REG, CYREG_B0_UDB11_F0_F1
- 190              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__F0_REG, CYREG_B0_UDB11_F0
- 191              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__F1_REG, CYREG_B0_UDB11_F1
- 192              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__MSK_DP_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
- 193              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__PER_DP_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
- 194              	
- 195              	/* Clock_1 */
- 196              	.set Clock_1__CFG0, CYREG_CLKDIST_DCFG1_CFG0
- 197              	.set Clock_1__CFG1, CYREG_CLKDIST_DCFG1_CFG1
- 198              	.set Clock_1__CFG2, CYREG_CLKDIST_DCFG1_CFG2
- 199              	.set Clock_1__CFG2_SRC_SEL_MASK, 0x07
- 200              	.set Clock_1__INDEX, 0x01
- 201              	.set Clock_1__PM_ACT_CFG, CYREG_PM_ACT_CFG2
- 202              	.set Clock_1__PM_ACT_MSK, 0x02
- 203              	.set Clock_1__PM_STBY_CFG, CYREG_PM_STBY_CFG2
- 204              	.set Clock_1__PM_STBY_MSK, 0x02
- 205              	
- 206              	/* NoteTimer */
- 207              	.set NoteTimer_TimerHW__CAP0, CYREG_TMR1_CAP0
- 208              	.set NoteTimer_TimerHW__CAP1, CYREG_TMR1_CAP1
- 209              	.set NoteTimer_TimerHW__CFG0, CYREG_TMR1_CFG0
- 210              	.set NoteTimer_TimerHW__CFG1, CYREG_TMR1_CFG1
- 211              	.set NoteTimer_TimerHW__CFG2, CYREG_TMR1_CFG2
- 212              	.set NoteTimer_TimerHW__CNT_CMP0, CYREG_TMR1_CNT_CMP0
- 213              	.set NoteTimer_TimerHW__CNT_CMP1, CYREG_TMR1_CNT_CMP1
- 214              	.set NoteTimer_TimerHW__PER0, CYREG_TMR1_PER0
+ 172              	.set LEDPWM_PWMUDB_genblk8_stsreg__MASK_REG, CYREG_B1_UDB10_MSK
+ 173              	.set LEDPWM_PWMUDB_genblk8_stsreg__MASK_ST_AUX_CTL_REG, CYREG_B1_UDB10_MSK_ACTL
+ 174              	.set LEDPWM_PWMUDB_genblk8_stsreg__PER_ST_AUX_CTL_REG, CYREG_B1_UDB10_MSK_ACTL
+ 175              	.set LEDPWM_PWMUDB_genblk8_stsreg__STATUS_AUX_CTL_REG, CYREG_B1_UDB10_ACTL
+ 176              	.set LEDPWM_PWMUDB_genblk8_stsreg__STATUS_CNT_REG, CYREG_B1_UDB10_ST_CTL
+ 177              	.set LEDPWM_PWMUDB_genblk8_stsreg__STATUS_CONTROL_REG, CYREG_B1_UDB10_ST_CTL
+ 178              	.set LEDPWM_PWMUDB_genblk8_stsreg__STATUS_REG, CYREG_B1_UDB10_ST
+ 179              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_A0_REG, CYREG_B1_UDB10_11_A0
+ 180              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_A1_REG, CYREG_B1_UDB10_11_A1
+ 181              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_D0_REG, CYREG_B1_UDB10_11_D0
+ 182              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_D1_REG, CYREG_B1_UDB10_11_D1
+ 183              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_DP_AUX_CTL_REG, CYREG_B1_UDB10_11_ACTL
+ 184              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_F0_REG, CYREG_B1_UDB10_11_F0
+ 185              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__16BIT_F1_REG, CYREG_B1_UDB10_11_F1
+ 186              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__A0_A1_REG, CYREG_B1_UDB10_A0_A1
+ 187              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__A0_REG, CYREG_B1_UDB10_A0
+ 188              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__A1_REG, CYREG_B1_UDB10_A1
+ 189              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__D0_D1_REG, CYREG_B1_UDB10_D0_D1
+ 190              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__D0_REG, CYREG_B1_UDB10_D0
+ 191              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__D1_REG, CYREG_B1_UDB10_D1
+ 192              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__DP_AUX_CTL_REG, CYREG_B1_UDB10_ACTL
+ 193              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__F0_F1_REG, CYREG_B1_UDB10_F0_F1
+ 194              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__F0_REG, CYREG_B1_UDB10_F0
+ 195              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__F1_REG, CYREG_B1_UDB10_F1
+ 196              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__MSK_DP_AUX_CTL_REG, CYREG_B1_UDB10_MSK_ACTL
+ 197              	.set LEDPWM_PWMUDB_sP8_pwmdp_u0__PER_DP_AUX_CTL_REG, CYREG_B1_UDB10_MSK_ACTL
+ 198              	
+ 199              	/* Clock_1 */
+ 200              	.set Clock_1__CFG0, CYREG_CLKDIST_DCFG1_CFG0
+ 201              	.set Clock_1__CFG1, CYREG_CLKDIST_DCFG1_CFG1
+ 202              	.set Clock_1__CFG2, CYREG_CLKDIST_DCFG1_CFG2
+ 203              	.set Clock_1__CFG2_SRC_SEL_MASK, 0x07
+ 204              	.set Clock_1__INDEX, 0x01
+ 205              	.set Clock_1__PM_ACT_CFG, CYREG_PM_ACT_CFG2
+ 206              	.set Clock_1__PM_ACT_MSK, 0x02
+ 207              	.set Clock_1__PM_STBY_CFG, CYREG_PM_STBY_CFG2
+ 208              	.set Clock_1__PM_STBY_MSK, 0x02
+ 209              	
+ 210              	/* Speaker */
+ 211              	.set Speaker__0__INTTYPE, CYREG_PICU12_INTTYPE3
+ 212              	.set Speaker__0__MASK, 0x08
+ 213              	.set Speaker__0__PC, CYREG_PRT12_PC3
+ 214              	.set Speaker__0__PORT, 12
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 193
 
 
- 215              	.set NoteTimer_TimerHW__PER1, CYREG_TMR1_PER1
- 216              	.set NoteTimer_TimerHW__PM_ACT_CFG, CYREG_PM_ACT_CFG3
- 217              	.set NoteTimer_TimerHW__PM_ACT_MSK, 0x02
- 218              	.set NoteTimer_TimerHW__PM_STBY_CFG, CYREG_PM_STBY_CFG3
- 219              	.set NoteTimer_TimerHW__PM_STBY_MSK, 0x02
- 220              	.set NoteTimer_TimerHW__RT0, CYREG_TMR1_RT0
- 221              	.set NoteTimer_TimerHW__RT1, CYREG_TMR1_RT1
- 222              	.set NoteTimer_TimerHW__SR0, CYREG_TMR1_SR0
- 223              	
- 224              	/* UARTReset */
- 225              	.set UARTReset_Sync_ctrl_reg__0__MASK, 0x01
- 226              	.set UARTReset_Sync_ctrl_reg__0__POS, 0
- 227              	.set UARTReset_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B0_UDB09_10_ACTL
- 228              	.set UARTReset_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG, CYREG_B0_UDB09_10_CTL
- 229              	.set UARTReset_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG, CYREG_B0_UDB09_10_CTL
- 230              	.set UARTReset_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG, CYREG_B0_UDB09_10_CTL
- 231              	.set UARTReset_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG, CYREG_B0_UDB09_10_CTL
- 232              	.set UARTReset_Sync_ctrl_reg__16BIT_MASK_MASK_REG, CYREG_B0_UDB09_10_MSK
- 233              	.set UARTReset_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG, CYREG_B0_UDB09_10_MSK
- 234              	.set UARTReset_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG, CYREG_B0_UDB09_10_MSK
- 235              	.set UARTReset_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG, CYREG_B0_UDB09_10_MSK
- 236              	.set UARTReset_Sync_ctrl_reg__CONTROL_AUX_CTL_REG, CYREG_B0_UDB09_ACTL
- 237              	.set UARTReset_Sync_ctrl_reg__CONTROL_REG, CYREG_B0_UDB09_CTL
- 238              	.set UARTReset_Sync_ctrl_reg__CONTROL_ST_REG, CYREG_B0_UDB09_ST_CTL
- 239              	.set UARTReset_Sync_ctrl_reg__COUNT_REG, CYREG_B0_UDB09_CTL
- 240              	.set UARTReset_Sync_ctrl_reg__COUNT_ST_REG, CYREG_B0_UDB09_ST_CTL
- 241              	.set UARTReset_Sync_ctrl_reg__MASK, 0x01
- 242              	.set UARTReset_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
- 243              	.set UARTReset_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
- 244              	.set UARTReset_Sync_ctrl_reg__PERIOD_REG, CYREG_B0_UDB09_MSK
- 245              	
- 246              	/* note_clock */
- 247              	.set note_clock__CFG0, CYREG_CLKDIST_DCFG4_CFG0
- 248              	.set note_clock__CFG1, CYREG_CLKDIST_DCFG4_CFG1
- 249              	.set note_clock__CFG2, CYREG_CLKDIST_DCFG4_CFG2
- 250              	.set note_clock__CFG2_SRC_SEL_MASK, 0x07
- 251              	.set note_clock__INDEX, 0x04
- 252              	.set note_clock__PM_ACT_CFG, CYREG_PM_ACT_CFG2
- 253              	.set note_clock__PM_ACT_MSK, 0x10
- 254              	.set note_clock__PM_STBY_CFG, CYREG_PM_STBY_CFG2
- 255              	.set note_clock__PM_STBY_MSK, 0x10
- 256              	
- 257              	/* ByteCounter */
- 258              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_A0_REG, CYREG_B0_UDB09_10_A0
- 259              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_A1_REG, CYREG_B0_UDB09_10_A1
- 260              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_D0_REG, CYREG_B0_UDB09_10_D0
- 261              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_D1_REG, CYREG_B0_UDB09_10_D1
- 262              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_DP_AUX_CTL_REG, CYREG_B0_UDB09_10_ACTL
- 263              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_F0_REG, CYREG_B0_UDB09_10_F0
- 264              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_F1_REG, CYREG_B0_UDB09_10_F1
- 265              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__A0_A1_REG, CYREG_B0_UDB09_A0_A1
- 266              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__A0_REG, CYREG_B0_UDB09_A0
- 267              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__A1_REG, CYREG_B0_UDB09_A1
- 268              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__D0_D1_REG, CYREG_B0_UDB09_D0_D1
- 269              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__D0_REG, CYREG_B0_UDB09_D0
- 270              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__D1_REG, CYREG_B0_UDB09_D1
- 271              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__DP_AUX_CTL_REG, CYREG_B0_UDB09_ACTL
+ 215              	.set Speaker__0__SHIFT, 3
+ 216              	.set Speaker__AG, CYREG_PRT12_AG
+ 217              	.set Speaker__BIE, CYREG_PRT12_BIE
+ 218              	.set Speaker__BIT_MASK, CYREG_PRT12_BIT_MASK
+ 219              	.set Speaker__BYP, CYREG_PRT12_BYP
+ 220              	.set Speaker__DM0, CYREG_PRT12_DM0
+ 221              	.set Speaker__DM1, CYREG_PRT12_DM1
+ 222              	.set Speaker__DM2, CYREG_PRT12_DM2
+ 223              	.set Speaker__DR, CYREG_PRT12_DR
+ 224              	.set Speaker__INP_DIS, CYREG_PRT12_INP_DIS
+ 225              	.set Speaker__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU12_BASE
+ 226              	.set Speaker__MASK, 0x08
+ 227              	.set Speaker__PORT, 12
+ 228              	.set Speaker__PRT, CYREG_PRT12_PRT
+ 229              	.set Speaker__PRTDSI__DBL_SYNC_IN, CYREG_PRT12_DBL_SYNC_IN
+ 230              	.set Speaker__PRTDSI__OE_SEL0, CYREG_PRT12_OE_SEL0
+ 231              	.set Speaker__PRTDSI__OE_SEL1, CYREG_PRT12_OE_SEL1
+ 232              	.set Speaker__PRTDSI__OUT_SEL0, CYREG_PRT12_OUT_SEL0
+ 233              	.set Speaker__PRTDSI__OUT_SEL1, CYREG_PRT12_OUT_SEL1
+ 234              	.set Speaker__PRTDSI__SYNC_OUT, CYREG_PRT12_SYNC_OUT
+ 235              	.set Speaker__PS, CYREG_PRT12_PS
+ 236              	.set Speaker__SHIFT, 3
+ 237              	.set Speaker__SIO_CFG, CYREG_PRT12_SIO_CFG
+ 238              	.set Speaker__SIO_DIFF, CYREG_PRT12_SIO_DIFF
+ 239              	.set Speaker__SIO_HYST_EN, CYREG_PRT12_SIO_HYST_EN
+ 240              	.set Speaker__SIO_REG_HIFREQ, CYREG_PRT12_SIO_REG_HIFREQ
+ 241              	.set Speaker__SLW, CYREG_PRT12_SLW
+ 242              	.set Speaker_Clock__CFG0, CYREG_CLKDIST_DCFG2_CFG0
+ 243              	.set Speaker_Clock__CFG1, CYREG_CLKDIST_DCFG2_CFG1
+ 244              	.set Speaker_Clock__CFG2, CYREG_CLKDIST_DCFG2_CFG2
+ 245              	.set Speaker_Clock__CFG2_SRC_SEL_MASK, 0x07
+ 246              	.set Speaker_Clock__INDEX, 0x02
+ 247              	.set Speaker_Clock__PM_ACT_CFG, CYREG_PM_ACT_CFG2
+ 248              	.set Speaker_Clock__PM_ACT_MSK, 0x04
+ 249              	.set Speaker_Clock__PM_STBY_CFG, CYREG_PM_STBY_CFG2
+ 250              	.set Speaker_Clock__PM_STBY_MSK, 0x04
+ 251              	.set Speaker_Clock_2__CFG0, CYREG_CLKDIST_DCFG5_CFG0
+ 252              	.set Speaker_Clock_2__CFG1, CYREG_CLKDIST_DCFG5_CFG1
+ 253              	.set Speaker_Clock_2__CFG2, CYREG_CLKDIST_DCFG5_CFG2
+ 254              	.set Speaker_Clock_2__CFG2_SRC_SEL_MASK, 0x07
+ 255              	.set Speaker_Clock_2__INDEX, 0x05
+ 256              	.set Speaker_Clock_2__PM_ACT_CFG, CYREG_PM_ACT_CFG2
+ 257              	.set Speaker_Clock_2__PM_ACT_MSK, 0x20
+ 258              	.set Speaker_Clock_2__PM_STBY_CFG, CYREG_PM_STBY_CFG2
+ 259              	.set Speaker_Clock_2__PM_STBY_MSK, 0x20
+ 260              	
+ 261              	/* NoteTimer */
+ 262              	.set NoteTimer_TimerHW__CAP0, CYREG_TMR1_CAP0
+ 263              	.set NoteTimer_TimerHW__CAP1, CYREG_TMR1_CAP1
+ 264              	.set NoteTimer_TimerHW__CFG0, CYREG_TMR1_CFG0
+ 265              	.set NoteTimer_TimerHW__CFG1, CYREG_TMR1_CFG1
+ 266              	.set NoteTimer_TimerHW__CFG2, CYREG_TMR1_CFG2
+ 267              	.set NoteTimer_TimerHW__CNT_CMP0, CYREG_TMR1_CNT_CMP0
+ 268              	.set NoteTimer_TimerHW__CNT_CMP1, CYREG_TMR1_CNT_CMP1
+ 269              	.set NoteTimer_TimerHW__PER0, CYREG_TMR1_PER0
+ 270              	.set NoteTimer_TimerHW__PER1, CYREG_TMR1_PER1
+ 271              	.set NoteTimer_TimerHW__PM_ACT_CFG, CYREG_PM_ACT_CFG3
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 194
 
 
- 272              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__F0_F1_REG, CYREG_B0_UDB09_F0_F1
- 273              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__F0_REG, CYREG_B0_UDB09_F0
- 274              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__F1_REG, CYREG_B0_UDB09_F1
- 275              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__MSK_DP_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
- 276              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__PER_DP_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
- 277              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B1_UDB10_11_ACTL
- 278              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_CONTROL_CONTROL_REG, CYREG_B1_UDB10_11_CTL
- 279              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_CONTROL_COUNT_REG, CYREG_B1_UDB10_11_CTL
- 280              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_COUNT_CONTROL_REG, CYREG_B1_UDB10_11_CTL
- 281              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_COUNT_COUNT_REG, CYREG_B1_UDB10_11_CTL
- 282              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_MASK_MASK_REG, CYREG_B1_UDB10_11_MSK
- 283              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_MASK_PERIOD_REG, CYREG_B1_UDB10_11_MSK
- 284              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_PERIOD_MASK_REG, CYREG_B1_UDB10_11_MSK
- 285              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_PERIOD_PERIOD_REG, CYREG_B1_UDB10_11_MSK
- 286              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__7__MASK, 0x80
- 287              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__7__POS, 7
- 288              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__CONTROL_AUX_CTL_REG, CYREG_B1_UDB10_ACTL
- 289              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__CONTROL_REG, CYREG_B1_UDB10_CTL
- 290              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__CONTROL_ST_REG, CYREG_B1_UDB10_ST_CTL
- 291              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__COUNT_REG, CYREG_B1_UDB10_CTL
- 292              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__COUNT_ST_REG, CYREG_B1_UDB10_ST_CTL
- 293              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__MASK, 0x80
- 294              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__MASK_CTL_AUX_CTL_REG, CYREG_B1_UDB10_MSK_ACTL
- 295              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__PER_CTL_AUX_CTL_REG, CYREG_B1_UDB10_MSK_ACTL
- 296              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__PERIOD_REG, CYREG_B1_UDB10_MSK
- 297              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__0__MASK, 0x01
- 298              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__0__POS, 0
- 299              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__1__MASK, 0x02
- 300              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__1__POS, 1
- 301              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__16BIT_STATUS_AUX_CTL_REG, CYREG_B0_UDB09_10_ACTL
- 302              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__16BIT_STATUS_REG, CYREG_B0_UDB09_10_ST
- 303              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__2__MASK, 0x04
- 304              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__2__POS, 2
- 305              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__5__MASK, 0x20
- 306              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__5__POS, 5
- 307              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__6__MASK, 0x40
- 308              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__6__POS, 6
- 309              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__MASK, 0x67
- 310              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__MASK_REG, CYREG_B0_UDB09_MSK
- 311              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__MASK_ST_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
- 312              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__PER_ST_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
- 313              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__STATUS_AUX_CTL_REG, CYREG_B0_UDB09_ACTL
- 314              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__STATUS_CNT_REG, CYREG_B0_UDB09_ST_CTL
- 315              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__STATUS_CONTROL_REG, CYREG_B0_UDB09_ST_CTL
- 316              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__STATUS_REG, CYREG_B0_UDB09_ST
- 317              	
- 318              	/* LEDDuration */
- 319              	.set LEDDuration_TimerHW__CAP0, CYREG_TMR0_CAP0
- 320              	.set LEDDuration_TimerHW__CAP1, CYREG_TMR0_CAP1
- 321              	.set LEDDuration_TimerHW__CFG0, CYREG_TMR0_CFG0
- 322              	.set LEDDuration_TimerHW__CFG1, CYREG_TMR0_CFG1
- 323              	.set LEDDuration_TimerHW__CFG2, CYREG_TMR0_CFG2
- 324              	.set LEDDuration_TimerHW__CNT_CMP0, CYREG_TMR0_CNT_CMP0
- 325              	.set LEDDuration_TimerHW__CNT_CMP1, CYREG_TMR0_CNT_CMP1
- 326              	.set LEDDuration_TimerHW__PER0, CYREG_TMR0_PER0
- 327              	.set LEDDuration_TimerHW__PER1, CYREG_TMR0_PER1
- 328              	.set LEDDuration_TimerHW__PM_ACT_CFG, CYREG_PM_ACT_CFG3
+ 272              	.set NoteTimer_TimerHW__PM_ACT_MSK, 0x02
+ 273              	.set NoteTimer_TimerHW__PM_STBY_CFG, CYREG_PM_STBY_CFG3
+ 274              	.set NoteTimer_TimerHW__PM_STBY_MSK, 0x02
+ 275              	.set NoteTimer_TimerHW__RT0, CYREG_TMR1_RT0
+ 276              	.set NoteTimer_TimerHW__RT1, CYREG_TMR1_RT1
+ 277              	.set NoteTimer_TimerHW__SR0, CYREG_TMR1_SR0
+ 278              	
+ 279              	/* UARTReset */
+ 280              	.set UARTReset_Sync_ctrl_reg__0__MASK, 0x01
+ 281              	.set UARTReset_Sync_ctrl_reg__0__POS, 0
+ 282              	.set UARTReset_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B1_UDB08_09_ACTL
+ 283              	.set UARTReset_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG, CYREG_B1_UDB08_09_CTL
+ 284              	.set UARTReset_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG, CYREG_B1_UDB08_09_CTL
+ 285              	.set UARTReset_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG, CYREG_B1_UDB08_09_CTL
+ 286              	.set UARTReset_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG, CYREG_B1_UDB08_09_CTL
+ 287              	.set UARTReset_Sync_ctrl_reg__16BIT_MASK_MASK_REG, CYREG_B1_UDB08_09_MSK
+ 288              	.set UARTReset_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG, CYREG_B1_UDB08_09_MSK
+ 289              	.set UARTReset_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG, CYREG_B1_UDB08_09_MSK
+ 290              	.set UARTReset_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG, CYREG_B1_UDB08_09_MSK
+ 291              	.set UARTReset_Sync_ctrl_reg__CONTROL_AUX_CTL_REG, CYREG_B1_UDB08_ACTL
+ 292              	.set UARTReset_Sync_ctrl_reg__CONTROL_REG, CYREG_B1_UDB08_CTL
+ 293              	.set UARTReset_Sync_ctrl_reg__CONTROL_ST_REG, CYREG_B1_UDB08_ST_CTL
+ 294              	.set UARTReset_Sync_ctrl_reg__COUNT_REG, CYREG_B1_UDB08_CTL
+ 295              	.set UARTReset_Sync_ctrl_reg__COUNT_ST_REG, CYREG_B1_UDB08_ST_CTL
+ 296              	.set UARTReset_Sync_ctrl_reg__MASK, 0x01
+ 297              	.set UARTReset_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG, CYREG_B1_UDB08_MSK_ACTL
+ 298              	.set UARTReset_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG, CYREG_B1_UDB08_MSK_ACTL
+ 299              	.set UARTReset_Sync_ctrl_reg__PERIOD_REG, CYREG_B1_UDB08_MSK
+ 300              	
+ 301              	/* SpeakerPWM */
+ 302              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B0_UDB08_09_ACTL
+ 303              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__16BIT_CONTROL_CONTROL_REG, CYREG_B0_UDB08_09_CTL
+ 304              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__16BIT_CONTROL_COUNT_REG, CYREG_B0_UDB08_09_CTL
+ 305              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__16BIT_COUNT_CONTROL_REG, CYREG_B0_UDB08_09_CTL
+ 306              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__16BIT_COUNT_COUNT_REG, CYREG_B0_UDB08_09_CTL
+ 307              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__16BIT_MASK_MASK_REG, CYREG_B0_UDB08_09_MSK
+ 308              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__16BIT_MASK_PERIOD_REG, CYREG_B0_UDB08_09_MSK
+ 309              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__16BIT_PERIOD_MASK_REG, CYREG_B0_UDB08_09_MSK
+ 310              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__16BIT_PERIOD_PERIOD_REG, CYREG_B0_UDB08_09_MSK
+ 311              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__7__MASK, 0x80
+ 312              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__7__POS, 7
+ 313              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__CONTROL_AUX_CTL_REG, CYREG_B0_UDB08_ACTL
+ 314              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__CONTROL_REG, CYREG_B0_UDB08_CTL
+ 315              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__CONTROL_ST_REG, CYREG_B0_UDB08_ST_CTL
+ 316              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__COUNT_REG, CYREG_B0_UDB08_CTL
+ 317              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__COUNT_ST_REG, CYREG_B0_UDB08_ST_CTL
+ 318              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__MASK, 0x80
+ 319              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__MASK_CTL_AUX_CTL_REG, CYREG_B0_UDB08_MSK_ACTL
+ 320              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__PER_CTL_AUX_CTL_REG, CYREG_B0_UDB08_MSK_ACTL
+ 321              	.set SpeakerPWM_PWMUDB_genblk1_ctrlreg__PERIOD_REG, CYREG_B0_UDB08_MSK
+ 322              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__0__MASK, 0x01
+ 323              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__0__POS, 0
+ 324              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__1__MASK, 0x02
+ 325              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__1__POS, 1
+ 326              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__16BIT_STATUS_AUX_CTL_REG, CYREG_B0_UDB08_09_ACTL
+ 327              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__16BIT_STATUS_REG, CYREG_B0_UDB08_09_ST
+ 328              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__2__MASK, 0x04
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 195
 
 
- 329              	.set LEDDuration_TimerHW__PM_ACT_MSK, 0x01
- 330              	.set LEDDuration_TimerHW__PM_STBY_CFG, CYREG_PM_STBY_CFG3
- 331              	.set LEDDuration_TimerHW__PM_STBY_MSK, 0x01
- 332              	.set LEDDuration_TimerHW__RT0, CYREG_TMR0_RT0
- 333              	.set LEDDuration_TimerHW__RT1, CYREG_TMR0_RT1
- 334              	.set LEDDuration_TimerHW__SR0, CYREG_TMR0_SR0
- 335              	
- 336              	/* ByteReceived */
- 337              	.set ByteReceived__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
- 338              	.set ByteReceived__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
- 339              	.set ByteReceived__INTC_MASK, 0x01
- 340              	.set ByteReceived__INTC_NUMBER, 0
- 341              	.set ByteReceived__INTC_PRIOR_NUM, 6
- 342              	.set ByteReceived__INTC_PRIOR_REG, CYREG_NVIC_PRI_0
- 343              	.set ByteReceived__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
- 344              	.set ByteReceived__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
- 345              	
- 346              	/* LabVIEW_UART */
- 347              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__16BIT_CONTROL_AUX_CTL_REG, CYREG_B0_UDB10_11_ACTL
- 348              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__16BIT_CONTROL_CONTROL_REG, CYREG_B0_UDB10_11_CTL
- 349              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__16BIT_CONTROL_COUNT_REG, CYREG_B0_UDB10_11_CTL
- 350              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__16BIT_COUNT_CONTROL_REG, CYREG_B0_UDB10_11_CTL
- 351              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__16BIT_COUNT_COUNT_REG, CYREG_B0_UDB10_11_CTL
- 352              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__16BIT_MASK_MASK_REG, CYREG_B0_UDB10_11_MSK
- 353              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__16BIT_MASK_PERIOD_REG, CYREG_B0_UDB10_11_MSK
- 354              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__16BIT_PERIOD_MASK_REG, CYREG_B0_UDB10_11_MSK
- 355              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__16BIT_PERIOD_PERIOD_REG, CYREG_B0_UDB10_11_MSK
- 356              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__CONTROL_AUX_CTL_REG, CYREG_B0_UDB10_ACTL
- 357              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__CONTROL_REG, CYREG_B0_UDB10_CTL
- 358              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__CONTROL_ST_REG, CYREG_B0_UDB10_ST_CTL
- 359              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__COUNT_REG, CYREG_B0_UDB10_CTL
- 360              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__COUNT_ST_REG, CYREG_B0_UDB10_ST_CTL
- 361              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__MASK_CTL_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
- 362              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__PER_CTL_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
- 363              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__PERIOD_REG, CYREG_B0_UDB10_MSK
- 364              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__16BIT_STATUS_AUX_CTL_REG, CYREG_B0_UDB10_11_ACTL
- 365              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__16BIT_STATUS_REG, CYREG_B0_UDB10_11_ST
- 366              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__MASK_REG, CYREG_B0_UDB10_MSK
- 367              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__MASK_ST_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
- 368              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__PER_ST_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
- 369              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__STATUS_AUX_CTL_REG, CYREG_B0_UDB10_ACTL
- 370              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__STATUS_CNT_REG, CYREG_B0_UDB10_ST_CTL
- 371              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__STATUS_CONTROL_REG, CYREG_B0_UDB10_ST_CTL
- 372              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__STATUS_REG, CYREG_B0_UDB10_ST
- 373              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_A0_REG, CYREG_B0_UDB10_11_A0
- 374              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_A1_REG, CYREG_B0_UDB10_11_A1
- 375              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_D0_REG, CYREG_B0_UDB10_11_D0
- 376              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_D1_REG, CYREG_B0_UDB10_11_D1
- 377              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_DP_AUX_CTL_REG, CYREG_B0_UDB10_11_ACTL
- 378              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_F0_REG, CYREG_B0_UDB10_11_F0
- 379              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_F1_REG, CYREG_B0_UDB10_11_F1
- 380              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__A0_A1_REG, CYREG_B0_UDB10_A0_A1
- 381              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__A0_REG, CYREG_B0_UDB10_A0
- 382              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__A1_REG, CYREG_B0_UDB10_A1
- 383              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__D0_D1_REG, CYREG_B0_UDB10_D0_D1
- 384              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__D0_REG, CYREG_B0_UDB10_D0
- 385              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__D1_REG, CYREG_B0_UDB10_D1
+ 329              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__2__POS, 2
+ 330              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__3__MASK, 0x08
+ 331              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__3__POS, 3
+ 332              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__MASK, 0x0F
+ 333              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__MASK_REG, CYREG_B0_UDB08_MSK
+ 334              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__MASK_ST_AUX_CTL_REG, CYREG_B0_UDB08_MSK_ACTL
+ 335              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__PER_ST_AUX_CTL_REG, CYREG_B0_UDB08_MSK_ACTL
+ 336              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__STATUS_AUX_CTL_REG, CYREG_B0_UDB08_ACTL
+ 337              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__STATUS_CNT_REG, CYREG_B0_UDB08_ST_CTL
+ 338              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__STATUS_CONTROL_REG, CYREG_B0_UDB08_ST_CTL
+ 339              	.set SpeakerPWM_PWMUDB_genblk8_stsreg__STATUS_REG, CYREG_B0_UDB08_ST
+ 340              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__16BIT_A0_REG, CYREG_B0_UDB09_10_A0
+ 341              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__16BIT_A1_REG, CYREG_B0_UDB09_10_A1
+ 342              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__16BIT_D0_REG, CYREG_B0_UDB09_10_D0
+ 343              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__16BIT_D1_REG, CYREG_B0_UDB09_10_D1
+ 344              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__16BIT_DP_AUX_CTL_REG, CYREG_B0_UDB09_10_ACTL
+ 345              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__16BIT_F0_REG, CYREG_B0_UDB09_10_F0
+ 346              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__16BIT_F1_REG, CYREG_B0_UDB09_10_F1
+ 347              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__A0_A1_REG, CYREG_B0_UDB09_A0_A1
+ 348              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__A0_REG, CYREG_B0_UDB09_A0
+ 349              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__A1_REG, CYREG_B0_UDB09_A1
+ 350              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__D0_D1_REG, CYREG_B0_UDB09_D0_D1
+ 351              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__D0_REG, CYREG_B0_UDB09_D0
+ 352              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__D1_REG, CYREG_B0_UDB09_D1
+ 353              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__DP_AUX_CTL_REG, CYREG_B0_UDB09_ACTL
+ 354              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__F0_F1_REG, CYREG_B0_UDB09_F0_F1
+ 355              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__F0_REG, CYREG_B0_UDB09_F0
+ 356              	.set SpeakerPWM_PWMUDB_sP8_pwmdp_u0__F1_REG, CYREG_B0_UDB09_F1
+ 357              	
+ 358              	/* note_clock */
+ 359              	.set note_clock__CFG0, CYREG_CLKDIST_DCFG6_CFG0
+ 360              	.set note_clock__CFG1, CYREG_CLKDIST_DCFG6_CFG1
+ 361              	.set note_clock__CFG2, CYREG_CLKDIST_DCFG6_CFG2
+ 362              	.set note_clock__CFG2_SRC_SEL_MASK, 0x07
+ 363              	.set note_clock__INDEX, 0x06
+ 364              	.set note_clock__PM_ACT_CFG, CYREG_PM_ACT_CFG2
+ 365              	.set note_clock__PM_ACT_MSK, 0x40
+ 366              	.set note_clock__PM_STBY_CFG, CYREG_PM_STBY_CFG2
+ 367              	.set note_clock__PM_STBY_MSK, 0x40
+ 368              	
+ 369              	/* ByteCounter */
+ 370              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_A0_REG, CYREG_B0_UDB11_12_A0
+ 371              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_A1_REG, CYREG_B0_UDB11_12_A1
+ 372              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_D0_REG, CYREG_B0_UDB11_12_D0
+ 373              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_D1_REG, CYREG_B0_UDB11_12_D1
+ 374              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_DP_AUX_CTL_REG, CYREG_B0_UDB11_12_ACTL
+ 375              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_F0_REG, CYREG_B0_UDB11_12_F0
+ 376              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__16BIT_F1_REG, CYREG_B0_UDB11_12_F1
+ 377              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__A0_A1_REG, CYREG_B0_UDB11_A0_A1
+ 378              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__A0_REG, CYREG_B0_UDB11_A0
+ 379              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__A1_REG, CYREG_B0_UDB11_A1
+ 380              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__D0_D1_REG, CYREG_B0_UDB11_D0_D1
+ 381              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__D0_REG, CYREG_B0_UDB11_D0
+ 382              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__D1_REG, CYREG_B0_UDB11_D1
+ 383              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__DP_AUX_CTL_REG, CYREG_B0_UDB11_ACTL
+ 384              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__F0_F1_REG, CYREG_B0_UDB11_F0_F1
+ 385              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__F0_REG, CYREG_B0_UDB11_F0
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 196
 
 
- 386              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__DP_AUX_CTL_REG, CYREG_B0_UDB10_ACTL
- 387              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__F0_F1_REG, CYREG_B0_UDB10_F0_F1
- 388              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__F0_REG, CYREG_B0_UDB10_F0
- 389              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__F1_REG, CYREG_B0_UDB10_F1
- 390              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__MSK_DP_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
- 391              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__PER_DP_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
- 392              	.set LabVIEW_UART_BUART_sRX_RxSts__16BIT_STATUS_AUX_CTL_REG, CYREG_B1_UDB09_10_ACTL
- 393              	.set LabVIEW_UART_BUART_sRX_RxSts__16BIT_STATUS_REG, CYREG_B1_UDB09_10_ST
- 394              	.set LabVIEW_UART_BUART_sRX_RxSts__3__MASK, 0x08
- 395              	.set LabVIEW_UART_BUART_sRX_RxSts__3__POS, 3
- 396              	.set LabVIEW_UART_BUART_sRX_RxSts__4__MASK, 0x10
- 397              	.set LabVIEW_UART_BUART_sRX_RxSts__4__POS, 4
- 398              	.set LabVIEW_UART_BUART_sRX_RxSts__5__MASK, 0x20
- 399              	.set LabVIEW_UART_BUART_sRX_RxSts__5__POS, 5
- 400              	.set LabVIEW_UART_BUART_sRX_RxSts__MASK, 0x38
- 401              	.set LabVIEW_UART_BUART_sRX_RxSts__MASK_REG, CYREG_B1_UDB09_MSK
- 402              	.set LabVIEW_UART_BUART_sRX_RxSts__MASK_ST_AUX_CTL_REG, CYREG_B1_UDB09_MSK_ACTL
- 403              	.set LabVIEW_UART_BUART_sRX_RxSts__PER_ST_AUX_CTL_REG, CYREG_B1_UDB09_MSK_ACTL
- 404              	.set LabVIEW_UART_BUART_sRX_RxSts__STATUS_AUX_CTL_REG, CYREG_B1_UDB09_ACTL
- 405              	.set LabVIEW_UART_BUART_sRX_RxSts__STATUS_CNT_REG, CYREG_B1_UDB09_ST_CTL
- 406              	.set LabVIEW_UART_BUART_sRX_RxSts__STATUS_CONTROL_REG, CYREG_B1_UDB09_ST_CTL
- 407              	.set LabVIEW_UART_BUART_sRX_RxSts__STATUS_REG, CYREG_B1_UDB09_ST
- 408              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_A0_REG, CYREG_B1_UDB08_09_A0
- 409              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_A1_REG, CYREG_B1_UDB08_09_A1
- 410              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_D0_REG, CYREG_B1_UDB08_09_D0
- 411              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_D1_REG, CYREG_B1_UDB08_09_D1
- 412              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_DP_AUX_CTL_REG, CYREG_B1_UDB08_09_ACTL
- 413              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_F0_REG, CYREG_B1_UDB08_09_F0
- 414              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_F1_REG, CYREG_B1_UDB08_09_F1
- 415              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__A0_A1_REG, CYREG_B1_UDB08_A0_A1
- 416              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__A0_REG, CYREG_B1_UDB08_A0
- 417              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__A1_REG, CYREG_B1_UDB08_A1
- 418              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__D0_D1_REG, CYREG_B1_UDB08_D0_D1
- 419              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__D0_REG, CYREG_B1_UDB08_D0
- 420              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__D1_REG, CYREG_B1_UDB08_D1
- 421              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__DP_AUX_CTL_REG, CYREG_B1_UDB08_ACTL
- 422              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__F0_F1_REG, CYREG_B1_UDB08_F0_F1
- 423              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__F0_REG, CYREG_B1_UDB08_F0
- 424              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__F1_REG, CYREG_B1_UDB08_F1
- 425              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__A0_A1_REG, CYREG_B1_UDB11_A0_A1
- 426              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__A0_REG, CYREG_B1_UDB11_A0
- 427              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__A1_REG, CYREG_B1_UDB11_A1
- 428              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__D0_D1_REG, CYREG_B1_UDB11_D0_D1
- 429              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__D0_REG, CYREG_B1_UDB11_D0
- 430              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__D1_REG, CYREG_B1_UDB11_D1
- 431              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__DP_AUX_CTL_REG, CYREG_B1_UDB11_ACTL
- 432              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__F0_F1_REG, CYREG_B1_UDB11_F0_F1
- 433              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__F0_REG, CYREG_B1_UDB11_F0
- 434              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__F1_REG, CYREG_B1_UDB11_F1
- 435              	.set LabVIEW_UART_BUART_sTX_TxSts__0__MASK, 0x01
- 436              	.set LabVIEW_UART_BUART_sTX_TxSts__0__POS, 0
- 437              	.set LabVIEW_UART_BUART_sTX_TxSts__1__MASK, 0x02
- 438              	.set LabVIEW_UART_BUART_sTX_TxSts__1__POS, 1
- 439              	.set LabVIEW_UART_BUART_sTX_TxSts__2__MASK, 0x04
- 440              	.set LabVIEW_UART_BUART_sTX_TxSts__2__POS, 2
- 441              	.set LabVIEW_UART_BUART_sTX_TxSts__3__MASK, 0x08
- 442              	.set LabVIEW_UART_BUART_sTX_TxSts__3__POS, 3
+ 386              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__F1_REG, CYREG_B0_UDB11_F1
+ 387              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__MSK_DP_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
+ 388              	.set ByteCounter_CounterUDB_sC8_counterdp_u0__PER_DP_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
+ 389              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B0_UDB11_12_ACTL
+ 390              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_CONTROL_CONTROL_REG, CYREG_B0_UDB11_12_CTL
+ 391              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_CONTROL_COUNT_REG, CYREG_B0_UDB11_12_CTL
+ 392              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_COUNT_CONTROL_REG, CYREG_B0_UDB11_12_CTL
+ 393              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_COUNT_COUNT_REG, CYREG_B0_UDB11_12_CTL
+ 394              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_MASK_MASK_REG, CYREG_B0_UDB11_12_MSK
+ 395              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_MASK_PERIOD_REG, CYREG_B0_UDB11_12_MSK
+ 396              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_PERIOD_MASK_REG, CYREG_B0_UDB11_12_MSK
+ 397              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__16BIT_PERIOD_PERIOD_REG, CYREG_B0_UDB11_12_MSK
+ 398              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__7__MASK, 0x80
+ 399              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__7__POS, 7
+ 400              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__CONTROL_AUX_CTL_REG, CYREG_B0_UDB11_ACTL
+ 401              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__CONTROL_REG, CYREG_B0_UDB11_CTL
+ 402              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__CONTROL_ST_REG, CYREG_B0_UDB11_ST_CTL
+ 403              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__COUNT_REG, CYREG_B0_UDB11_CTL
+ 404              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__COUNT_ST_REG, CYREG_B0_UDB11_ST_CTL
+ 405              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__MASK, 0x80
+ 406              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__MASK_CTL_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
+ 407              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__PER_CTL_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
+ 408              	.set ByteCounter_CounterUDB_sCTRLReg_ctrlreg__PERIOD_REG, CYREG_B0_UDB11_MSK
+ 409              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__0__MASK, 0x01
+ 410              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__0__POS, 0
+ 411              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__1__MASK, 0x02
+ 412              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__1__POS, 1
+ 413              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__16BIT_STATUS_AUX_CTL_REG, CYREG_B0_UDB11_12_ACTL
+ 414              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__16BIT_STATUS_REG, CYREG_B0_UDB11_12_ST
+ 415              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__2__MASK, 0x04
+ 416              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__2__POS, 2
+ 417              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__5__MASK, 0x20
+ 418              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__5__POS, 5
+ 419              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__6__MASK, 0x40
+ 420              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__6__POS, 6
+ 421              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__MASK, 0x67
+ 422              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__MASK_REG, CYREG_B0_UDB11_MSK
+ 423              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__MASK_ST_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
+ 424              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__PER_ST_AUX_CTL_REG, CYREG_B0_UDB11_MSK_ACTL
+ 425              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__STATUS_AUX_CTL_REG, CYREG_B0_UDB11_ACTL
+ 426              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__STATUS_CNT_REG, CYREG_B0_UDB11_ST_CTL
+ 427              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__STATUS_CONTROL_REG, CYREG_B0_UDB11_ST_CTL
+ 428              	.set ByteCounter_CounterUDB_sSTSReg_stsreg__STATUS_REG, CYREG_B0_UDB11_ST
+ 429              	
+ 430              	/* LEDDuration */
+ 431              	.set LEDDuration_TimerHW__CAP0, CYREG_TMR0_CAP0
+ 432              	.set LEDDuration_TimerHW__CAP1, CYREG_TMR0_CAP1
+ 433              	.set LEDDuration_TimerHW__CFG0, CYREG_TMR0_CFG0
+ 434              	.set LEDDuration_TimerHW__CFG1, CYREG_TMR0_CFG1
+ 435              	.set LEDDuration_TimerHW__CFG2, CYREG_TMR0_CFG2
+ 436              	.set LEDDuration_TimerHW__CNT_CMP0, CYREG_TMR0_CNT_CMP0
+ 437              	.set LEDDuration_TimerHW__CNT_CMP1, CYREG_TMR0_CNT_CMP1
+ 438              	.set LEDDuration_TimerHW__PER0, CYREG_TMR0_PER0
+ 439              	.set LEDDuration_TimerHW__PER1, CYREG_TMR0_PER1
+ 440              	.set LEDDuration_TimerHW__PM_ACT_CFG, CYREG_PM_ACT_CFG3
+ 441              	.set LEDDuration_TimerHW__PM_ACT_MSK, 0x01
+ 442              	.set LEDDuration_TimerHW__PM_STBY_CFG, CYREG_PM_STBY_CFG3
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 197
 
 
- 443              	.set LabVIEW_UART_BUART_sTX_TxSts__MASK, 0x0F
- 444              	.set LabVIEW_UART_BUART_sTX_TxSts__MASK_REG, CYREG_B1_UDB11_MSK
- 445              	.set LabVIEW_UART_BUART_sTX_TxSts__STATUS_AUX_CTL_REG, CYREG_B1_UDB11_ACTL
- 446              	.set LabVIEW_UART_BUART_sTX_TxSts__STATUS_REG, CYREG_B1_UDB11_ST
- 447              	.set LabVIEW_UART_IntClock__CFG0, CYREG_CLKDIST_DCFG2_CFG0
- 448              	.set LabVIEW_UART_IntClock__CFG1, CYREG_CLKDIST_DCFG2_CFG1
- 449              	.set LabVIEW_UART_IntClock__CFG2, CYREG_CLKDIST_DCFG2_CFG2
- 450              	.set LabVIEW_UART_IntClock__CFG2_SRC_SEL_MASK, 0x07
- 451              	.set LabVIEW_UART_IntClock__INDEX, 0x02
- 452              	.set LabVIEW_UART_IntClock__PM_ACT_CFG, CYREG_PM_ACT_CFG2
- 453              	.set LabVIEW_UART_IntClock__PM_ACT_MSK, 0x04
- 454              	.set LabVIEW_UART_IntClock__PM_STBY_CFG, CYREG_PM_STBY_CFG2
- 455              	.set LabVIEW_UART_IntClock__PM_STBY_MSK, 0x04
- 456              	
- 457              	/* NoteInterrupt */
- 458              	.set NoteInterrupt__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
- 459              	.set NoteInterrupt__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
- 460              	.set NoteInterrupt__INTC_MASK, 0x40000
- 461              	.set NoteInterrupt__INTC_NUMBER, 18
- 462              	.set NoteInterrupt__INTC_PRIOR_NUM, 7
- 463              	.set NoteInterrupt__INTC_PRIOR_REG, CYREG_NVIC_PRI_18
- 464              	.set NoteInterrupt__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
- 465              	.set NoteInterrupt__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
- 466              	
- 467              	/* ByteCountReset */
- 468              	.set ByteCountReset_Sync_ctrl_reg__0__MASK, 0x01
- 469              	.set ByteCountReset_Sync_ctrl_reg__0__POS, 0
- 470              	.set ByteCountReset_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B1_UDB09_10_ACTL
- 471              	.set ByteCountReset_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG, CYREG_B1_UDB09_10_CTL
- 472              	.set ByteCountReset_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG, CYREG_B1_UDB09_10_CTL
- 473              	.set ByteCountReset_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG, CYREG_B1_UDB09_10_CTL
- 474              	.set ByteCountReset_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG, CYREG_B1_UDB09_10_CTL
- 475              	.set ByteCountReset_Sync_ctrl_reg__16BIT_MASK_MASK_REG, CYREG_B1_UDB09_10_MSK
- 476              	.set ByteCountReset_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG, CYREG_B1_UDB09_10_MSK
- 477              	.set ByteCountReset_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG, CYREG_B1_UDB09_10_MSK
- 478              	.set ByteCountReset_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG, CYREG_B1_UDB09_10_MSK
- 479              	.set ByteCountReset_Sync_ctrl_reg__CONTROL_AUX_CTL_REG, CYREG_B1_UDB09_ACTL
- 480              	.set ByteCountReset_Sync_ctrl_reg__CONTROL_REG, CYREG_B1_UDB09_CTL
- 481              	.set ByteCountReset_Sync_ctrl_reg__CONTROL_ST_REG, CYREG_B1_UDB09_ST_CTL
- 482              	.set ByteCountReset_Sync_ctrl_reg__COUNT_REG, CYREG_B1_UDB09_CTL
- 483              	.set ByteCountReset_Sync_ctrl_reg__COUNT_ST_REG, CYREG_B1_UDB09_ST_CTL
- 484              	.set ByteCountReset_Sync_ctrl_reg__MASK, 0x01
- 485              	.set ByteCountReset_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG, CYREG_B1_UDB09_MSK_ACTL
- 486              	.set ByteCountReset_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG, CYREG_B1_UDB09_MSK_ACTL
- 487              	.set ByteCountReset_Sync_ctrl_reg__PERIOD_REG, CYREG_B1_UDB09_MSK
- 488              	
- 489              	/* CommandReceived */
- 490              	.set CommandReceived__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
- 491              	.set CommandReceived__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
- 492              	.set CommandReceived__INTC_MASK, 0x02
- 493              	.set CommandReceived__INTC_NUMBER, 1
- 494              	.set CommandReceived__INTC_PRIOR_NUM, 6
- 495              	.set CommandReceived__INTC_PRIOR_REG, CYREG_NVIC_PRI_1
- 496              	.set CommandReceived__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
- 497              	.set CommandReceived__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
- 498              	
- 499              	/* LEDOffInterrupt */
+ 443              	.set LEDDuration_TimerHW__PM_STBY_MSK, 0x01
+ 444              	.set LEDDuration_TimerHW__RT0, CYREG_TMR0_RT0
+ 445              	.set LEDDuration_TimerHW__RT1, CYREG_TMR0_RT1
+ 446              	.set LEDDuration_TimerHW__SR0, CYREG_TMR0_SR0
+ 447              	
+ 448              	/* ByteReceived */
+ 449              	.set ByteReceived__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
+ 450              	.set ByteReceived__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
+ 451              	.set ByteReceived__INTC_MASK, 0x01
+ 452              	.set ByteReceived__INTC_NUMBER, 0
+ 453              	.set ByteReceived__INTC_PRIOR_NUM, 6
+ 454              	.set ByteReceived__INTC_PRIOR_REG, CYREG_NVIC_PRI_0
+ 455              	.set ByteReceived__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
+ 456              	.set ByteReceived__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
+ 457              	
+ 458              	/* LabVIEW_UART */
+ 459              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__CONTROL_AUX_CTL_REG, CYREG_B1_UDB11_ACTL
+ 460              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__CONTROL_REG, CYREG_B1_UDB11_CTL
+ 461              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__CONTROL_ST_REG, CYREG_B1_UDB11_ST_CTL
+ 462              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__COUNT_REG, CYREG_B1_UDB11_CTL
+ 463              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__COUNT_ST_REG, CYREG_B1_UDB11_ST_CTL
+ 464              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__MASK_CTL_AUX_CTL_REG, CYREG_B1_UDB11_MSK_ACTL
+ 465              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__PER_CTL_AUX_CTL_REG, CYREG_B1_UDB11_MSK_ACTL
+ 466              	.set LabVIEW_UART_BUART_sRX_RxBitCounter__PERIOD_REG, CYREG_B1_UDB11_MSK
+ 467              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__MASK_REG, CYREG_B1_UDB11_MSK
+ 468              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__MASK_ST_AUX_CTL_REG, CYREG_B1_UDB11_MSK_ACTL
+ 469              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__PER_ST_AUX_CTL_REG, CYREG_B1_UDB11_MSK_ACTL
+ 470              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__STATUS_AUX_CTL_REG, CYREG_B1_UDB11_ACTL
+ 471              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__STATUS_CNT_REG, CYREG_B1_UDB11_ST_CTL
+ 472              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__STATUS_CONTROL_REG, CYREG_B1_UDB11_ST_CTL
+ 473              	.set LabVIEW_UART_BUART_sRX_RxBitCounter_ST__STATUS_REG, CYREG_B1_UDB11_ST
+ 474              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_A0_REG, CYREG_B0_UDB08_09_A0
+ 475              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_A1_REG, CYREG_B0_UDB08_09_A1
+ 476              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_D0_REG, CYREG_B0_UDB08_09_D0
+ 477              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_D1_REG, CYREG_B0_UDB08_09_D1
+ 478              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_DP_AUX_CTL_REG, CYREG_B0_UDB08_09_ACTL
+ 479              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_F0_REG, CYREG_B0_UDB08_09_F0
+ 480              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__16BIT_F1_REG, CYREG_B0_UDB08_09_F1
+ 481              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__A0_A1_REG, CYREG_B0_UDB08_A0_A1
+ 482              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__A0_REG, CYREG_B0_UDB08_A0
+ 483              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__A1_REG, CYREG_B0_UDB08_A1
+ 484              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__D0_D1_REG, CYREG_B0_UDB08_D0_D1
+ 485              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__D0_REG, CYREG_B0_UDB08_D0
+ 486              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__D1_REG, CYREG_B0_UDB08_D1
+ 487              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__DP_AUX_CTL_REG, CYREG_B0_UDB08_ACTL
+ 488              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__F0_F1_REG, CYREG_B0_UDB08_F0_F1
+ 489              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__F0_REG, CYREG_B0_UDB08_F0
+ 490              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__F1_REG, CYREG_B0_UDB08_F1
+ 491              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__MSK_DP_AUX_CTL_REG, CYREG_B0_UDB08_MSK_ACTL
+ 492              	.set LabVIEW_UART_BUART_sRX_RxShifter_u0__PER_DP_AUX_CTL_REG, CYREG_B0_UDB08_MSK_ACTL
+ 493              	.set LabVIEW_UART_BUART_sRX_RxSts__16BIT_STATUS_AUX_CTL_REG, CYREG_B1_UDB08_09_ACTL
+ 494              	.set LabVIEW_UART_BUART_sRX_RxSts__16BIT_STATUS_REG, CYREG_B1_UDB08_09_ST
+ 495              	.set LabVIEW_UART_BUART_sRX_RxSts__3__MASK, 0x08
+ 496              	.set LabVIEW_UART_BUART_sRX_RxSts__3__POS, 3
+ 497              	.set LabVIEW_UART_BUART_sRX_RxSts__4__MASK, 0x10
+ 498              	.set LabVIEW_UART_BUART_sRX_RxSts__4__POS, 4
+ 499              	.set LabVIEW_UART_BUART_sRX_RxSts__5__MASK, 0x20
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 198
 
 
- 500              	.set LEDOffInterrupt__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
- 501              	.set LEDOffInterrupt__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
- 502              	.set LEDOffInterrupt__INTC_MASK, 0x20000
- 503              	.set LEDOffInterrupt__INTC_NUMBER, 17
- 504              	.set LEDOffInterrupt__INTC_PRIOR_NUM, 7
- 505              	.set LEDOffInterrupt__INTC_PRIOR_REG, CYREG_NVIC_PRI_17
- 506              	.set LEDOffInterrupt__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
- 507              	.set LEDOffInterrupt__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
- 508              	
- 509              	/* Miscellaneous */
- 510              	.set BCLK__BUS_CLK__HZ, 24000000
- 511              	.set BCLK__BUS_CLK__KHZ, 24000
- 512              	.set BCLK__BUS_CLK__MHZ, 24
- 513              	.set CYDEV_CHIP_DIE_LEOPARD, 1
- 514              	.set CYDEV_CHIP_DIE_PSOC4A, 24
- 515              	.set CYDEV_CHIP_DIE_PSOC5LP, 2
- 516              	.set CYDEV_CHIP_DIE_PSOC5TM, 3
- 517              	.set CYDEV_CHIP_DIE_TMA4, 4
- 518              	.set CYDEV_CHIP_DIE_UNKNOWN, 0
- 519              	.set CYDEV_CHIP_FAMILY_FM0P, 5
- 520              	.set CYDEV_CHIP_FAMILY_FM3, 6
- 521              	.set CYDEV_CHIP_FAMILY_FM4, 7
- 522              	.set CYDEV_CHIP_FAMILY_PSOC3, 1
- 523              	.set CYDEV_CHIP_FAMILY_PSOC4, 2
- 524              	.set CYDEV_CHIP_FAMILY_PSOC5, 3
- 525              	.set CYDEV_CHIP_FAMILY_PSOC6, 4
- 526              	.set CYDEV_CHIP_FAMILY_UNKNOWN, 0
- 527              	.set CYDEV_CHIP_FAMILY_USED, CYDEV_CHIP_FAMILY_PSOC5
- 528              	.set CYDEV_CHIP_JTAG_ID, 0x2E161069
- 529              	.set CYDEV_CHIP_MEMBER_3A, 1
- 530              	.set CYDEV_CHIP_MEMBER_4A, 24
- 531              	.set CYDEV_CHIP_MEMBER_4AA, 23
- 532              	.set CYDEV_CHIP_MEMBER_4AB, 28
- 533              	.set CYDEV_CHIP_MEMBER_4AC, 14
- 534              	.set CYDEV_CHIP_MEMBER_4D, 18
- 535              	.set CYDEV_CHIP_MEMBER_4E, 6
- 536              	.set CYDEV_CHIP_MEMBER_4F, 25
- 537              	.set CYDEV_CHIP_MEMBER_4G, 4
- 538              	.set CYDEV_CHIP_MEMBER_4H, 22
- 539              	.set CYDEV_CHIP_MEMBER_4I, 30
- 540              	.set CYDEV_CHIP_MEMBER_4J, 19
- 541              	.set CYDEV_CHIP_MEMBER_4K, 20
- 542              	.set CYDEV_CHIP_MEMBER_4L, 29
- 543              	.set CYDEV_CHIP_MEMBER_4M, 27
- 544              	.set CYDEV_CHIP_MEMBER_4N, 11
- 545              	.set CYDEV_CHIP_MEMBER_4O, 8
- 546              	.set CYDEV_CHIP_MEMBER_4P, 26
- 547              	.set CYDEV_CHIP_MEMBER_4Q, 15
- 548              	.set CYDEV_CHIP_MEMBER_4R, 9
- 549              	.set CYDEV_CHIP_MEMBER_4S, 12
- 550              	.set CYDEV_CHIP_MEMBER_4T, 10
- 551              	.set CYDEV_CHIP_MEMBER_4U, 5
- 552              	.set CYDEV_CHIP_MEMBER_4V, 21
- 553              	.set CYDEV_CHIP_MEMBER_4W, 13
- 554              	.set CYDEV_CHIP_MEMBER_4X, 7
- 555              	.set CYDEV_CHIP_MEMBER_4Y, 16
- 556              	.set CYDEV_CHIP_MEMBER_4Z, 17
+ 500              	.set LabVIEW_UART_BUART_sRX_RxSts__5__POS, 5
+ 501              	.set LabVIEW_UART_BUART_sRX_RxSts__MASK, 0x38
+ 502              	.set LabVIEW_UART_BUART_sRX_RxSts__MASK_REG, CYREG_B1_UDB08_MSK
+ 503              	.set LabVIEW_UART_BUART_sRX_RxSts__MASK_ST_AUX_CTL_REG, CYREG_B1_UDB08_MSK_ACTL
+ 504              	.set LabVIEW_UART_BUART_sRX_RxSts__PER_ST_AUX_CTL_REG, CYREG_B1_UDB08_MSK_ACTL
+ 505              	.set LabVIEW_UART_BUART_sRX_RxSts__STATUS_AUX_CTL_REG, CYREG_B1_UDB08_ACTL
+ 506              	.set LabVIEW_UART_BUART_sRX_RxSts__STATUS_CNT_REG, CYREG_B1_UDB08_ST_CTL
+ 507              	.set LabVIEW_UART_BUART_sRX_RxSts__STATUS_CONTROL_REG, CYREG_B1_UDB08_ST_CTL
+ 508              	.set LabVIEW_UART_BUART_sRX_RxSts__STATUS_REG, CYREG_B1_UDB08_ST
+ 509              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_A0_REG, CYREG_B0_UDB10_11_A0
+ 510              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_A1_REG, CYREG_B0_UDB10_11_A1
+ 511              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_D0_REG, CYREG_B0_UDB10_11_D0
+ 512              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_D1_REG, CYREG_B0_UDB10_11_D1
+ 513              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_DP_AUX_CTL_REG, CYREG_B0_UDB10_11_ACTL
+ 514              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_F0_REG, CYREG_B0_UDB10_11_F0
+ 515              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__16BIT_F1_REG, CYREG_B0_UDB10_11_F1
+ 516              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__A0_A1_REG, CYREG_B0_UDB10_A0_A1
+ 517              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__A0_REG, CYREG_B0_UDB10_A0
+ 518              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__A1_REG, CYREG_B0_UDB10_A1
+ 519              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__D0_D1_REG, CYREG_B0_UDB10_D0_D1
+ 520              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__D0_REG, CYREG_B0_UDB10_D0
+ 521              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__D1_REG, CYREG_B0_UDB10_D1
+ 522              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__DP_AUX_CTL_REG, CYREG_B0_UDB10_ACTL
+ 523              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__F0_F1_REG, CYREG_B0_UDB10_F0_F1
+ 524              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__F0_REG, CYREG_B0_UDB10_F0
+ 525              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__F1_REG, CYREG_B0_UDB10_F1
+ 526              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__MSK_DP_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
+ 527              	.set LabVIEW_UART_BUART_sTX_sCLOCK_TxBitClkGen__PER_DP_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
+ 528              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__16BIT_A0_REG, CYREG_B1_UDB09_10_A0
+ 529              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__16BIT_A1_REG, CYREG_B1_UDB09_10_A1
+ 530              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__16BIT_D0_REG, CYREG_B1_UDB09_10_D0
+ 531              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__16BIT_D1_REG, CYREG_B1_UDB09_10_D1
+ 532              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__16BIT_DP_AUX_CTL_REG, CYREG_B1_UDB09_10_ACTL
+ 533              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__16BIT_F0_REG, CYREG_B1_UDB09_10_F0
+ 534              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__16BIT_F1_REG, CYREG_B1_UDB09_10_F1
+ 535              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__A0_A1_REG, CYREG_B1_UDB09_A0_A1
+ 536              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__A0_REG, CYREG_B1_UDB09_A0
+ 537              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__A1_REG, CYREG_B1_UDB09_A1
+ 538              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__D0_D1_REG, CYREG_B1_UDB09_D0_D1
+ 539              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__D0_REG, CYREG_B1_UDB09_D0
+ 540              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__D1_REG, CYREG_B1_UDB09_D1
+ 541              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__DP_AUX_CTL_REG, CYREG_B1_UDB09_ACTL
+ 542              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__F0_F1_REG, CYREG_B1_UDB09_F0_F1
+ 543              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__F0_REG, CYREG_B1_UDB09_F0
+ 544              	.set LabVIEW_UART_BUART_sTX_TxShifter_u0__F1_REG, CYREG_B1_UDB09_F1
+ 545              	.set LabVIEW_UART_BUART_sTX_TxSts__0__MASK, 0x01
+ 546              	.set LabVIEW_UART_BUART_sTX_TxSts__0__POS, 0
+ 547              	.set LabVIEW_UART_BUART_sTX_TxSts__1__MASK, 0x02
+ 548              	.set LabVIEW_UART_BUART_sTX_TxSts__1__POS, 1
+ 549              	.set LabVIEW_UART_BUART_sTX_TxSts__16BIT_STATUS_AUX_CTL_REG, CYREG_B0_UDB10_11_ACTL
+ 550              	.set LabVIEW_UART_BUART_sTX_TxSts__16BIT_STATUS_REG, CYREG_B0_UDB10_11_ST
+ 551              	.set LabVIEW_UART_BUART_sTX_TxSts__2__MASK, 0x04
+ 552              	.set LabVIEW_UART_BUART_sTX_TxSts__2__POS, 2
+ 553              	.set LabVIEW_UART_BUART_sTX_TxSts__3__MASK, 0x08
+ 554              	.set LabVIEW_UART_BUART_sTX_TxSts__3__POS, 3
+ 555              	.set LabVIEW_UART_BUART_sTX_TxSts__MASK, 0x0F
+ 556              	.set LabVIEW_UART_BUART_sTX_TxSts__MASK_REG, CYREG_B0_UDB10_MSK
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 199
 
 
- 557              	.set CYDEV_CHIP_MEMBER_5A, 3
- 558              	.set CYDEV_CHIP_MEMBER_5B, 2
- 559              	.set CYDEV_CHIP_MEMBER_6A, 31
- 560              	.set CYDEV_CHIP_MEMBER_FM3, 35
- 561              	.set CYDEV_CHIP_MEMBER_FM4, 36
- 562              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE1, 32
- 563              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE2, 33
- 564              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE3, 34
- 565              	.set CYDEV_CHIP_MEMBER_UNKNOWN, 0
- 566              	.set CYDEV_CHIP_MEMBER_USED, CYDEV_CHIP_MEMBER_5B
- 567              	.set CYDEV_CHIP_DIE_EXPECT, CYDEV_CHIP_MEMBER_USED
- 568              	.set CYDEV_CHIP_DIE_ACTUAL, CYDEV_CHIP_DIE_EXPECT
- 569              	.set CYDEV_CHIP_REV_LEOPARD_ES1, 0
- 570              	.set CYDEV_CHIP_REV_LEOPARD_ES2, 1
- 571              	.set CYDEV_CHIP_REV_LEOPARD_ES3, 3
- 572              	.set CYDEV_CHIP_REV_LEOPARD_PRODUCTION, 3
- 573              	.set CYDEV_CHIP_REV_PSOC4A_ES0, 17
- 574              	.set CYDEV_CHIP_REV_PSOC4A_PRODUCTION, 17
- 575              	.set CYDEV_CHIP_REV_PSOC5LP_ES0, 0
- 576              	.set CYDEV_CHIP_REV_PSOC5LP_PRODUCTION, 0
- 577              	.set CYDEV_CHIP_REV_PSOC5TM_ES0, 0
- 578              	.set CYDEV_CHIP_REV_PSOC5TM_ES1, 1
- 579              	.set CYDEV_CHIP_REV_PSOC5TM_PRODUCTION, 1
- 580              	.set CYDEV_CHIP_REV_TMA4_ES, 17
- 581              	.set CYDEV_CHIP_REV_TMA4_ES2, 33
- 582              	.set CYDEV_CHIP_REV_TMA4_PRODUCTION, 17
- 583              	.set CYDEV_CHIP_REVISION_3A_ES1, 0
- 584              	.set CYDEV_CHIP_REVISION_3A_ES2, 1
- 585              	.set CYDEV_CHIP_REVISION_3A_ES3, 3
- 586              	.set CYDEV_CHIP_REVISION_3A_PRODUCTION, 3
- 587              	.set CYDEV_CHIP_REVISION_4A_ES0, 17
- 588              	.set CYDEV_CHIP_REVISION_4A_PRODUCTION, 17
- 589              	.set CYDEV_CHIP_REVISION_4AA_PRODUCTION, 0
- 590              	.set CYDEV_CHIP_REVISION_4AB_PRODUCTION, 0
- 591              	.set CYDEV_CHIP_REVISION_4AC_PRODUCTION, 0
- 592              	.set CYDEV_CHIP_REVISION_4D_PRODUCTION, 0
- 593              	.set CYDEV_CHIP_REVISION_4E_CCG2_NO_USBPD, 0
- 594              	.set CYDEV_CHIP_REVISION_4E_PRODUCTION, 0
- 595              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION, 0
- 596              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION_256DMA, 0
- 597              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION_256K, 0
- 598              	.set CYDEV_CHIP_REVISION_4G_ES, 17
- 599              	.set CYDEV_CHIP_REVISION_4G_ES2, 33
- 600              	.set CYDEV_CHIP_REVISION_4G_PRODUCTION, 17
- 601              	.set CYDEV_CHIP_REVISION_4H_PRODUCTION, 0
- 602              	.set CYDEV_CHIP_REVISION_4I_PRODUCTION, 0
- 603              	.set CYDEV_CHIP_REVISION_4J_PRODUCTION, 0
- 604              	.set CYDEV_CHIP_REVISION_4K_PRODUCTION, 0
- 605              	.set CYDEV_CHIP_REVISION_4L_PRODUCTION, 0
- 606              	.set CYDEV_CHIP_REVISION_4M_PRODUCTION, 0
- 607              	.set CYDEV_CHIP_REVISION_4N_PRODUCTION, 0
- 608              	.set CYDEV_CHIP_REVISION_4O_PRODUCTION, 0
- 609              	.set CYDEV_CHIP_REVISION_4P_PRODUCTION, 0
- 610              	.set CYDEV_CHIP_REVISION_4Q_PRODUCTION, 0
- 611              	.set CYDEV_CHIP_REVISION_4R_PRODUCTION, 0
- 612              	.set CYDEV_CHIP_REVISION_4S_PRODUCTION, 0
- 613              	.set CYDEV_CHIP_REVISION_4T_PRODUCTION, 0
+ 557              	.set LabVIEW_UART_BUART_sTX_TxSts__MASK_ST_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
+ 558              	.set LabVIEW_UART_BUART_sTX_TxSts__PER_ST_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
+ 559              	.set LabVIEW_UART_BUART_sTX_TxSts__STATUS_AUX_CTL_REG, CYREG_B0_UDB10_ACTL
+ 560              	.set LabVIEW_UART_BUART_sTX_TxSts__STATUS_CNT_REG, CYREG_B0_UDB10_ST_CTL
+ 561              	.set LabVIEW_UART_BUART_sTX_TxSts__STATUS_CONTROL_REG, CYREG_B0_UDB10_ST_CTL
+ 562              	.set LabVIEW_UART_BUART_sTX_TxSts__STATUS_REG, CYREG_B0_UDB10_ST
+ 563              	.set LabVIEW_UART_IntClock__CFG0, CYREG_CLKDIST_DCFG3_CFG0
+ 564              	.set LabVIEW_UART_IntClock__CFG1, CYREG_CLKDIST_DCFG3_CFG1
+ 565              	.set LabVIEW_UART_IntClock__CFG2, CYREG_CLKDIST_DCFG3_CFG2
+ 566              	.set LabVIEW_UART_IntClock__CFG2_SRC_SEL_MASK, 0x07
+ 567              	.set LabVIEW_UART_IntClock__INDEX, 0x03
+ 568              	.set LabVIEW_UART_IntClock__PM_ACT_CFG, CYREG_PM_ACT_CFG2
+ 569              	.set LabVIEW_UART_IntClock__PM_ACT_MSK, 0x08
+ 570              	.set LabVIEW_UART_IntClock__PM_STBY_CFG, CYREG_PM_STBY_CFG2
+ 571              	.set LabVIEW_UART_IntClock__PM_STBY_MSK, 0x08
+ 572              	
+ 573              	/* SpeakerTimer */
+ 574              	.set SpeakerTimer_TimerHW__CAP0, CYREG_TMR3_CAP0
+ 575              	.set SpeakerTimer_TimerHW__CAP1, CYREG_TMR3_CAP1
+ 576              	.set SpeakerTimer_TimerHW__CFG0, CYREG_TMR3_CFG0
+ 577              	.set SpeakerTimer_TimerHW__CFG1, CYREG_TMR3_CFG1
+ 578              	.set SpeakerTimer_TimerHW__CFG2, CYREG_TMR3_CFG2
+ 579              	.set SpeakerTimer_TimerHW__CNT_CMP0, CYREG_TMR3_CNT_CMP0
+ 580              	.set SpeakerTimer_TimerHW__CNT_CMP1, CYREG_TMR3_CNT_CMP1
+ 581              	.set SpeakerTimer_TimerHW__PER0, CYREG_TMR3_PER0
+ 582              	.set SpeakerTimer_TimerHW__PER1, CYREG_TMR3_PER1
+ 583              	.set SpeakerTimer_TimerHW__PM_ACT_CFG, CYREG_PM_ACT_CFG3
+ 584              	.set SpeakerTimer_TimerHW__PM_ACT_MSK, 0x08
+ 585              	.set SpeakerTimer_TimerHW__PM_STBY_CFG, CYREG_PM_STBY_CFG3
+ 586              	.set SpeakerTimer_TimerHW__PM_STBY_MSK, 0x08
+ 587              	.set SpeakerTimer_TimerHW__RT0, CYREG_TMR3_RT0
+ 588              	.set SpeakerTimer_TimerHW__RT1, CYREG_TMR3_RT1
+ 589              	.set SpeakerTimer_TimerHW__SR0, CYREG_TMR3_SR0
+ 590              	
+ 591              	/* NoteInterrupt */
+ 592              	.set NoteInterrupt__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
+ 593              	.set NoteInterrupt__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
+ 594              	.set NoteInterrupt__INTC_MASK, 0x40000
+ 595              	.set NoteInterrupt__INTC_NUMBER, 18
+ 596              	.set NoteInterrupt__INTC_PRIOR_NUM, 7
+ 597              	.set NoteInterrupt__INTC_PRIOR_REG, CYREG_NVIC_PRI_18
+ 598              	.set NoteInterrupt__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
+ 599              	.set NoteInterrupt__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
+ 600              	
+ 601              	/* ByteCountReset */
+ 602              	.set ByteCountReset_Sync_ctrl_reg__0__MASK, 0x01
+ 603              	.set ByteCountReset_Sync_ctrl_reg__0__POS, 0
+ 604              	.set ByteCountReset_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B0_UDB10_11_ACTL
+ 605              	.set ByteCountReset_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG, CYREG_B0_UDB10_11_CTL
+ 606              	.set ByteCountReset_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG, CYREG_B0_UDB10_11_CTL
+ 607              	.set ByteCountReset_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG, CYREG_B0_UDB10_11_CTL
+ 608              	.set ByteCountReset_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG, CYREG_B0_UDB10_11_CTL
+ 609              	.set ByteCountReset_Sync_ctrl_reg__16BIT_MASK_MASK_REG, CYREG_B0_UDB10_11_MSK
+ 610              	.set ByteCountReset_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG, CYREG_B0_UDB10_11_MSK
+ 611              	.set ByteCountReset_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG, CYREG_B0_UDB10_11_MSK
+ 612              	.set ByteCountReset_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG, CYREG_B0_UDB10_11_MSK
+ 613              	.set ByteCountReset_Sync_ctrl_reg__CONTROL_AUX_CTL_REG, CYREG_B0_UDB10_ACTL
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 200
 
 
- 614              	.set CYDEV_CHIP_REVISION_4U_PRODUCTION, 0
- 615              	.set CYDEV_CHIP_REVISION_4V_PRODUCTION, 0
- 616              	.set CYDEV_CHIP_REVISION_4W_PRODUCTION, 0
- 617              	.set CYDEV_CHIP_REVISION_4X_PRODUCTION, 0
- 618              	.set CYDEV_CHIP_REVISION_4Y_PRODUCTION, 0
- 619              	.set CYDEV_CHIP_REVISION_4Z_PRODUCTION, 0
- 620              	.set CYDEV_CHIP_REVISION_5A_ES0, 0
- 621              	.set CYDEV_CHIP_REVISION_5A_ES1, 1
- 622              	.set CYDEV_CHIP_REVISION_5A_PRODUCTION, 1
- 623              	.set CYDEV_CHIP_REVISION_5B_ES0, 0
- 624              	.set CYDEV_CHIP_REVISION_5B_PRODUCTION, 0
- 625              	.set CYDEV_CHIP_REVISION_6A_ES, 17
- 626              	.set CYDEV_CHIP_REVISION_6A_NO_UDB, 33
- 627              	.set CYDEV_CHIP_REVISION_6A_PRODUCTION, 33
- 628              	.set CYDEV_CHIP_REVISION_FM3_PRODUCTION, 0
- 629              	.set CYDEV_CHIP_REVISION_FM4_PRODUCTION, 0
- 630              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE1_PRODUCTION, 0
- 631              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE2_PRODUCTION, 0
- 632              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE3_PRODUCTION, 0
- 633              	.set CYDEV_CHIP_REVISION_USED, CYDEV_CHIP_REVISION_5B_PRODUCTION
- 634              	.set CYDEV_CHIP_REV_EXPECT, CYDEV_CHIP_REVISION_USED
- 635              	.set CYDEV_CONFIG_FASTBOOT_ENABLED, 1
- 636              	.set CYDEV_CONFIG_UNUSED_IO_AllowButWarn, 0
- 637              	.set CYDEV_CONFIG_UNUSED_IO, CYDEV_CONFIG_UNUSED_IO_AllowButWarn
- 638              	.set CYDEV_CONFIG_UNUSED_IO_AllowWithInfo, 1
- 639              	.set CYDEV_CONFIG_UNUSED_IO_Disallowed, 2
- 640              	.set CYDEV_CONFIGURATION_COMPRESSED, 1
- 641              	.set CYDEV_CONFIGURATION_DMA, 0
- 642              	.set CYDEV_CONFIGURATION_ECC, 1
- 643              	.set CYDEV_CONFIGURATION_IMOENABLED, CYDEV_CONFIG_FASTBOOT_ENABLED
- 644              	.set CYDEV_CONFIGURATION_MODE_COMPRESSED, 0
- 645              	.set CYDEV_CONFIGURATION_MODE, CYDEV_CONFIGURATION_MODE_COMPRESSED
- 646              	.set CYDEV_CONFIGURATION_MODE_DMA, 2
- 647              	.set CYDEV_CONFIGURATION_MODE_UNCOMPRESSED, 1
- 648              	.set CYDEV_DEBUG_ENABLE_MASK, 0x20
- 649              	.set CYDEV_DEBUG_ENABLE_REGISTER, CYREG_MLOGIC_DEBUG
- 650              	.set CYDEV_DEBUGGING_DPS_Disable, 3
- 651              	.set CYDEV_DEBUGGING_DPS_JTAG_4, 1
- 652              	.set CYDEV_DEBUGGING_DPS_JTAG_5, 0
- 653              	.set CYDEV_DEBUGGING_DPS_SWD, 2
- 654              	.set CYDEV_DEBUGGING_DPS_SWD_SWV, 6
- 655              	.set CYDEV_DEBUGGING_DPS, CYDEV_DEBUGGING_DPS_SWD_SWV
- 656              	.set CYDEV_DEBUGGING_ENABLE, 1
- 657              	.set CYDEV_DEBUGGING_XRES, 0
- 658              	.set CYDEV_DMA_CHANNELS_AVAILABLE, 24
- 659              	.set CYDEV_ECC_ENABLE, 0
- 660              	.set CYDEV_HEAP_SIZE, 0x80
- 661              	.set CYDEV_INSTRUCT_CACHE_ENABLED, 1
- 662              	.set CYDEV_INTR_RISING, 0x00000003
- 663              	.set CYDEV_IS_EXPORTING_CODE, 0
- 664              	.set CYDEV_IS_IMPORTING_CODE, 0
- 665              	.set CYDEV_PROJ_TYPE, 0
- 666              	.set CYDEV_PROJ_TYPE_BOOTLOADER, 1
- 667              	.set CYDEV_PROJ_TYPE_LAUNCHER, 5
- 668              	.set CYDEV_PROJ_TYPE_LOADABLE, 2
- 669              	.set CYDEV_PROJ_TYPE_LOADABLEANDBOOTLOADER, 4
- 670              	.set CYDEV_PROJ_TYPE_MULTIAPPBOOTLOADER, 3
+ 614              	.set ByteCountReset_Sync_ctrl_reg__CONTROL_REG, CYREG_B0_UDB10_CTL
+ 615              	.set ByteCountReset_Sync_ctrl_reg__CONTROL_ST_REG, CYREG_B0_UDB10_ST_CTL
+ 616              	.set ByteCountReset_Sync_ctrl_reg__COUNT_REG, CYREG_B0_UDB10_CTL
+ 617              	.set ByteCountReset_Sync_ctrl_reg__COUNT_ST_REG, CYREG_B0_UDB10_ST_CTL
+ 618              	.set ByteCountReset_Sync_ctrl_reg__MASK, 0x01
+ 619              	.set ByteCountReset_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
+ 620              	.set ByteCountReset_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
+ 621              	.set ByteCountReset_Sync_ctrl_reg__PERIOD_REG, CYREG_B0_UDB10_MSK
+ 622              	
+ 623              	/* TurnSpeakerOff */
+ 624              	.set TurnSpeakerOff__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
+ 625              	.set TurnSpeakerOff__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
+ 626              	.set TurnSpeakerOff__INTC_MASK, 0x100000
+ 627              	.set TurnSpeakerOff__INTC_NUMBER, 20
+ 628              	.set TurnSpeakerOff__INTC_PRIOR_NUM, 7
+ 629              	.set TurnSpeakerOff__INTC_PRIOR_REG, CYREG_NVIC_PRI_20
+ 630              	.set TurnSpeakerOff__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
+ 631              	.set TurnSpeakerOff__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
+ 632              	
+ 633              	/* CommandReceived */
+ 634              	.set CommandReceived__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
+ 635              	.set CommandReceived__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
+ 636              	.set CommandReceived__INTC_MASK, 0x02
+ 637              	.set CommandReceived__INTC_NUMBER, 1
+ 638              	.set CommandReceived__INTC_PRIOR_NUM, 6
+ 639              	.set CommandReceived__INTC_PRIOR_REG, CYREG_NVIC_PRI_1
+ 640              	.set CommandReceived__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
+ 641              	.set CommandReceived__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
+ 642              	
+ 643              	/* LEDOffInterrupt */
+ 644              	.set LEDOffInterrupt__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
+ 645              	.set LEDOffInterrupt__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
+ 646              	.set LEDOffInterrupt__INTC_MASK, 0x20000
+ 647              	.set LEDOffInterrupt__INTC_NUMBER, 17
+ 648              	.set LEDOffInterrupt__INTC_PRIOR_NUM, 7
+ 649              	.set LEDOffInterrupt__INTC_PRIOR_REG, CYREG_NVIC_PRI_17
+ 650              	.set LEDOffInterrupt__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
+ 651              	.set LEDOffInterrupt__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
+ 652              	
+ 653              	/* SpeakerClockConverter */
+ 654              	.set SpeakerClockConverter_CounterHW__CAP0, CYREG_TMR2_CAP0
+ 655              	.set SpeakerClockConverter_CounterHW__CAP1, CYREG_TMR2_CAP1
+ 656              	.set SpeakerClockConverter_CounterHW__CFG0, CYREG_TMR2_CFG0
+ 657              	.set SpeakerClockConverter_CounterHW__CFG1, CYREG_TMR2_CFG1
+ 658              	.set SpeakerClockConverter_CounterHW__CFG2, CYREG_TMR2_CFG2
+ 659              	.set SpeakerClockConverter_CounterHW__CNT_CMP0, CYREG_TMR2_CNT_CMP0
+ 660              	.set SpeakerClockConverter_CounterHW__CNT_CMP1, CYREG_TMR2_CNT_CMP1
+ 661              	.set SpeakerClockConverter_CounterHW__PER0, CYREG_TMR2_PER0
+ 662              	.set SpeakerClockConverter_CounterHW__PER1, CYREG_TMR2_PER1
+ 663              	.set SpeakerClockConverter_CounterHW__PM_ACT_CFG, CYREG_PM_ACT_CFG3
+ 664              	.set SpeakerClockConverter_CounterHW__PM_ACT_MSK, 0x04
+ 665              	.set SpeakerClockConverter_CounterHW__PM_STBY_CFG, CYREG_PM_STBY_CFG3
+ 666              	.set SpeakerClockConverter_CounterHW__PM_STBY_MSK, 0x04
+ 667              	.set SpeakerClockConverter_CounterHW__RT0, CYREG_TMR2_RT0
+ 668              	.set SpeakerClockConverter_CounterHW__RT1, CYREG_TMR2_RT1
+ 669              	.set SpeakerClockConverter_CounterHW__SR0, CYREG_TMR2_SR0
+ 670              	
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 201
 
 
- 671              	.set CYDEV_PROJ_TYPE_STANDARD, 0
- 672              	.set CYDEV_PROTECTION_ENABLE, 0
- 673              	.set CYDEV_STACK_SIZE, 0x0800
- 674              	.set CYDEV_USE_BUNDLED_CMSIS, 1
- 675              	.set CYDEV_VARIABLE_VDDA, 0
- 676              	.set CYDEV_VDDA_MV, 5000
- 677              	.set CYDEV_VDDD_MV, 5000
- 678              	.set CYDEV_VDDIO0_MV, 5000
- 679              	.set CYDEV_VDDIO1_MV, 5000
- 680              	.set CYDEV_VDDIO2_MV, 5000
- 681              	.set CYDEV_VDDIO3_MV, 5000
- 682              	.set CYDEV_VIO0_MV, 5000
- 683              	.set CYDEV_VIO1_MV, 5000
- 684              	.set CYDEV_VIO2_MV, 5000
- 685              	.set CYDEV_VIO3_MV, 5000
- 686              	.set CYIPBLOCK_ARM_CM3_VERSION, 0
- 687              	.set CYIPBLOCK_P3_ANAIF_VERSION, 0
- 688              	.set CYIPBLOCK_P3_CAN_VERSION, 0
- 689              	.set CYIPBLOCK_P3_CAPSENSE_VERSION, 0
- 690              	.set CYIPBLOCK_P3_COMP_VERSION, 0
- 691              	.set CYIPBLOCK_P3_DECIMATOR_VERSION, 0
- 692              	.set CYIPBLOCK_P3_DFB_VERSION, 0
- 693              	.set CYIPBLOCK_P3_DMA_VERSION, 0
- 694              	.set CYIPBLOCK_P3_DRQ_VERSION, 0
- 695              	.set CYIPBLOCK_P3_DSM_VERSION, 0
- 696              	.set CYIPBLOCK_P3_EMIF_VERSION, 0
- 697              	.set CYIPBLOCK_P3_I2C_VERSION, 0
- 698              	.set CYIPBLOCK_P3_LCD_VERSION, 0
- 699              	.set CYIPBLOCK_P3_LPF_VERSION, 0
- 700              	.set CYIPBLOCK_P3_OPAMP_VERSION, 0
- 701              	.set CYIPBLOCK_P3_PM_VERSION, 0
- 702              	.set CYIPBLOCK_P3_SCCT_VERSION, 0
- 703              	.set CYIPBLOCK_P3_TIMER_VERSION, 0
- 704              	.set CYIPBLOCK_P3_USB_VERSION, 0
- 705              	.set CYIPBLOCK_P3_VIDAC_VERSION, 0
- 706              	.set CYIPBLOCK_P3_VREF_VERSION, 0
- 707              	.set CYIPBLOCK_S8_GPIO_VERSION, 0
- 708              	.set CYIPBLOCK_S8_IRQ_VERSION, 0
- 709              	.set CYIPBLOCK_S8_SAR_VERSION, 0
- 710              	.set CYIPBLOCK_S8_SIO_VERSION, 0
- 711              	.set CYIPBLOCK_S8_UDB_VERSION, 0
- 712              	.set DMA_CHANNELS_USED__MASK0, 0x00000000
- 713              	.set CYDEV_BOOTLOADER_ENABLE, 0
- 714              	.endif
+ 671              	/* Miscellaneous */
+ 672              	.set BCLK__BUS_CLK__HZ, 24000000
+ 673              	.set BCLK__BUS_CLK__KHZ, 24000
+ 674              	.set BCLK__BUS_CLK__MHZ, 24
+ 675              	.set CYDEV_CHIP_DIE_LEOPARD, 1
+ 676              	.set CYDEV_CHIP_DIE_PSOC4A, 24
+ 677              	.set CYDEV_CHIP_DIE_PSOC5LP, 2
+ 678              	.set CYDEV_CHIP_DIE_PSOC5TM, 3
+ 679              	.set CYDEV_CHIP_DIE_TMA4, 4
+ 680              	.set CYDEV_CHIP_DIE_UNKNOWN, 0
+ 681              	.set CYDEV_CHIP_FAMILY_FM0P, 5
+ 682              	.set CYDEV_CHIP_FAMILY_FM3, 6
+ 683              	.set CYDEV_CHIP_FAMILY_FM4, 7
+ 684              	.set CYDEV_CHIP_FAMILY_PSOC3, 1
+ 685              	.set CYDEV_CHIP_FAMILY_PSOC4, 2
+ 686              	.set CYDEV_CHIP_FAMILY_PSOC5, 3
+ 687              	.set CYDEV_CHIP_FAMILY_PSOC6, 4
+ 688              	.set CYDEV_CHIP_FAMILY_UNKNOWN, 0
+ 689              	.set CYDEV_CHIP_FAMILY_USED, CYDEV_CHIP_FAMILY_PSOC5
+ 690              	.set CYDEV_CHIP_JTAG_ID, 0x2E161069
+ 691              	.set CYDEV_CHIP_MEMBER_3A, 1
+ 692              	.set CYDEV_CHIP_MEMBER_4A, 24
+ 693              	.set CYDEV_CHIP_MEMBER_4AA, 23
+ 694              	.set CYDEV_CHIP_MEMBER_4AB, 28
+ 695              	.set CYDEV_CHIP_MEMBER_4AC, 14
+ 696              	.set CYDEV_CHIP_MEMBER_4D, 18
+ 697              	.set CYDEV_CHIP_MEMBER_4E, 6
+ 698              	.set CYDEV_CHIP_MEMBER_4F, 25
+ 699              	.set CYDEV_CHIP_MEMBER_4G, 4
+ 700              	.set CYDEV_CHIP_MEMBER_4H, 22
+ 701              	.set CYDEV_CHIP_MEMBER_4I, 30
+ 702              	.set CYDEV_CHIP_MEMBER_4J, 19
+ 703              	.set CYDEV_CHIP_MEMBER_4K, 20
+ 704              	.set CYDEV_CHIP_MEMBER_4L, 29
+ 705              	.set CYDEV_CHIP_MEMBER_4M, 27
+ 706              	.set CYDEV_CHIP_MEMBER_4N, 11
+ 707              	.set CYDEV_CHIP_MEMBER_4O, 8
+ 708              	.set CYDEV_CHIP_MEMBER_4P, 26
+ 709              	.set CYDEV_CHIP_MEMBER_4Q, 15
+ 710              	.set CYDEV_CHIP_MEMBER_4R, 9
+ 711              	.set CYDEV_CHIP_MEMBER_4S, 12
+ 712              	.set CYDEV_CHIP_MEMBER_4T, 10
+ 713              	.set CYDEV_CHIP_MEMBER_4U, 5
+ 714              	.set CYDEV_CHIP_MEMBER_4V, 21
+ 715              	.set CYDEV_CHIP_MEMBER_4W, 13
+ 716              	.set CYDEV_CHIP_MEMBER_4X, 7
+ 717              	.set CYDEV_CHIP_MEMBER_4Y, 16
+ 718              	.set CYDEV_CHIP_MEMBER_4Z, 17
+ 719              	.set CYDEV_CHIP_MEMBER_5A, 3
+ 720              	.set CYDEV_CHIP_MEMBER_5B, 2
+ 721              	.set CYDEV_CHIP_MEMBER_6A, 31
+ 722              	.set CYDEV_CHIP_MEMBER_FM3, 35
+ 723              	.set CYDEV_CHIP_MEMBER_FM4, 36
+ 724              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE1, 32
+ 725              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE2, 33
+ 726              	.set CYDEV_CHIP_MEMBER_PDL_FM0P_TYPE3, 34
+ 727              	.set CYDEV_CHIP_MEMBER_UNKNOWN, 0
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 202
+
+
+ 728              	.set CYDEV_CHIP_MEMBER_USED, CYDEV_CHIP_MEMBER_5B
+ 729              	.set CYDEV_CHIP_DIE_EXPECT, CYDEV_CHIP_MEMBER_USED
+ 730              	.set CYDEV_CHIP_DIE_ACTUAL, CYDEV_CHIP_DIE_EXPECT
+ 731              	.set CYDEV_CHIP_REV_LEOPARD_ES1, 0
+ 732              	.set CYDEV_CHIP_REV_LEOPARD_ES2, 1
+ 733              	.set CYDEV_CHIP_REV_LEOPARD_ES3, 3
+ 734              	.set CYDEV_CHIP_REV_LEOPARD_PRODUCTION, 3
+ 735              	.set CYDEV_CHIP_REV_PSOC4A_ES0, 17
+ 736              	.set CYDEV_CHIP_REV_PSOC4A_PRODUCTION, 17
+ 737              	.set CYDEV_CHIP_REV_PSOC5LP_ES0, 0
+ 738              	.set CYDEV_CHIP_REV_PSOC5LP_PRODUCTION, 0
+ 739              	.set CYDEV_CHIP_REV_PSOC5TM_ES0, 0
+ 740              	.set CYDEV_CHIP_REV_PSOC5TM_ES1, 1
+ 741              	.set CYDEV_CHIP_REV_PSOC5TM_PRODUCTION, 1
+ 742              	.set CYDEV_CHIP_REV_TMA4_ES, 17
+ 743              	.set CYDEV_CHIP_REV_TMA4_ES2, 33
+ 744              	.set CYDEV_CHIP_REV_TMA4_PRODUCTION, 17
+ 745              	.set CYDEV_CHIP_REVISION_3A_ES1, 0
+ 746              	.set CYDEV_CHIP_REVISION_3A_ES2, 1
+ 747              	.set CYDEV_CHIP_REVISION_3A_ES3, 3
+ 748              	.set CYDEV_CHIP_REVISION_3A_PRODUCTION, 3
+ 749              	.set CYDEV_CHIP_REVISION_4A_ES0, 17
+ 750              	.set CYDEV_CHIP_REVISION_4A_PRODUCTION, 17
+ 751              	.set CYDEV_CHIP_REVISION_4AA_PRODUCTION, 0
+ 752              	.set CYDEV_CHIP_REVISION_4AB_PRODUCTION, 0
+ 753              	.set CYDEV_CHIP_REVISION_4AC_PRODUCTION, 0
+ 754              	.set CYDEV_CHIP_REVISION_4D_PRODUCTION, 0
+ 755              	.set CYDEV_CHIP_REVISION_4E_CCG2_NO_USBPD, 0
+ 756              	.set CYDEV_CHIP_REVISION_4E_PRODUCTION, 0
+ 757              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION, 0
+ 758              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION_256DMA, 0
+ 759              	.set CYDEV_CHIP_REVISION_4F_PRODUCTION_256K, 0
+ 760              	.set CYDEV_CHIP_REVISION_4G_ES, 17
+ 761              	.set CYDEV_CHIP_REVISION_4G_ES2, 33
+ 762              	.set CYDEV_CHIP_REVISION_4G_PRODUCTION, 17
+ 763              	.set CYDEV_CHIP_REVISION_4H_PRODUCTION, 0
+ 764              	.set CYDEV_CHIP_REVISION_4I_PRODUCTION, 0
+ 765              	.set CYDEV_CHIP_REVISION_4J_PRODUCTION, 0
+ 766              	.set CYDEV_CHIP_REVISION_4K_PRODUCTION, 0
+ 767              	.set CYDEV_CHIP_REVISION_4L_PRODUCTION, 0
+ 768              	.set CYDEV_CHIP_REVISION_4M_PRODUCTION, 0
+ 769              	.set CYDEV_CHIP_REVISION_4N_PRODUCTION, 0
+ 770              	.set CYDEV_CHIP_REVISION_4O_PRODUCTION, 0
+ 771              	.set CYDEV_CHIP_REVISION_4P_PRODUCTION, 0
+ 772              	.set CYDEV_CHIP_REVISION_4Q_PRODUCTION, 0
+ 773              	.set CYDEV_CHIP_REVISION_4R_PRODUCTION, 0
+ 774              	.set CYDEV_CHIP_REVISION_4S_PRODUCTION, 0
+ 775              	.set CYDEV_CHIP_REVISION_4T_PRODUCTION, 0
+ 776              	.set CYDEV_CHIP_REVISION_4U_PRODUCTION, 0
+ 777              	.set CYDEV_CHIP_REVISION_4V_PRODUCTION, 0
+ 778              	.set CYDEV_CHIP_REVISION_4W_PRODUCTION, 0
+ 779              	.set CYDEV_CHIP_REVISION_4X_PRODUCTION, 0
+ 780              	.set CYDEV_CHIP_REVISION_4Y_PRODUCTION, 0
+ 781              	.set CYDEV_CHIP_REVISION_4Z_PRODUCTION, 0
+ 782              	.set CYDEV_CHIP_REVISION_5A_ES0, 0
+ 783              	.set CYDEV_CHIP_REVISION_5A_ES1, 1
+ 784              	.set CYDEV_CHIP_REVISION_5A_PRODUCTION, 1
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 203
+
+
+ 785              	.set CYDEV_CHIP_REVISION_5B_ES0, 0
+ 786              	.set CYDEV_CHIP_REVISION_5B_PRODUCTION, 0
+ 787              	.set CYDEV_CHIP_REVISION_6A_ES, 17
+ 788              	.set CYDEV_CHIP_REVISION_6A_NO_UDB, 33
+ 789              	.set CYDEV_CHIP_REVISION_6A_PRODUCTION, 33
+ 790              	.set CYDEV_CHIP_REVISION_FM3_PRODUCTION, 0
+ 791              	.set CYDEV_CHIP_REVISION_FM4_PRODUCTION, 0
+ 792              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE1_PRODUCTION, 0
+ 793              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE2_PRODUCTION, 0
+ 794              	.set CYDEV_CHIP_REVISION_PDL_FM0P_TYPE3_PRODUCTION, 0
+ 795              	.set CYDEV_CHIP_REVISION_USED, CYDEV_CHIP_REVISION_5B_PRODUCTION
+ 796              	.set CYDEV_CHIP_REV_EXPECT, CYDEV_CHIP_REVISION_USED
+ 797              	.set CYDEV_CONFIG_FASTBOOT_ENABLED, 1
+ 798              	.set CYDEV_CONFIG_UNUSED_IO_AllowButWarn, 0
+ 799              	.set CYDEV_CONFIG_UNUSED_IO, CYDEV_CONFIG_UNUSED_IO_AllowButWarn
+ 800              	.set CYDEV_CONFIG_UNUSED_IO_AllowWithInfo, 1
+ 801              	.set CYDEV_CONFIG_UNUSED_IO_Disallowed, 2
+ 802              	.set CYDEV_CONFIGURATION_COMPRESSED, 1
+ 803              	.set CYDEV_CONFIGURATION_DMA, 0
+ 804              	.set CYDEV_CONFIGURATION_ECC, 1
+ 805              	.set CYDEV_CONFIGURATION_IMOENABLED, CYDEV_CONFIG_FASTBOOT_ENABLED
+ 806              	.set CYDEV_CONFIGURATION_MODE_COMPRESSED, 0
+ 807              	.set CYDEV_CONFIGURATION_MODE, CYDEV_CONFIGURATION_MODE_COMPRESSED
+ 808              	.set CYDEV_CONFIGURATION_MODE_DMA, 2
+ 809              	.set CYDEV_CONFIGURATION_MODE_UNCOMPRESSED, 1
+ 810              	.set CYDEV_DEBUG_ENABLE_MASK, 0x20
+ 811              	.set CYDEV_DEBUG_ENABLE_REGISTER, CYREG_MLOGIC_DEBUG
+ 812              	.set CYDEV_DEBUGGING_DPS_Disable, 3
+ 813              	.set CYDEV_DEBUGGING_DPS_JTAG_4, 1
+ 814              	.set CYDEV_DEBUGGING_DPS_JTAG_5, 0
+ 815              	.set CYDEV_DEBUGGING_DPS_SWD, 2
+ 816              	.set CYDEV_DEBUGGING_DPS_SWD_SWV, 6
+ 817              	.set CYDEV_DEBUGGING_DPS, CYDEV_DEBUGGING_DPS_SWD_SWV
+ 818              	.set CYDEV_DEBUGGING_ENABLE, 1
+ 819              	.set CYDEV_DEBUGGING_XRES, 0
+ 820              	.set CYDEV_DMA_CHANNELS_AVAILABLE, 24
+ 821              	.set CYDEV_ECC_ENABLE, 0
+ 822              	.set CYDEV_HEAP_SIZE, 0x80
+ 823              	.set CYDEV_INSTRUCT_CACHE_ENABLED, 1
+ 824              	.set CYDEV_INTR_RISING, 0x00000003
+ 825              	.set CYDEV_IS_EXPORTING_CODE, 0
+ 826              	.set CYDEV_IS_IMPORTING_CODE, 0
+ 827              	.set CYDEV_PROJ_TYPE, 0
+ 828              	.set CYDEV_PROJ_TYPE_BOOTLOADER, 1
+ 829              	.set CYDEV_PROJ_TYPE_LAUNCHER, 5
+ 830              	.set CYDEV_PROJ_TYPE_LOADABLE, 2
+ 831              	.set CYDEV_PROJ_TYPE_LOADABLEANDBOOTLOADER, 4
+ 832              	.set CYDEV_PROJ_TYPE_MULTIAPPBOOTLOADER, 3
+ 833              	.set CYDEV_PROJ_TYPE_STANDARD, 0
+ 834              	.set CYDEV_PROTECTION_ENABLE, 0
+ 835              	.set CYDEV_STACK_SIZE, 0x0800
+ 836              	.set CYDEV_USE_BUNDLED_CMSIS, 1
+ 837              	.set CYDEV_VARIABLE_VDDA, 0
+ 838              	.set CYDEV_VDDA_MV, 5000
+ 839              	.set CYDEV_VDDD_MV, 5000
+ 840              	.set CYDEV_VDDIO0_MV, 5000
+ 841              	.set CYDEV_VDDIO1_MV, 5000
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 204
+
+
+ 842              	.set CYDEV_VDDIO2_MV, 5000
+ 843              	.set CYDEV_VDDIO3_MV, 5000
+ 844              	.set CYDEV_VIO0_MV, 5000
+ 845              	.set CYDEV_VIO1_MV, 5000
+ 846              	.set CYDEV_VIO2_MV, 5000
+ 847              	.set CYDEV_VIO3_MV, 5000
+ 848              	.set CYIPBLOCK_ARM_CM3_VERSION, 0
+ 849              	.set CYIPBLOCK_P3_ANAIF_VERSION, 0
+ 850              	.set CYIPBLOCK_P3_CAN_VERSION, 0
+ 851              	.set CYIPBLOCK_P3_CAPSENSE_VERSION, 0
+ 852              	.set CYIPBLOCK_P3_COMP_VERSION, 0
+ 853              	.set CYIPBLOCK_P3_DECIMATOR_VERSION, 0
+ 854              	.set CYIPBLOCK_P3_DFB_VERSION, 0
+ 855              	.set CYIPBLOCK_P3_DMA_VERSION, 0
+ 856              	.set CYIPBLOCK_P3_DRQ_VERSION, 0
+ 857              	.set CYIPBLOCK_P3_DSM_VERSION, 0
+ 858              	.set CYIPBLOCK_P3_EMIF_VERSION, 0
+ 859              	.set CYIPBLOCK_P3_I2C_VERSION, 0
+ 860              	.set CYIPBLOCK_P3_LCD_VERSION, 0
+ 861              	.set CYIPBLOCK_P3_LPF_VERSION, 0
+ 862              	.set CYIPBLOCK_P3_OPAMP_VERSION, 0
+ 863              	.set CYIPBLOCK_P3_PM_VERSION, 0
+ 864              	.set CYIPBLOCK_P3_SCCT_VERSION, 0
+ 865              	.set CYIPBLOCK_P3_TIMER_VERSION, 0
+ 866              	.set CYIPBLOCK_P3_USB_VERSION, 0
+ 867              	.set CYIPBLOCK_P3_VIDAC_VERSION, 0
+ 868              	.set CYIPBLOCK_P3_VREF_VERSION, 0
+ 869              	.set CYIPBLOCK_S8_GPIO_VERSION, 0
+ 870              	.set CYIPBLOCK_S8_IRQ_VERSION, 0
+ 871              	.set CYIPBLOCK_S8_SAR_VERSION, 0
+ 872              	.set CYIPBLOCK_S8_SIO_VERSION, 0
+ 873              	.set CYIPBLOCK_S8_UDB_VERSION, 0
+ 874              	.set DMA_CHANNELS_USED__MASK0, 0x00000000
+ 875              	.set CYDEV_BOOTLOADER_ENABLE, 0
+ 876              	.endif
   17              	
   18              	.syntax unified
   19              	.text
@@ -12058,9 +12229,6 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
   27              	*  Delays for the specified number of cycles.
   28              	*
   29              	*  \param uint32 cycles: number of cycles to delay.
-ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 202
-
-
   30              	*
   31              	*******************************************************************************/
   32              	/* void CyDelayCycles(uint32 cycles) */
@@ -12070,6 +12238,9 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
   36              	.type CyDelayCycles, %function
   37              	.thumb_func
   38              	CyDelayCycles:              /* cycles bytes */
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 205
+
+
   39              	/* If ICache is enabled */
   40              	.ifeq CYDEV_INSTRUCT_CACHE_ENABLED - 1
   41              	
@@ -12118,9 +12289,6 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
   84              	CyDelayCycles_done:
   85              	    BX lr                     /*  3    2  */
   86              	    NOP                       /*  1    2   Alignment padding */
-ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 203
-
-
   87              	    NOP                       /*  1    2   Alignment padding */
   88              	
   89              	CyDelayCycles_short:
@@ -12130,6 +12298,9 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
   93              	
   94              	cy_flash_cycles:
   95              	.byte 0x0B
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 206
+
+
   96              	.byte 0x05
   97              	.byte 0x07
   98              	.byte 0x09
@@ -12178,9 +12349,6 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  141              	*  CyEnterCriticalSection was called. The argument should be the value returned
  142              	*  from CyEnterCriticalSection.
  143              	*
-ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 204
-
-
  144              	*  \param uint8 savedIntrStatus:
  145              	*   Saved interrupt status returned by the CyEnterCriticalSection function.
  146              	*
@@ -12190,6 +12358,9 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  150              	.func CyExitCriticalSection, CyExitCriticalSection
  151              	.type CyExitCriticalSection, %function
  152              	.thumb_func
+ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 207
+
+
  153              	CyExitCriticalSection:
  154 0018 80F31088 	    MSR PRIMASK, r0         /* Restore interrupt state */
  155 001c 7047     	    BX lr
