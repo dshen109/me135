@@ -152,7 +152,7 @@ CY_ISR(LEDOffInterrupt) {
 void playNote(float frequency, float duration) {
     SpeakerTimer_Stop();
     SpeakerTimer_WritePeriod((int) duration);
-    SpeakerClockConverter_WritePeriod((int) 1000000 / frequency);
+    SpeakerClockConverter_WritePeriod((int) (1000000 / frequency));
     // Set appropriate PWM frequency.
     SpeakerTimer_WriteCounter(0);
     SpeakerPWM_WriteCompare1(128);
@@ -257,11 +257,12 @@ int main(void) {
     q_init(&noteQueue, sizeof(uint8), queueSize, FIFO, 1);
     
     // Enqueue some notes as a test.
-    /** 
+    /**
     q_push(&noteQueue, &g4);
     q_push(&noteQueue, &c5);
     q_push(&noteQueue, &g4);
     q_push(&noteQueue, &a5);
+    
     q_push(&noteQueue, &e4);
     q_push(&noteQueue, &e4);
     q_push(&noteQueue, &a5);
