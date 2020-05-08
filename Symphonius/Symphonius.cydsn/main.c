@@ -20,13 +20,29 @@ uint8 CommandReady = 0;
 uint8 ReceivedBuffer[66];
 uint8 TransmitBuffer[3];
 
+// Structure for handling Serial payloads
+struct command_protocol
+{
+    uint8 packet_size;
+    uint8 command;
+    uint8 buffer[64];
+} Command_Packet;
+
+struct command_protocol Transmit_Packet;
+
 // Circular queue that holds notes.
 Queue_t noteQueue;
 // Number of notes to hold in queue at any time.
-uint16 queueSize = 50;
+uint16 queueSize = 100;
 
 // Tempo in beats per minute.
-uint8 tempo = 30;
+uint8 tempo = 120;
+// Duration of each on beat LED flash in ms. Initialize as 50 ms
+// but then gets recalculated in the main loop using noteFrac
+int onPeriod = 50;
+
+// Fraction of time each note should be on for.
+float noteFrac = 0.2;
 
 // Tracks if currentNote is ready to be sent to be played.
 uint8 noteReady = 0;
@@ -44,7 +60,7 @@ static uint8 noteNums[NUMNOTES] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 // Sequential frequencies [Hz] matching the array above.
 static uint16 noteFreqs[NUMNOTES] = {330, 349, 392, 440, 494, 523, 587, 659, 698};
 
-// Reference.
+// Reference for testing.
 uint8 e4 = 1;
 uint8 f4 = 2;
 uint8 g4 = 3;
@@ -55,21 +71,11 @@ uint8 d5 = 7;
 uint8 e5 = 8;
 uint8 f5 = 9;
 
-
-// Help convert uint16 note frequency to Byte array.
+// Help convert uint16 note frequency to byte array.
 union uint16ToByte {
     uint8 data[2];
     uint16 number;
 } ConvertToByte;
-
-struct command_protocol
-{
-    uint8 packet_size;
-    uint8 command;
-    uint8 buffer[64];
-} Command_Packet;
-
-struct command_protocol Transmit_Packet;
 
 /** Calculate the number of clock cycles between beats given a CLOCKRATE [Hz] and 
  *  BPM */
@@ -107,7 +113,7 @@ CY_ISR(ByteReceived) {
 
 
 /** Runs once all bytes have been read from the counter and is triggered by
- *  the timer. */
+ *  the Counter. */
 CY_ISR(CommandReceived) {
     uint8 i;
     
@@ -171,8 +177,8 @@ CY_ISR(NoteInterrupt) {
     LEDPWM_WriteCompare1(0);
     // If no notes to send, exit
     if (!noteReady) {
-        // Tun the LED on low for 50 milliseconds.
-        setLED(5, 5);
+        // Tun the LED on low.
+        setLED(5, onPeriod);
         NoteTimer_ReadStatusRegister();
         return;
     }
@@ -185,14 +191,10 @@ CY_ISR(NoteInterrupt) {
     TransmitBuffer[2] = ConvertToByte.data[0];
     LabVIEW_UART_PutArray(TransmitBuffer, 3);
     
-    // Calculate the period in ms for the given tempo. Make this a little
-    // shorter than the actual time so we can see differences in the LED.
-    int period = (int) 60000.0 / (float) tempo * 0.8;
-    
-    // Turn the LED on high for 0.5 second.
-    setLED(255, period);
+    // Turn the LED on high for a tenth of the tempo period.
+    setLED(255, onPeriod);
     // Play the note.
-    playNote(currentNote, period);
+    playNote(currentNote, onPeriod);
     
     // Note has been consumed.
     noteReady = 0;
@@ -257,7 +259,7 @@ int main(void) {
     q_init(&noteQueue, sizeof(uint8), queueSize, FIFO, 1);
     
     // Enqueue some notes as a test.
-    /**
+    
     q_push(&noteQueue, &g4);
     q_push(&noteQueue, &c5);
     q_push(&noteQueue, &g4);
@@ -270,8 +272,9 @@ int main(void) {
     q_push(&noteQueue, &f4);
     q_push(&noteQueue, &g4);
     q_push(&noteQueue, &c5);
-    */
     
+    onPeriod = (int) (60000.0 / (float) tempo * noteFrac);
+
     for(;;)
     {
         if (CommandReady) {
@@ -281,6 +284,9 @@ int main(void) {
                     // Reset the tempo by changing the period of the NoteTimer
                     tempo = Command_Packet.buffer[0];
                     NoteTimer_WritePeriod(tempoToCycles(clockRate, tempo));
+                    // Calculate how long the LED should be on in ms as a percentage
+                    // of the bpm.
+                    onPeriod = (int) (60000.0 / (float) tempo * noteFrac);
                     CommandReady = 0;
                     break;
                 // Note Payload

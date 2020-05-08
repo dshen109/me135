@@ -252,8 +252,10 @@
   <Group key="DWRInstGuidMapping">
     <Group key="Interrupt">
       <Data key="6faf51ab-05c1-4ad0-8228-bd0b17610dbb" value="ByteReceived" />
+      <Data key="64c525c6-3d75-494a-a6e4-f3a66e182409" value="LEDOffInterrupt" />
       <Data key="47716d66-fcad-4184-9814-b2ccf13c7963" value="NoteInterrupt" />
       <Data key="c722041b-0533-4cc5-8cce-5e14a99442e0" value="CommandReceived" />
+      <Data key="d2517428-4e13-4c31-a2d8-fe6783c036d0" value="TurnSpeakerOff" />
     </Group>
     <Group key="Pin">
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="LED" />
@@ -3348,11 +3350,25 @@
     <Group key="6faf51ab-05c1-4ad0-8228-bd0b17610dbb">
       <Group key="CortexM3">
         <Data key="Assigned" value="True" />
+        <Data key="Priority" value="5" />
+        <Data key="Vector" value="-1" />
+      </Group>
+    </Group>
+    <Group key="64c525c6-3d75-494a-a6e4-f3a66e182409">
+      <Group key="CortexM3">
+        <Data key="Assigned" value="True" />
         <Data key="Priority" value="6" />
         <Data key="Vector" value="-1" />
       </Group>
     </Group>
     <Group key="c722041b-0533-4cc5-8cce-5e14a99442e0">
+      <Group key="CortexM3">
+        <Data key="Assigned" value="True" />
+        <Data key="Priority" value="5" />
+        <Data key="Vector" value="-1" />
+      </Group>
+    </Group>
+    <Group key="d2517428-4e13-4c31-a2d8-fe6783c036d0">
       <Group key="CortexM3">
         <Data key="Assigned" value="True" />
         <Data key="Priority" value="6" />
